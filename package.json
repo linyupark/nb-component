@@ -1,0 +1,29 @@
+{
+  "name": "nb-component",
+  "version": "0.0.1",
+  "description": "Web Components for TradeNB",
+  "module": "dist/esm/index.js",
+  "main": "dist/index.js",
+  "unpkg": "dist/ionic.js",
+  "types": "dist/types/components.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "stencil build --docs",
+    "start": "stencil build --dev --watch --serve",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watchAll"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@stencil/core": "^0.16.4",
+    "@stencil/postcss": "^0.1.0",
+    "@stencil/stylus": "^0.1.0",
+    "@types/jest": "^23.3.13",
+    "postcss-preset-env": "^6.5.0",
+    "prismjs": "^1.15.0"
+  },
+  "license": "MIT"
+}

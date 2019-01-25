@@ -1,0 +1,65 @@
+.actionsheet {
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  background: #fff;
+  width: rem(750px);
+  transition: transform 0.1s linear;
+  transform: translateY(100%);
+
+  &.visible {
+    z-index: 999;
+    transform: translateY(0);
+  }
+
+  .container {
+    .header {
+      display: flex;
+      height: rem(88px);
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border-bottom: 1px solid #ebebeb;
+
+      .close {
+        position: absolute;
+        left: rem(30px);
+        top: rem(30px);
+        width: rem(28px);
+        height: rem(28px);
+      }
+
+      .title {
+        font-size: rem(32px);
+        color: #202020;
+      }
+
+      .icon-close {
+        width: rem(32px);
+        height: rem(32px);
+        position: absolute;
+        right: rem(30px);
+        display: inline-block;
+        stroke-width: 0;
+        stroke: currentColor;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  width: rem(750px);
+  height: 100vh;
+  background: rgba(#000, 0.6);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.1s linear;
+
+  &.visible {
+    z-index: 1;
+    opacity: 1;
+  }
+}
