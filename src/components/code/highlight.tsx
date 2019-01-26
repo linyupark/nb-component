@@ -6,7 +6,6 @@ import Prism from 'prismjs';
   styleUrl: '../../../node_modules/prismjs/themes/prism.css'
 })
 export class CodeHighlight {
-
   /**
    * 代码内容
    */
@@ -17,14 +16,18 @@ export class CodeHighlight {
    */
   @Prop() lang: string = 'html';
 
-  componentDidLoad() {
-    console.log();
-  }
-
   render() {
-    return <pre>
-<code class="language-html" innerHTML={Prism.highlight(this.code, Prism.languages[this.lang], this.lang)}></code>
-    </pre>
+    return (
+      <pre>
+        <code
+          class="language-html"
+          innerHTML={Prism.highlight(
+            this.code,
+            Prism.languages[this.lang],
+            this.lang
+          )}
+        />
+      </pre>
+    );
   }
-
 }

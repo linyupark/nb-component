@@ -2,7 +2,7 @@ import { Component, Prop, Event, EventEmitter, Watch } from '@stencil/core';
 import Icon from './svg-icon';
 
 /**
- * 上滑交互框
+ * 分页组件
  */
 @Component({
   tag: 'nb-pagination',

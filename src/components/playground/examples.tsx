@@ -5,6 +5,9 @@ let refTarget;
  */
 
 export default {
+  /**
+   * 分页
+   */
   'nb-pagination': [
     <div class="wrapper">
       <p id="page-to">&nbsp;</p>
@@ -65,7 +68,9 @@ export default {
     `}
     />
   ],
-
+  /**
+   * 动作面板
+   */
   'nb-actionsheet': [
     <nb-actionsheet
       headTitle="面板标题"

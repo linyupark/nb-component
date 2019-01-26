@@ -1,13 +1,11 @@
 import { Component, State, Element } from '@stencil/core';
-// import { setRem, noRem } from '@utils/rem';
-import DemoCodes from './code';
+import Examples from './examples';
 
 @Component({
-  tag: 'nb-demo-site',
-  styleUrl: 'site.styl'
+  tag: 'nb-playground',
+  styleUrl: 'playground.styl'
 })
-export class DemoSite {
-
+export class Playground {
   @Element() el: HTMLElement;
 
   /**
@@ -47,7 +45,7 @@ export class DemoSite {
    * 从hash来得到需要展示的组件
    */
   componentWillLoad() {
-    const hash = location.hash.split("#");
+    const hash = location.hash.split('#');
     const search = location.search;
     // 获得渲染组件
     if (hash.length > 1) {
@@ -73,11 +71,15 @@ export class DemoSite {
         <h2>
           NB-牛邦通用组件库
           <small class="intro">
-            Powered by <a href="https://stenciljs.com/docs/introduction" target="_blank">Stencil</a>
+            Powered by{' '}
+            <a href="https://stenciljs.com/docs/introduction" target="_blank">
+              Stencil
+            </a>
             ·
-            <a href="https://stenciljs.com/docs/overview" target="_blank">跨平台使用方法</a>
-            ·
-            U:2019-01-25
+            <a href="https://stenciljs.com/docs/overview" target="_blank">
+              跨平台使用方法
+            </a>
+            · U:2019-01-25
           </small>
         </h2>
         <ul>
@@ -97,10 +99,17 @@ export class DemoSite {
           ))}
         </ul>
         <div class="content">
-          
-          <iframe class={this.demo.mobile ? 'mobile' : ''} src={`/?${this.demo.mobile ? 'mobile' : ''}#${this.demo.tag}`} />
+          <iframe
+            scrolling="no"
+            class={this.demo.mobile ? 'mobile' : ''}
+            src={`/?${this.demo.mobile ? 'mobile' : ''}#${this.demo.tag}`}
+          />
         </div>
       </div>
-    ) : <div class={this.demo.mobile ? 'demo mobile' : 'demo'}>{DemoCodes[this.tag]}</div>;
+    ) : (
+      <div class={this.demo.mobile ? 'example mobile' : 'example'}>
+        {Examples[this.tag]}
+      </div>
+    );
   }
 }

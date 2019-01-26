@@ -62,9 +62,6 @@ export namespace Components {
     'lang'?: string;
   }
 
-  interface NbDemoSite {}
-  interface NbDemoSiteAttributes extends StencilHTMLAttributes {}
-
   interface NbPagination {
     /**
     * 当只有一页的时候自动隐藏
@@ -113,21 +110,24 @@ export namespace Components {
     */
     'total'?: number;
   }
+
+  interface NbPlayground {}
+  interface NbPlaygroundAttributes extends StencilHTMLAttributes {}
 }
 
 declare global {
   interface StencilElementInterfaces {
     'NbActionsheet': Components.NbActionsheet;
     'NbCodeHighlight': Components.NbCodeHighlight;
-    'NbDemoSite': Components.NbDemoSite;
     'NbPagination': Components.NbPagination;
+    'NbPlayground': Components.NbPlayground;
   }
 
   interface StencilIntrinsicElements {
     'nb-actionsheet': Components.NbActionsheetAttributes;
     'nb-code-highlight': Components.NbCodeHighlightAttributes;
-    'nb-demo-site': Components.NbDemoSiteAttributes;
     'nb-pagination': Components.NbPaginationAttributes;
+    'nb-playground': Components.NbPlaygroundAttributes;
   }
 
 
@@ -143,30 +143,30 @@ declare global {
     new (): HTMLNbCodeHighlightElement;
   };
 
-  interface HTMLNbDemoSiteElement extends Components.NbDemoSite, HTMLStencilElement {}
-  var HTMLNbDemoSiteElement: {
-    prototype: HTMLNbDemoSiteElement;
-    new (): HTMLNbDemoSiteElement;
-  };
-
   interface HTMLNbPaginationElement extends Components.NbPagination, HTMLStencilElement {}
   var HTMLNbPaginationElement: {
     prototype: HTMLNbPaginationElement;
     new (): HTMLNbPaginationElement;
   };
 
+  interface HTMLNbPlaygroundElement extends Components.NbPlayground, HTMLStencilElement {}
+  var HTMLNbPlaygroundElement: {
+    prototype: HTMLNbPlaygroundElement;
+    new (): HTMLNbPlaygroundElement;
+  };
+
   interface HTMLElementTagNameMap {
     'nb-actionsheet': HTMLNbActionsheetElement
     'nb-code-highlight': HTMLNbCodeHighlightElement
-    'nb-demo-site': HTMLNbDemoSiteElement
     'nb-pagination': HTMLNbPaginationElement
+    'nb-playground': HTMLNbPlaygroundElement
   }
 
   interface ElementTagNameMap {
     'nb-actionsheet': HTMLNbActionsheetElement;
     'nb-code-highlight': HTMLNbCodeHighlightElement;
-    'nb-demo-site': HTMLNbDemoSiteElement;
     'nb-pagination': HTMLNbPaginationElement;
+    'nb-playground': HTMLNbPlaygroundElement;
   }
 
 
