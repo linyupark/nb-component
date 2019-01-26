@@ -33,6 +33,12 @@ export class Playground {
       text: '分页',
       mobile: false,
       tag: 'nb-pagination'
+    },
+    {
+      key: 'affix',
+      text: '固钉',
+      mobile: false,
+      tag: 'nb-affix'
     }
   ];
 
@@ -102,7 +108,7 @@ export class Playground {
           <iframe
             scrolling="no"
             class={this.demo.mobile ? 'mobile' : ''}
-            src={`/?${this.demo.mobile ? 'mobile' : ''}#${this.demo.tag}`}
+            src={`/?${this.demo.mobile ? 'mobile' : ''}${Date.now()}#${this.demo.tag}`}
           />
         </div>
       </div>

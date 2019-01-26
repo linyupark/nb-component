@@ -18,7 +18,7 @@ export class Pagination {
   /**
    * 当前页面
    */
-  @Prop({ mutable: true, reflectToAttr: true }) current: number = 1;
+  @Prop({ mutable: true }) current: number = 1;
   
   /**
    * 观察页数变化

@@ -41,6 +41,31 @@ export namespace Components {
     'mask'?: boolean;
   }
 
+  interface NbAffix {
+    /**
+    * 距离偏移量后触发（正数举例上沿，负数下沿）
+    */
+    'offset': number;
+    /**
+    * 计算举例的参照dom
+    */
+    'toTarget': any;
+  }
+  interface NbAffixAttributes extends StencilHTMLAttributes {
+    /**
+    * 距离偏移量后触发（正数举例上沿，负数下沿）
+    */
+    'offset'?: number;
+    /**
+    * 当固定状态发生变化对外发送事件
+    */
+    'onChange'?: (event: CustomEvent) => void;
+    /**
+    * 计算举例的参照dom
+    */
+    'toTarget'?: any;
+  }
+
   interface NbCodeHighlight {
     /**
     * 代码内容
@@ -118,6 +143,7 @@ export namespace Components {
 declare global {
   interface StencilElementInterfaces {
     'NbActionsheet': Components.NbActionsheet;
+    'NbAffix': Components.NbAffix;
     'NbCodeHighlight': Components.NbCodeHighlight;
     'NbPagination': Components.NbPagination;
     'NbPlayground': Components.NbPlayground;
@@ -125,6 +151,7 @@ declare global {
 
   interface StencilIntrinsicElements {
     'nb-actionsheet': Components.NbActionsheetAttributes;
+    'nb-affix': Components.NbAffixAttributes;
     'nb-code-highlight': Components.NbCodeHighlightAttributes;
     'nb-pagination': Components.NbPaginationAttributes;
     'nb-playground': Components.NbPlaygroundAttributes;
@@ -135,6 +162,12 @@ declare global {
   var HTMLNbActionsheetElement: {
     prototype: HTMLNbActionsheetElement;
     new (): HTMLNbActionsheetElement;
+  };
+
+  interface HTMLNbAffixElement extends Components.NbAffix, HTMLStencilElement {}
+  var HTMLNbAffixElement: {
+    prototype: HTMLNbAffixElement;
+    new (): HTMLNbAffixElement;
   };
 
   interface HTMLNbCodeHighlightElement extends Components.NbCodeHighlight, HTMLStencilElement {}
@@ -157,6 +190,7 @@ declare global {
 
   interface HTMLElementTagNameMap {
     'nb-actionsheet': HTMLNbActionsheetElement
+    'nb-affix': HTMLNbAffixElement
     'nb-code-highlight': HTMLNbCodeHighlightElement
     'nb-pagination': HTMLNbPaginationElement
     'nb-playground': HTMLNbPlaygroundElement
@@ -164,6 +198,7 @@ declare global {
 
   interface ElementTagNameMap {
     'nb-actionsheet': HTMLNbActionsheetElement;
+    'nb-affix': HTMLNbAffixElement;
     'nb-code-highlight': HTMLNbCodeHighlightElement;
     'nb-pagination': HTMLNbPaginationElement;
     'nb-playground': HTMLNbPlaygroundElement;
