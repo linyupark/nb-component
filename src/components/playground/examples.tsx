@@ -6,6 +6,102 @@ let refTarget;
 
 export default {
   /**
+   * 下拉刷新上拉加载
+   */
+  'nb-pull-to-do': [
+    <nb-pull-to-do
+      wrapperSelector=".wrapper"
+      contentSelector=".wrapper > div"
+      onRefresh={(ev: any) => {
+        console.log('刷新开始');
+        setTimeout(() => {
+          let newItem = document.createElement('div');
+          newItem.innerHTML = String(Date.now());
+          document.querySelector('.wrapper > div').insertAdjacentElement('afterbegin', newItem);
+          ev.target.done();
+        }, 1000);
+      }}
+      onMore={(ev: any) => {
+        console.log('加载更多');
+        setTimeout(() => {
+          let newItem = document.createElement('div');
+          newItem.innerHTML = String(Date.now());
+          document.querySelector('.wrapper > div').appendChild(newItem);
+          ev.target.done();
+        }, 1000);
+      }}
+    >
+      <div
+        class="wrapper"
+        style={{
+          padding: '0px',
+          height: '30vh',
+          overflow: 'auto',
+          background: '#f5f5f5'
+        }}
+      >
+        <div
+          style={{
+            overflowX: 'hidden',
+            background: '#fff',
+            padding: '20px'
+          }}
+        >
+          下拉试试刷新, 上拉到底试试加载更多（touch模式）
+          <br />
+          {'...........................'
+            .split('')
+            .map(w => [w, <br />])}
+        </div>
+      </div>
+    </nb-pull-to-do>,
+    <div class="lang">React</div>,
+    <nb-code-highlight 
+      code={`
+    <nb-pull-to-do
+      wrapperSelector=".wrapper"
+      contentSelector=".wrapper > div"
+      onRefresh={(ev: any) => {
+        console.log('刷新开始');
+        setTimeout(() => {
+          ev.target.done();
+        }, 1000);
+      }}
+      onMore={(ev: any) => {
+        console.log('加载更多');
+        setTimeout(() => {
+          ev.target.done();
+        }, 1000);
+      }}
+    >
+      <div
+        class="wrapper"
+        style={{
+          padding: '0px',
+          height: '30vh',
+          overflow: 'auto',
+          background: '#f5f5f5'
+        }}
+      >
+        <div
+          style={{
+            overflowX: 'hidden',
+            background: '#fff',
+            padding: '20px'
+          }}
+        >
+          下拉试试刷新, 上拉到底试试加载更多（touch模式）
+          <br />
+          {'...........................'
+            .split('')
+            .map(w => [w, <br />])}
+        </div>
+      </div>
+    </nb-pull-to-do>
+      `}
+    />
+  ],
+  /**
    * 固钉
    */
   'nb-affix': [
@@ -31,8 +127,7 @@ export default {
             if (detail.isFixed) {
               target.classList.add('fixed');
               wrapper.style.paddingTop = '64px';
-            }
-            else {
+            } else {
               target.classList.remove('fixed');
               wrapper.style.paddingTop = '20px';
             }

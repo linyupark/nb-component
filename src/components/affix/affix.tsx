@@ -63,14 +63,19 @@ export class Affix {
   }
 
   componentDidLoad() {
-    this.handleFix();
-    setTimeout(() => {
-      this.toTarget().addEventListener('scroll', () => this.handleFix(), false);
-    }, 100);
+    try {
+      this.handleFix();
+      setTimeout(() => {
+        this.toTarget().addEventListener('scroll', this.handleFix.bind(this), false);
+      }, 100);
+    }
+    catch(e) {
+      throw new TypeError('"toTarget" props maybe not a valid scroll dom.');
+    }
   }
 
-  componentDidUnload() {
-    this.toTarget().removeEventListener('scroll', () => this.handleFix(), false);
+  async componentDidUnload() {
+    this.toTarget().removeEventListener('scroll', this.handleFix.bind(this), false);
   }
 
   render() {

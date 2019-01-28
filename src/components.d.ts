@@ -138,6 +138,79 @@ export namespace Components {
 
   interface NbPlayground {}
   interface NbPlaygroundAttributes extends StencilHTMLAttributes {}
+
+  interface NbPullToDo {
+    /**
+    * 展示内容选择器
+    */
+    'contentSelector': string;
+    /**
+    * 拉动限制高度
+    */
+    'dampHeight': number;
+    /**
+    * 禁用哪项功能 refresh: 下拉刷新 | more: 加载更多
+    */
+    'disable'?: 'refresh' | 'more';
+    /**
+    * 加载完毕
+    */
+    'done': () => void;
+    /**
+    * 加载中的内容
+    */
+    'loadingHTML': string;
+    /**
+    * 上拉加载更多
+    */
+    'moreHTML': string;
+    /**
+    * 下拉展示的提示
+    */
+    'refreshHTML': string;
+    /**
+    * 实际滚动显示区块选择器
+    */
+    'wrapperSelector': string;
+  }
+  interface NbPullToDoAttributes extends StencilHTMLAttributes {
+    /**
+    * 展示内容选择器
+    */
+    'contentSelector'?: string;
+    /**
+    * 拉动限制高度
+    */
+    'dampHeight'?: number;
+    /**
+    * 禁用哪项功能 refresh: 下拉刷新 | more: 加载更多
+    */
+    'disable'?: 'refresh' | 'more';
+    /**
+    * 加载中的内容
+    */
+    'loadingHTML'?: string;
+    /**
+    * 上拉加载更多
+    */
+    'moreHTML'?: string;
+    /**
+    * 当上拉触发加载更多
+    */
+    'onMore'?: (event: CustomEvent) => void;
+    /**
+    * 当下拉成立触发事件
+    */
+    'onRefresh'?: (event: CustomEvent) => void;
+    /**
+    * 下拉展示的提示
+    */
+    'refreshHTML'?: string;
+    /**
+    * 实际滚动显示区块选择器
+    */
+    'wrapperSelector'?: string;
+  }
 }
 
 declare global {
@@ -147,6 +220,7 @@ declare global {
     'NbCodeHighlight': Components.NbCodeHighlight;
     'NbPagination': Components.NbPagination;
     'NbPlayground': Components.NbPlayground;
+    'NbPullToDo': Components.NbPullToDo;
   }
 
   interface StencilIntrinsicElements {
@@ -155,6 +229,7 @@ declare global {
     'nb-code-highlight': Components.NbCodeHighlightAttributes;
     'nb-pagination': Components.NbPaginationAttributes;
     'nb-playground': Components.NbPlaygroundAttributes;
+    'nb-pull-to-do': Components.NbPullToDoAttributes;
   }
 
 
@@ -188,12 +263,19 @@ declare global {
     new (): HTMLNbPlaygroundElement;
   };
 
+  interface HTMLNbPullToDoElement extends Components.NbPullToDo, HTMLStencilElement {}
+  var HTMLNbPullToDoElement: {
+    prototype: HTMLNbPullToDoElement;
+    new (): HTMLNbPullToDoElement;
+  };
+
   interface HTMLElementTagNameMap {
     'nb-actionsheet': HTMLNbActionsheetElement
     'nb-affix': HTMLNbAffixElement
     'nb-code-highlight': HTMLNbCodeHighlightElement
     'nb-pagination': HTMLNbPaginationElement
     'nb-playground': HTMLNbPlaygroundElement
+    'nb-pull-to-do': HTMLNbPullToDoElement
   }
 
   interface ElementTagNameMap {
@@ -202,6 +284,7 @@ declare global {
     'nb-code-highlight': HTMLNbCodeHighlightElement;
     'nb-pagination': HTMLNbPaginationElement;
     'nb-playground': HTMLNbPlaygroundElement;
+    'nb-pull-to-do': HTMLNbPullToDoElement;
   }
 
 

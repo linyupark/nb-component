@@ -39,6 +39,12 @@ export class Playground {
       text: '固钉',
       mobile: false,
       tag: 'nb-affix'
+    },
+    {
+      key: 'pull-to-do',
+      text: '上下拉操作.H5',
+      mobile: true,
+      tag: 'nb-pull-to-do'
     }
   ];
 
