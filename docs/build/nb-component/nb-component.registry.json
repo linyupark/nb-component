@@ -2,8 +2,8 @@
   "namespace": "NbComponent",
   "fsNamespace": "nb-component",
   "loader": "../nb-component.js",
-  "core": "nb-component.4hwy1no2.js",
-  "corePolyfilled": "nb-component.pa6wndet.js",
+  "core": "nb-component.m1o0yydx.js",
+  "corePolyfilled": "nb-component.3elv4mxl.js",
   "components": {
     "nb-actionsheet": {
       "bundleIds": {
