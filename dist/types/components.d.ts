@@ -181,6 +181,9 @@ export namespace Components {
     'total'?: number;
   }
 
+  interface NbPlayground {}
+  interface NbPlaygroundAttributes extends StencilHTMLAttributes {}
+
   interface NbPullToDo {
     /**
     * 展示内容选择器
@@ -262,6 +265,7 @@ declare global {
     'NbBadge': Components.NbBadge;
     'NbCodeHighlight': Components.NbCodeHighlight;
     'NbPagination': Components.NbPagination;
+    'NbPlayground': Components.NbPlayground;
     'NbPullToDo': Components.NbPullToDo;
   }
 
@@ -271,6 +275,7 @@ declare global {
     'nb-badge': Components.NbBadgeAttributes;
     'nb-code-highlight': Components.NbCodeHighlightAttributes;
     'nb-pagination': Components.NbPaginationAttributes;
+    'nb-playground': Components.NbPlaygroundAttributes;
     'nb-pull-to-do': Components.NbPullToDoAttributes;
   }
 
@@ -305,6 +310,12 @@ declare global {
     new (): HTMLNbPaginationElement;
   };
 
+  interface HTMLNbPlaygroundElement extends Components.NbPlayground, HTMLStencilElement {}
+  var HTMLNbPlaygroundElement: {
+    prototype: HTMLNbPlaygroundElement;
+    new (): HTMLNbPlaygroundElement;
+  };
+
   interface HTMLNbPullToDoElement extends Components.NbPullToDo, HTMLStencilElement {}
   var HTMLNbPullToDoElement: {
     prototype: HTMLNbPullToDoElement;
@@ -317,6 +328,7 @@ declare global {
     'nb-badge': HTMLNbBadgeElement
     'nb-code-highlight': HTMLNbCodeHighlightElement
     'nb-pagination': HTMLNbPaginationElement
+    'nb-playground': HTMLNbPlaygroundElement
     'nb-pull-to-do': HTMLNbPullToDoElement
   }
 
@@ -326,6 +338,7 @@ declare global {
     'nb-badge': HTMLNbBadgeElement;
     'nb-code-highlight': HTMLNbCodeHighlightElement;
     'nb-pagination': HTMLNbPaginationElement;
+    'nb-playground': HTMLNbPlaygroundElement;
     'nb-pull-to-do': HTMLNbPullToDoElement;
   }
 

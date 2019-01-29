@@ -111,6 +111,11 @@
       ]
     },
     {
+      "label": "nb-playground",
+      "description": "",
+      "attributes": []
+    },
+    {
       "label": "nb-pull-to-do",
       "description": "下滑刷新",
       "attributes": [

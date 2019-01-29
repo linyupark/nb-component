@@ -191,6 +191,34 @@
       ]
     },
     {
+      "tag": "nb-playground",
+      "dependencies": [
+        "nb-actionsheet",
+        "nb-affix",
+        "nb-badge",
+        "nb-code-highlight",
+        "nb-pagination",
+        "nb-pull-to-do"
+      ],
+      "componentClass": "Playground",
+      "componentPath": "components/playground/playground.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/playground/playground.styl"
+          ]
+        }
+      },
+      "states": [
+        {
+          "name": "demo"
+        }
+      ],
+      "hostElement": {
+        "name": "el"
+      }
+    },
+    {
       "tag": "nb-pull-to-do",
       "dependencies": [],
       "componentClass": "PullToRefresh",

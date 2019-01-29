@@ -33,5 +33,6 @@ export const config: Config = {
       ]
     })
   ],
-  excludeSrc: ['/test/', '**/.spec.', '**/playground/**']
+  // 正式使用库下面的注释取消build后再食用
+  // excludeSrc: ['/test/', '**/.spec.', '**/playground/**']
 };
