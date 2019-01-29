@@ -120,7 +120,7 @@ export class Playground {
           <iframe
             scrolling="no"
             class={this.demo.mobile ? 'mobile' : ''}
-            src={`/?${this.demo.mobile ? 'mobile' : ''}${Date.now()}#${this.demo.tag}`}
+            src={`./?${this.demo.mobile ? 'mobile' : ''}${Date.now()}#${this.demo.tag}`}
           />
         </div>
       </div>

@@ -1586,7 +1586,7 @@ class Playground {
                     h("br", null),
                     demo.key))))),
             h("div", { class: "content" },
-                h("iframe", { scrolling: "no", class: this.demo.mobile ? 'mobile' : '', src: `/?${this.demo.mobile ? 'mobile' : ''}${Date.now()}#${this.demo.tag}` })))) : (h("div", { class: this.demo.mobile ? 'example mobile' : 'example' }, Examples[this.tag]));
+                h("iframe", { scrolling: "no", class: this.demo.mobile ? 'mobile' : '', src: `./?${this.demo.mobile ? 'mobile' : ''}${Date.now()}#${this.demo.tag}` })))) : (h("div", { class: this.demo.mobile ? 'example mobile' : 'example' }, Examples[this.tag]));
     }
     static get is() { return "nb-playground"; }
     static get properties() { return {
