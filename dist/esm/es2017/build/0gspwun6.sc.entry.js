@@ -1577,7 +1577,8 @@ class Playground {
                     h("a", { href: "https://stenciljs.com/docs/introduction", target: "_blank" }, "Stencil"),
                     "\u00B7",
                     h("a", { href: "https://stenciljs.com/docs/overview", target: "_blank" }, "\u8DE8\u5E73\u53F0\u4F7F\u7528\u65B9\u6CD5"),
-                    "\u00B7 U:2019-01-25")),
+                    "\u00B7",
+                    h("a", { href: "https://github.com/linyupark/nb-component", target: "_blank" }, "github"))),
             h("ul", null, this.demoList.map(demo => (h("li", { key: demo.key, class: { active: demo.key === this.demo.key } },
                 h("a", { href: "javascript:;", onClick: () => {
                         this.demo = demo;

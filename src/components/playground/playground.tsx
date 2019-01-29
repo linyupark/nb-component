@@ -97,7 +97,8 @@ export class Playground {
             <a href="https://stenciljs.com/docs/overview" target="_blank">
               跨平台使用方法
             </a>
-            · U:2019-01-25
+            ·
+            <a href="https://github.com/linyupark/nb-component" target="_blank">github</a>
           </small>
         </h2>
         <ul>
