@@ -1,0 +1,275 @@
+{
+  "components": [
+    {
+      "tag": "nb-actionsheet",
+      "dependencies": [],
+      "componentClass": "Actionsheet",
+      "componentPath": "components/actionsheet/actionsheet.h5.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/actionsheet/actionsheet.h5.styl"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "headTitle",
+          "type": "String",
+          "attr": "head-title"
+        },
+        {
+          "name": "mask",
+          "type": "Boolean",
+          "attr": "mask"
+        }
+      ],
+      "states": [
+        {
+          "name": "visible"
+        }
+      ],
+      "methods": [
+        {
+          "name": "close"
+        },
+        {
+          "name": "show"
+        }
+      ]
+    },
+    {
+      "tag": "nb-affix",
+      "dependencies": [],
+      "componentClass": "Affix",
+      "componentPath": "components/affix/affix.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/affix/affix.styl"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "offset",
+          "type": "Number",
+          "attr": "offset"
+        },
+        {
+          "name": "toTarget",
+          "type": "Any",
+          "attr": "to-target"
+        }
+      ],
+      "states": [
+        {
+          "name": "fixed"
+        }
+      ],
+      "hostElement": {
+        "name": "el"
+      },
+      "events": [
+        {
+          "event": "change"
+        }
+      ]
+    },
+    {
+      "tag": "nb-badge",
+      "dependencies": [],
+      "componentClass": "Badge",
+      "componentPath": "components/badge/badge.h5.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/badge/badge.h5.styl"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "bgColor",
+          "type": "String",
+          "attr": "bg-color"
+        },
+        {
+          "name": "count",
+          "type": "Number",
+          "attr": "count"
+        },
+        {
+          "name": "dot",
+          "type": "Boolean",
+          "attr": "dot"
+        },
+        {
+          "name": "maxCount",
+          "type": "Number",
+          "attr": "max-count"
+        },
+        {
+          "name": "showZero",
+          "type": "Boolean",
+          "attr": "show-zero"
+        }
+      ]
+    },
+    {
+      "tag": "nb-code-highlight",
+      "dependencies": [],
+      "componentClass": "CodeHighlight",
+      "componentPath": "components/code/highlight.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "../node_modules/prismjs/themes/prism.css"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "code",
+          "type": "String",
+          "attr": "code"
+        },
+        {
+          "name": "lang",
+          "type": "String",
+          "attr": "lang"
+        }
+      ]
+    },
+    {
+      "tag": "nb-pagination",
+      "dependencies": [],
+      "componentClass": "Pagination",
+      "componentPath": "components/pagination/pagination.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/pagination/pagination.styl"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "autoHide",
+          "type": "Boolean",
+          "attr": "auto-hide"
+        },
+        {
+          "name": "current",
+          "type": "Number",
+          "mutable": true,
+          "attr": "current",
+          "watch": [
+            "onCurrentPageChange"
+          ]
+        },
+        {
+          "name": "limitPage",
+          "type": "Number",
+          "attr": "limit-page"
+        },
+        {
+          "name": "pagesize",
+          "type": "Number",
+          "attr": "pagesize"
+        },
+        {
+          "name": "total",
+          "type": "Number",
+          "attr": "total"
+        }
+      ],
+      "events": [
+        {
+          "event": "change"
+        }
+      ]
+    },
+    {
+      "tag": "nb-pull-to-do",
+      "dependencies": [],
+      "componentClass": "PullToRefresh",
+      "componentPath": "components/pull-to-do/pull-to-do.h5.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/pull-to-do/pull-to-do.h5.styl"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "contentSelector",
+          "type": "String",
+          "attr": "content-selector"
+        },
+        {
+          "name": "dampHeight",
+          "type": "Number",
+          "attr": "damp-height"
+        },
+        {
+          "name": "disable",
+          "type": "String",
+          "attr": "disable"
+        },
+        {
+          "name": "loadingHTML",
+          "type": "String",
+          "attr": "loading-h-t-m-l"
+        },
+        {
+          "name": "moreHTML",
+          "type": "String",
+          "attr": "more-h-t-m-l"
+        },
+        {
+          "name": "refreshHTML",
+          "type": "String",
+          "attr": "refresh-h-t-m-l"
+        },
+        {
+          "name": "wrapperSelector",
+          "type": "String",
+          "attr": "wrapper-selector"
+        }
+      ],
+      "states": [
+        {
+          "name": "dampingLen"
+        },
+        {
+          "name": "loading"
+        }
+      ],
+      "methods": [
+        {
+          "name": "done"
+        }
+      ],
+      "hostElement": {
+        "name": "el"
+      },
+      "events": [
+        {
+          "event": "more"
+        },
+        {
+          "event": "refresh"
+        }
+      ]
+    }
+  ],
+  "collections": [],
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "0.17.0",
+    "typescriptVersion": "3.2.2"
+  },
+  "bundles": []
+}

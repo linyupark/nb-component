@@ -1,0 +1,155 @@
+{
+  "tags": [
+    {
+      "label": "nb-actionsheet",
+      "description": "上滑交互框",
+      "attributes": [
+        {
+          "label": "head-title",
+          "description": "展示标题内容 （不用title避免跟原生属性冲突）",
+          "required": false
+        },
+        {
+          "label": "mask",
+          "description": "是否需要遮罩",
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "nb-affix",
+      "description": "固钉组件",
+      "attributes": [
+        {
+          "label": "offset",
+          "description": "距离偏移量后触发（正数举例上沿，负数下沿）",
+          "required": false
+        },
+        {
+          "label": "to-target",
+          "description": "计算举例的参照dom",
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "nb-badge",
+      "description": "徽标数",
+      "attributes": [
+        {
+          "label": "bg-color",
+          "description": "徽标底色",
+          "required": false
+        },
+        {
+          "label": "count",
+          "description": "展示数字，0为隐藏",
+          "required": false
+        },
+        {
+          "label": "dot",
+          "description": "不展示数字，显示点",
+          "required": false
+        },
+        {
+          "label": "max-count",
+          "description": "count的封顶数值超出则显示 maxCount+",
+          "required": false
+        },
+        {
+          "label": "show-zero",
+          "description": "当count为0的时候也显示",
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "nb-code-highlight",
+      "description": "",
+      "attributes": [
+        {
+          "label": "code",
+          "description": "代码内容",
+          "required": false
+        },
+        {
+          "label": "lang",
+          "description": "代码类型",
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "nb-pagination",
+      "description": "分页组件",
+      "attributes": [
+        {
+          "label": "auto-hide",
+          "description": "当只有一页的时候自动隐藏",
+          "required": false
+        },
+        {
+          "label": "current",
+          "description": "当前页面",
+          "required": false
+        },
+        {
+          "label": "limit-page",
+          "description": "当分页太多时候限制前后显示页数",
+          "required": false
+        },
+        {
+          "label": "pagesize",
+          "description": "每页条数",
+          "required": false
+        },
+        {
+          "label": "total",
+          "description": "总数据条数",
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "nb-pull-to-do",
+      "description": "下滑刷新",
+      "attributes": [
+        {
+          "label": "content-selector",
+          "description": "展示内容选择器",
+          "required": false
+        },
+        {
+          "label": "damp-height",
+          "description": "拉动限制高度",
+          "required": false
+        },
+        {
+          "label": "disable",
+          "description": "禁用哪项功能 refresh: 下拉刷新 | more: 加载更多",
+          "required": false
+        },
+        {
+          "label": "loading-h-t-m-l",
+          "description": "加载中的内容",
+          "required": false
+        },
+        {
+          "label": "more-h-t-m-l",
+          "description": "上拉加载更多",
+          "required": false
+        },
+        {
+          "label": "refresh-h-t-m-l",
+          "description": "下拉展示的提示",
+          "required": false
+        },
+        {
+          "label": "wrapper-selector",
+          "description": "实际滚动显示区块选择器",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

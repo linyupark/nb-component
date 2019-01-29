@@ -66,6 +66,51 @@ export namespace Components {
     'toTarget'?: any;
   }
 
+  interface NbBadge {
+    /**
+    * 徽标底色
+    */
+    'bgColor': string;
+    /**
+    * 展示数字，0为隐藏
+    */
+    'count': number;
+    /**
+    * 不展示数字，显示点
+    */
+    'dot': boolean;
+    /**
+    * count的封顶数值超出则显示 maxCount+
+    */
+    'maxCount': number;
+    /**
+    * 当count为0的时候也显示
+    */
+    'showZero': boolean;
+  }
+  interface NbBadgeAttributes extends StencilHTMLAttributes {
+    /**
+    * 徽标底色
+    */
+    'bgColor'?: string;
+    /**
+    * 展示数字，0为隐藏
+    */
+    'count'?: number;
+    /**
+    * 不展示数字，显示点
+    */
+    'dot'?: boolean;
+    /**
+    * count的封顶数值超出则显示 maxCount+
+    */
+    'maxCount'?: number;
+    /**
+    * 当count为0的时候也显示
+    */
+    'showZero'?: boolean;
+  }
+
   interface NbCodeHighlight {
     /**
     * 代码内容
@@ -135,9 +180,6 @@ export namespace Components {
     */
     'total'?: number;
   }
-
-  interface NbPlayground {}
-  interface NbPlaygroundAttributes extends StencilHTMLAttributes {}
 
   interface NbPullToDo {
     /**
@@ -217,18 +259,18 @@ declare global {
   interface StencilElementInterfaces {
     'NbActionsheet': Components.NbActionsheet;
     'NbAffix': Components.NbAffix;
+    'NbBadge': Components.NbBadge;
     'NbCodeHighlight': Components.NbCodeHighlight;
     'NbPagination': Components.NbPagination;
-    'NbPlayground': Components.NbPlayground;
     'NbPullToDo': Components.NbPullToDo;
   }
 
   interface StencilIntrinsicElements {
     'nb-actionsheet': Components.NbActionsheetAttributes;
     'nb-affix': Components.NbAffixAttributes;
+    'nb-badge': Components.NbBadgeAttributes;
     'nb-code-highlight': Components.NbCodeHighlightAttributes;
     'nb-pagination': Components.NbPaginationAttributes;
-    'nb-playground': Components.NbPlaygroundAttributes;
     'nb-pull-to-do': Components.NbPullToDoAttributes;
   }
 
@@ -245,6 +287,12 @@ declare global {
     new (): HTMLNbAffixElement;
   };
 
+  interface HTMLNbBadgeElement extends Components.NbBadge, HTMLStencilElement {}
+  var HTMLNbBadgeElement: {
+    prototype: HTMLNbBadgeElement;
+    new (): HTMLNbBadgeElement;
+  };
+
   interface HTMLNbCodeHighlightElement extends Components.NbCodeHighlight, HTMLStencilElement {}
   var HTMLNbCodeHighlightElement: {
     prototype: HTMLNbCodeHighlightElement;
@@ -257,12 +305,6 @@ declare global {
     new (): HTMLNbPaginationElement;
   };
 
-  interface HTMLNbPlaygroundElement extends Components.NbPlayground, HTMLStencilElement {}
-  var HTMLNbPlaygroundElement: {
-    prototype: HTMLNbPlaygroundElement;
-    new (): HTMLNbPlaygroundElement;
-  };
-
   interface HTMLNbPullToDoElement extends Components.NbPullToDo, HTMLStencilElement {}
   var HTMLNbPullToDoElement: {
     prototype: HTMLNbPullToDoElement;
@@ -272,18 +314,18 @@ declare global {
   interface HTMLElementTagNameMap {
     'nb-actionsheet': HTMLNbActionsheetElement
     'nb-affix': HTMLNbAffixElement
+    'nb-badge': HTMLNbBadgeElement
     'nb-code-highlight': HTMLNbCodeHighlightElement
     'nb-pagination': HTMLNbPaginationElement
-    'nb-playground': HTMLNbPlaygroundElement
     'nb-pull-to-do': HTMLNbPullToDoElement
   }
 
   interface ElementTagNameMap {
     'nb-actionsheet': HTMLNbActionsheetElement;
     'nb-affix': HTMLNbAffixElement;
+    'nb-badge': HTMLNbBadgeElement;
     'nb-code-highlight': HTMLNbCodeHighlightElement;
     'nb-pagination': HTMLNbPaginationElement;
-    'nb-playground': HTMLNbPlaygroundElement;
     'nb-pull-to-do': HTMLNbPullToDoElement;
   }
 

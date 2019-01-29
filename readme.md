@@ -16,3 +16,4 @@ Stencil components are just Web Components, so they work in any major framework 
  * [pagination 分页](./src/components/pagination/readme.md)
  * [affix 固钉](./src/components/affix/readme.md)
  * [pull-to-do 上下拉操作.H5](./src/components/pull-to-do/readme.md)
+ * [badge 徽标数.H5](./src/components/badge/readme.md)

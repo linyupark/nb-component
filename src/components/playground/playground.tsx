@@ -45,6 +45,12 @@ export class Playground {
       text: '上下拉操作.H5',
       mobile: true,
       tag: 'nb-pull-to-do'
+    },
+    {
+      key: 'badge',
+      text: '徽标数.H5',
+      mobile: true,
+      tag: 'nb-badge'
     }
   ];
 

@@ -10,6 +10,7 @@ export const config: Config = {
     { type: 'docs' },
     {
       type: 'www',
+      dir: 'docs',
       serviceWorker: null // disable service workers
     }
   ],
@@ -30,5 +31,6 @@ export const config: Config = {
         })
       ]
     })
-  ]
+  ],
+  excludeSrc: ['/test/', '**/.spec.', '**/playground/**']
 };

@@ -1,10 +1,65 @@
 let refTarget;
 
+const boxStyles = {
+  border: '1px solid #eee',
+  width: '30px',
+  height: '30px',
+  textAlign: 'center',
+  lineHeight: '30px',
+  background: '#eee'
+};
+
 /**
  * 各组件的演示代码
  */
 
 export default {
+  /**
+   * 徽标数
+   */
+  'nb-badge': [
+    <div class="wrapper">
+      <nb-badge count={213}>
+        <div style={boxStyles}>默超</div>
+      </nb-badge>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <nb-badge count={0} showZero>
+        <div style={boxStyles}>显0</div>
+      </nb-badge>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <nb-badge dot count={1}>
+        <div style={boxStyles}>圆点</div>
+      </nb-badge>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <nb-badge count={6} maxCount={5}>
+        <div style={boxStyles}>定超</div>
+      </nb-badge>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <nb-badge count={6} bgColor="blue">
+        <div style={boxStyles}>点色</div>
+      </nb-badge>
+    </div>,
+    <div class="lang">React</div>,
+    <nb-code-highlight
+      code={`
+  <nb-badge count={213}>
+    <div style={boxStyles}>默超</div>
+  </nb-badge>
+  <nb-badge count={0} showZero>
+    <div style={boxStyles}>显0</div>
+  </nb-badge>
+  <nb-badge dot count={1}>
+    <div style={boxStyles}>圆点</div>
+  </nb-badge>
+  <nb-badge count={6} maxCount={5}>
+    <div style={boxStyles}>定超</div>
+  </nb-badge>
+  <nb-badge count={6} bgColor="blue">
+    <div style={boxStyles}>点色</div>
+  </nb-badge>
+      `}
+    />
+  ],
   /**
    * 下拉刷新上拉加载
    */
@@ -17,7 +72,9 @@ export default {
         setTimeout(() => {
           let newItem = document.createElement('div');
           newItem.innerHTML = String(Date.now());
-          document.querySelector('.wrapper > div').insertAdjacentElement('afterbegin', newItem);
+          document
+            .querySelector('.wrapper > div')
+            .insertAdjacentElement('afterbegin', newItem);
           ev.target.done();
         }, 1000);
       }}
@@ -49,14 +106,12 @@ export default {
         >
           下拉试试刷新, 上拉到底试试加载更多（touch模式）
           <br />
-          {'...........................'
-            .split('')
-            .map(w => [w, <br />])}
+          {'...........................'.split('').map(w => [w, <br />])}
         </div>
       </div>
     </nb-pull-to-do>,
     <div class="lang">React</div>,
-    <nb-code-highlight 
+    <nb-code-highlight
       code={`
     <nb-pull-to-do
       wrapperSelector=".wrapper"
