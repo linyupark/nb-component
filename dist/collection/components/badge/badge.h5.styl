@@ -1,0 +1,33 @@
+.badge {
+  position: relative;
+  display: inline-block;
+  .count, .dot {
+    position: absolute;
+    border: 1px solid #fff;
+    font-style: normal;
+    text-align: center;
+
+    &.hidden {
+      display: none;
+    }
+  }
+  .count {
+    font-size: rem(20px);
+    color: #fff;
+    height: rem(26px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 rem(7px);
+    border-radius: rem(26px);
+    top: rem(-13px);
+    right: rem(-13px);
+  }
+  .dot {
+    width: rem(12px);
+    height: rem(12px);
+    border-radius: 50%;
+    top: rem(-6px);
+    right: rem(-6px);
+  }
+}

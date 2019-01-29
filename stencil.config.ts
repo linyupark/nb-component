@@ -11,6 +11,7 @@ export const config: Config = {
     {
       type: 'www',
       dir: 'docs',
+      baseUrl: '/nb-component/',
       serviceWorker: null // disable service workers
     }
   ],
