@@ -20,9 +20,13 @@ export default {
                 background: '#f5f5f5'
             } },
             h("nb-list", null,
-                h("div", null, "\u5185\u5BB9")),
+                h("nb-list-item", null, "\u5185\u5BB9"),
+                h("nb-list-item", null, "\u5185\u5BB9"),
+                h("nb-list-item", null, "\u5185\u5BB9")),
             h("nb-list", null,
-                h("div", null, "\u5185\u5BB9")))
+                h("nb-list-item", null, "\u5185\u5BB9"),
+                h("nb-list-item", null, "\u5185\u5BB9"),
+                h("nb-list-item", null, "\u5185\u5BB9")))
     ],
     /**
      * 徽标数

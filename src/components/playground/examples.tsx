@@ -23,10 +23,14 @@ export default {
       background: '#f5f5f5'
     }}>
       <nb-list>
-        <div>内容</div>
+        <nb-list-item>内容</nb-list-item>
+        <nb-list-item>内容</nb-list-item>
+        <nb-list-item>内容</nb-list-item>
       </nb-list>
       <nb-list>
-        <div>内容</div>
+        <nb-list-item>内容</nb-list-item>
+        <nb-list-item>内容</nb-list-item>
+        <nb-list-item>内容</nb-list-item>
       </nb-list>
     </div>
   ],

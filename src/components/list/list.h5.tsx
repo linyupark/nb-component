@@ -2,7 +2,7 @@ import { Component, Prop } from '@stencil/core';
 
 
 /**
- * 上滑交互框
+ * 列表区块
  */
 @Component({
   tag: 'nb-list',
@@ -25,3 +25,4 @@ export class List {
     ];
   }
 }
+

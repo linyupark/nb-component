@@ -1195,7 +1195,7 @@ class CodeHighlight {
 }
 
 /**
- * 上滑交互框
+ * 列表区块
  */
 class List {
     constructor() {
@@ -1219,7 +1219,39 @@ class List {
             "attr": "top-space"
         }
     }; }
-    static get style() { return ".space.s {\n  margin-top: 0.133333333333333rem;\n}\n.space.m {\n  margin-top: 0.266666666666667rem;\n}\n.space.l {\n  margin-top: 0.4rem;\n}\n.list {\n  background: #fff;\n}"; }
+    static get style() { return ".space.s {\n  margin-top: 0.133333333333333rem;\n}\n.space.m {\n  margin-top: 0.266666666666667rem;\n}\n.space.l {\n  margin-top: 0.4rem;\n}\n.list {\n  background: #fff;\n}\n.item {\n  height: 1.173333333333333rem;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n          -ms-flex-pack: justify;\n          justify-content: space-between;\n  padding: 0 0.4rem;\n}"; }
+}
+
+/**
+ * 区块项目
+ */
+class ListItem {
+    constructor() {
+        /**
+         * 下边框, 0则不显示
+         */
+        this.border = 1;
+        this.color = '#f5f5f5';
+    }
+    render() {
+        return (h("div", { class: "item", style: {
+                borderBottom: `${this.border > 0 ? `${this.border}px` : '0'} solid #f5f5f5`
+            } },
+            h("slot", null)));
+    }
+    static get is() { return "nb-list-item"; }
+    static get encapsulation() { return "shadow"; }
+    static get properties() { return {
+        "border": {
+            "type": Number,
+            "attr": "border"
+        },
+        "color": {
+            "type": String,
+            "attr": "color"
+        }
+    }; }
+    static get style() { return ".space.s {\n  margin-top: 0.133333333333333rem;\n}\n.space.m {\n  margin-top: 0.266666666666667rem;\n}\n.space.l {\n  margin-top: 0.4rem;\n}\n.list {\n  background: #fff;\n}\n.item {\n  height: 1.173333333333333rem;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n          -ms-flex-pack: justify;\n          justify-content: space-between;\n  padding: 0 0.4rem;\n}"; }
 }
 
 var Icon = {
@@ -1402,9 +1434,13 @@ var Examples = {
                 background: '#f5f5f5'
             } },
             h("nb-list", null,
-                h("div", null, "\u5185\u5BB9")),
+                h("nb-list-item", null, "\u5185\u5BB9"),
+                h("nb-list-item", null, "\u5185\u5BB9"),
+                h("nb-list-item", null, "\u5185\u5BB9")),
             h("nb-list", null,
-                h("div", null, "\u5185\u5BB9")))
+                h("nb-list-item", null, "\u5185\u5BB9"),
+                h("nb-list-item", null, "\u5185\u5BB9"),
+                h("nb-list-item", null, "\u5185\u5BB9")))
     ],
     /**
      * 徽标数
@@ -2043,4 +2079,4 @@ class PullToRefresh {
     static get style() { return ".pull-to-do {\n  position: relative;\n}\n.pull-to-do .show,\n.pull-to-do .hide {\n  position: absolute;\n  width: 100%;\n  top: 0;\n  opacity: 1;\n  z-index: 2;\n  -webkit-transition: opacity 0.3s;\n  transition: opacity 0.3s;\n}\n.pull-to-do .hide {\n  opacity: 0;\n  z-index: -1;\n}\n.pull-to-do .bottom {\n  top: auto;\n  bottom: 0;\n}\n.onrefresh,\n.onmore,\n.loading {\n  text-align: center;\n  color: #ccc;\n  background: #f5f5f5;\n  height: 0.8rem;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n          -ms-flex-pack: center;\n          justify-content: center;\n}"; }
 }
 
-export { Actionsheet as NbActionsheet, Affix as NbAffix, Badge as NbBadge, CodeHighlight as NbCodeHighlight, List as NbList, Pagination as NbPagination, Playground as NbPlayground, PullToRefresh as NbPullToDo };
+export { Actionsheet as NbActionsheet, Affix as NbAffix, Badge as NbBadge, CodeHighlight as NbCodeHighlight, List as NbList, ListItem as NbListItem, Pagination as NbPagination, Playground as NbPlayground, PullToRefresh as NbPullToDo };

@@ -132,6 +132,21 @@ export namespace Components {
     'lang'?: string;
   }
 
+  interface NbListItem {
+    /**
+    * 下边框, 0则不显示
+    */
+    'border': number;
+    'color': string;
+  }
+  interface NbListItemAttributes extends StencilHTMLAttributes {
+    /**
+    * 下边框, 0则不显示
+    */
+    'border'?: number;
+    'color'?: string;
+  }
+
   interface NbList {
     /**
     * List之间的间距
@@ -285,6 +300,7 @@ declare global {
     'NbAffix': Components.NbAffix;
     'NbBadge': Components.NbBadge;
     'NbCodeHighlight': Components.NbCodeHighlight;
+    'NbListItem': Components.NbListItem;
     'NbList': Components.NbList;
     'NbPagination': Components.NbPagination;
     'NbPlayground': Components.NbPlayground;
@@ -296,6 +312,7 @@ declare global {
     'nb-affix': Components.NbAffixAttributes;
     'nb-badge': Components.NbBadgeAttributes;
     'nb-code-highlight': Components.NbCodeHighlightAttributes;
+    'nb-list-item': Components.NbListItemAttributes;
     'nb-list': Components.NbListAttributes;
     'nb-pagination': Components.NbPaginationAttributes;
     'nb-playground': Components.NbPlaygroundAttributes;
@@ -327,6 +344,12 @@ declare global {
     new (): HTMLNbCodeHighlightElement;
   };
 
+  interface HTMLNbListItemElement extends Components.NbListItem, HTMLStencilElement {}
+  var HTMLNbListItemElement: {
+    prototype: HTMLNbListItemElement;
+    new (): HTMLNbListItemElement;
+  };
+
   interface HTMLNbListElement extends Components.NbList, HTMLStencilElement {}
   var HTMLNbListElement: {
     prototype: HTMLNbListElement;
@@ -356,6 +379,7 @@ declare global {
     'nb-affix': HTMLNbAffixElement
     'nb-badge': HTMLNbBadgeElement
     'nb-code-highlight': HTMLNbCodeHighlightElement
+    'nb-list-item': HTMLNbListItemElement
     'nb-list': HTMLNbListElement
     'nb-pagination': HTMLNbPaginationElement
     'nb-playground': HTMLNbPlaygroundElement
@@ -367,6 +391,7 @@ declare global {
     'nb-affix': HTMLNbAffixElement;
     'nb-badge': HTMLNbBadgeElement;
     'nb-code-highlight': HTMLNbCodeHighlightElement;
+    'nb-list-item': HTMLNbListItemElement;
     'nb-list': HTMLNbListElement;
     'nb-pagination': HTMLNbPaginationElement;
     'nb-playground': HTMLNbPlaygroundElement;
