@@ -162,11 +162,11 @@
       "tag": "nb-list-item",
       "dependencies": [],
       "componentClass": "ListItem",
-      "componentPath": "components/list/item.h5.js",
+      "componentPath": "components/list-item/list-item.h5.js",
       "styles": {
         "$": {
           "stylePaths": [
-            "components/list/list-item.h5.styl"
+            "components/list-item/list-item.h5.styl"
           ]
         }
       },

@@ -1219,7 +1219,7 @@ class List {
             "attr": "top-space"
         }
     }; }
-    static get style() { return ".space.s {\n  margin-top: 0.133333333333333rem;\n}\n.space.m {\n  margin-top: 0.266666666666667rem;\n}\n.space.l {\n  margin-top: 0.4rem;\n}\n.list {\n  background: #fff;\n}\n.item {\n  height: 1.173333333333333rem;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n          -ms-flex-pack: justify;\n          justify-content: space-between;\n  padding: 0 0.4rem;\n}\n.item.left {\n  margin-left: 0.4rem;\n  padding-left: 0;\n}\n.item.right {\n  margin-right: 0.4rem;\n  padding-right: 0;\n}\n.item.both {\n  margin: 0 0.4rem;\n  padding: 0;\n}"; }
+    static get style() { return ".space.s {\n  margin-top: 0.133333333333333rem;\n}\n.space.m {\n  margin-top: 0.266666666666667rem;\n}\n.space.l {\n  margin-top: 0.4rem;\n}\n.list {\n  background: #fff;\n}"; }
 }
 
 /**
@@ -1258,7 +1258,7 @@ class ListItem {
             "attr": "short"
         }
     }; }
-    static get style() { return ".space.s {\n  margin-top: 0.133333333333333rem;\n}\n.space.m {\n  margin-top: 0.266666666666667rem;\n}\n.space.l {\n  margin-top: 0.4rem;\n}\n.list {\n  background: #fff;\n}\n.item {\n  height: 1.173333333333333rem;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n          -ms-flex-pack: justify;\n          justify-content: space-between;\n  padding: 0 0.4rem;\n}\n.item.left {\n  margin-left: 0.4rem;\n  padding-left: 0;\n}\n.item.right {\n  margin-right: 0.4rem;\n  padding-right: 0;\n}\n.item.both {\n  margin: 0 0.4rem;\n  padding: 0;\n}"; }
+    static get style() { return ".item {\n  height: 1.173333333333333rem;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n          -ms-flex-pack: justify;\n          justify-content: space-between;\n  padding: 0 0.4rem;\n}\n.item.left {\n  margin-left: 0.4rem;\n  padding-left: 0;\n}\n.item.right {\n  margin-right: 0.4rem;\n  padding-right: 0;\n}\n.item.both {\n  margin: 0 0.4rem;\n  padding: 0;\n}"; }
 }
 
 var Icon = {
