@@ -23,3 +23,15 @@
           justify-content: space-between;
   padding: 0 0.4rem;
 }
+.item.left {
+  margin-left: 0.4rem;
+  padding-left: 0;
+}
+.item.right {
+  margin-right: 0.4rem;
+  padding-right: 0;
+}
+.item.both {
+  margin: 0 0.4rem;
+  padding: 0;
+}

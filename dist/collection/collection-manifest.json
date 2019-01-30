@@ -180,6 +180,11 @@
           "name": "color",
           "type": "String",
           "attr": "color"
+        },
+        {
+          "name": "short",
+          "type": "String",
+          "attr": "short"
         }
       ],
       "shadow": true

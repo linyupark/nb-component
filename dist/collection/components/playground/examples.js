@@ -20,13 +20,28 @@ export default {
                 background: '#f5f5f5'
             } },
             h("nb-list", null,
-                h("nb-list-item", null, "\u5185\u5BB9"),
-                h("nb-list-item", null, "\u5185\u5BB9"),
-                h("nb-list-item", null, "\u5185\u5BB9")),
+                h("nb-list-item", null, "default \u9ED8\u8BA4"),
+                h("nb-list-item", { short: "left" }, "short=left \u5DE6\u8FB9\u7F29\u8FDB"),
+                h("nb-list-item", { short: "right" }, "short=right \u53F3\u8FB9\u7F29\u8FDB"),
+                h("nb-list-item", { short: "both" }, "short=both \u4E24\u8FB9\u7F29\u8FDB"),
+                h("nb-list-item", { border: 0 }, "border=0 \u9690\u85CF\u6A2A\u7EBF")),
             h("nb-list", null,
-                h("nb-list-item", null, "\u5185\u5BB9"),
-                h("nb-list-item", null, "\u5185\u5BB9"),
-                h("nb-list-item", null, "\u5185\u5BB9")))
+                h("nb-list-item", { border: 2 }, "border=2 \u6A2A\u7EBF\u7C97\u7EC6"),
+                h("nb-list-item", { color: "red" }, "color=red \u6A2A\u7EBF\u989C\u8272"))),
+        h("div", { class: "lang" }, "React"),
+        h("nb-code-highlight", { code: `
+  <nb-list>
+    <nb-list-item>default 默认</nb-list-item>
+    <nb-list-item short="left">short=left 左边缩进</nb-list-item>
+    <nb-list-item short="right">short=right 右边缩进</nb-list-item>
+    <nb-list-item short="both">short=both 两边缩进</nb-list-item>
+    <nb-list-item border={0}>border=0 隐藏横线</nb-list-item>
+  </nb-list>
+  <nb-list>
+    <nb-list-item border={2}>border=2 横线粗细</nb-list-item>
+    <nb-list-item color="red">color=red 横线颜色</nb-list-item>
+  </nb-list>
+      ` })
     ],
     /**
      * 徽标数

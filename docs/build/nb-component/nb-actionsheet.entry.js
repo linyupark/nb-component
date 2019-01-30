@@ -1219,7 +1219,7 @@ class List {
             "attr": "top-space"
         }
     }; }
-    static get style() { return ".space.s {\n  margin-top: 0.133333333333333rem;\n}\n.space.m {\n  margin-top: 0.266666666666667rem;\n}\n.space.l {\n  margin-top: 0.4rem;\n}\n.list {\n  background: #fff;\n}\n.item {\n  height: 1.173333333333333rem;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n          -ms-flex-pack: justify;\n          justify-content: space-between;\n  padding: 0 0.4rem;\n}"; }
+    static get style() { return ".space.s {\n  margin-top: 0.133333333333333rem;\n}\n.space.m {\n  margin-top: 0.266666666666667rem;\n}\n.space.l {\n  margin-top: 0.4rem;\n}\n.list {\n  background: #fff;\n}\n.item {\n  height: 1.173333333333333rem;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n          -ms-flex-pack: justify;\n          justify-content: space-between;\n  padding: 0 0.4rem;\n}\n.item.left {\n  margin-left: 0.4rem;\n  padding-left: 0;\n}\n.item.right {\n  margin-right: 0.4rem;\n  padding-right: 0;\n}\n.item.both {\n  margin: 0 0.4rem;\n  padding: 0;\n}"; }
 }
 
 /**
@@ -1231,11 +1231,14 @@ class ListItem {
          * 下边框, 0则不显示
          */
         this.border = 1;
+        /**
+         * 线条颜色
+         */
         this.color = '#f5f5f5';
     }
     render() {
-        return (h("div", { class: "item", style: {
-                borderBottom: `${this.border > 0 ? `${this.border}px` : '0'} solid #f5f5f5`
+        return (h("div", { class: `item ${this.short || ''}`, style: {
+                borderBottom: `${this.border > 0 ? `${this.border}px` : '0'} solid ${this.color}`
             } },
             h("slot", null)));
     }
@@ -1249,9 +1252,13 @@ class ListItem {
         "color": {
             "type": String,
             "attr": "color"
+        },
+        "short": {
+            "type": String,
+            "attr": "short"
         }
     }; }
-    static get style() { return ".space.s {\n  margin-top: 0.133333333333333rem;\n}\n.space.m {\n  margin-top: 0.266666666666667rem;\n}\n.space.l {\n  margin-top: 0.4rem;\n}\n.list {\n  background: #fff;\n}\n.item {\n  height: 1.173333333333333rem;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n          -ms-flex-pack: justify;\n          justify-content: space-between;\n  padding: 0 0.4rem;\n}"; }
+    static get style() { return ".space.s {\n  margin-top: 0.133333333333333rem;\n}\n.space.m {\n  margin-top: 0.266666666666667rem;\n}\n.space.l {\n  margin-top: 0.4rem;\n}\n.list {\n  background: #fff;\n}\n.item {\n  height: 1.173333333333333rem;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n          -ms-flex-pack: justify;\n          justify-content: space-between;\n  padding: 0 0.4rem;\n}\n.item.left {\n  margin-left: 0.4rem;\n  padding-left: 0;\n}\n.item.right {\n  margin-right: 0.4rem;\n  padding-right: 0;\n}\n.item.both {\n  margin: 0 0.4rem;\n  padding: 0;\n}"; }
 }
 
 var Icon = {
@@ -1434,13 +1441,28 @@ var Examples = {
                 background: '#f5f5f5'
             } },
             h("nb-list", null,
-                h("nb-list-item", null, "\u5185\u5BB9"),
-                h("nb-list-item", null, "\u5185\u5BB9"),
-                h("nb-list-item", null, "\u5185\u5BB9")),
+                h("nb-list-item", null, "default \u9ED8\u8BA4"),
+                h("nb-list-item", { short: "left" }, "short=left \u5DE6\u8FB9\u7F29\u8FDB"),
+                h("nb-list-item", { short: "right" }, "short=right \u53F3\u8FB9\u7F29\u8FDB"),
+                h("nb-list-item", { short: "both" }, "short=both \u4E24\u8FB9\u7F29\u8FDB"),
+                h("nb-list-item", { border: 0 }, "border=0 \u9690\u85CF\u6A2A\u7EBF")),
             h("nb-list", null,
-                h("nb-list-item", null, "\u5185\u5BB9"),
-                h("nb-list-item", null, "\u5185\u5BB9"),
-                h("nb-list-item", null, "\u5185\u5BB9")))
+                h("nb-list-item", { border: 2 }, "border=2 \u6A2A\u7EBF\u7C97\u7EC6"),
+                h("nb-list-item", { color: "red" }, "color=red \u6A2A\u7EBF\u989C\u8272"))),
+        h("div", { class: "lang" }, "React"),
+        h("nb-code-highlight", { code: `
+  <nb-list>
+    <nb-list-item>default 默认</nb-list-item>
+    <nb-list-item short="left">short=left 左边缩进</nb-list-item>
+    <nb-list-item short="right">short=right 右边缩进</nb-list-item>
+    <nb-list-item short="both">short=both 两边缩进</nb-list-item>
+    <nb-list-item border={0}>border=0 隐藏横线</nb-list-item>
+  </nb-list>
+  <nb-list>
+    <nb-list-item border={2}>border=2 横线粗细</nb-list-item>
+    <nb-list-item color="red">color=red 横线颜色</nb-list-item>
+  </nb-list>
+      ` })
     ],
     /**
      * 徽标数

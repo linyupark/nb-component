@@ -23,16 +23,33 @@ export default {
       background: '#f5f5f5'
     }}>
       <nb-list>
-        <nb-list-item>内容</nb-list-item>
-        <nb-list-item>内容</nb-list-item>
-        <nb-list-item>内容</nb-list-item>
+        <nb-list-item>default 默认</nb-list-item>
+        <nb-list-item short="left">short=left 左边缩进</nb-list-item>
+        <nb-list-item short="right">short=right 右边缩进</nb-list-item>
+        <nb-list-item short="both">short=both 两边缩进</nb-list-item>
+        <nb-list-item border={0}>border=0 隐藏横线</nb-list-item>
       </nb-list>
       <nb-list>
-        <nb-list-item>内容</nb-list-item>
-        <nb-list-item>内容</nb-list-item>
-        <nb-list-item>内容</nb-list-item>
+        <nb-list-item border={2}>border=2 横线粗细</nb-list-item>
+        <nb-list-item color="red">color=red 横线颜色</nb-list-item>
       </nb-list>
-    </div>
+    </div>,
+    <div class="lang">React</div>,
+    <nb-code-highlight
+      code={`
+  <nb-list>
+    <nb-list-item>default 默认</nb-list-item>
+    <nb-list-item short="left">short=left 左边缩进</nb-list-item>
+    <nb-list-item short="right">short=right 右边缩进</nb-list-item>
+    <nb-list-item short="both">short=both 两边缩进</nb-list-item>
+    <nb-list-item border={0}>border=0 隐藏横线</nb-list-item>
+  </nb-list>
+  <nb-list>
+    <nb-list-item border={2}>border=2 横线粗细</nb-list-item>
+    <nb-list-item color="red">color=red 横线颜色</nb-list-item>
+  </nb-list>
+      `}
+    />
   ],
   /**
    * 徽标数

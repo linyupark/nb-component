@@ -16,12 +16,20 @@ export class ListItem {
    */
   @Prop() border: number = 1;
 
+  /**
+   * 线条颜色
+   */
   @Prop() color: string = '#f5f5f5';
+
+  /**
+   * 短线条方向
+   */
+  @Prop() short?: 'left' | 'right' | 'both';
 
   render() {
     return (
-      <div class="item" style={{
-        borderBottom: `${this.border > 0 ? `${this.border}px` : '0'} solid #f5f5f5`
+      <div class={`item ${this.short || ''}`} style={{
+        borderBottom: `${this.border > 0 ? `${this.border}px` : '0'} solid ${this.color}`
       }}>
         <slot />
       </div>
