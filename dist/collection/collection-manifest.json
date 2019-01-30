@@ -36,20 +36,15 @@
         {
           "name": "show"
         }
-      ]
+      ],
+      "shadow": true
     },
     {
       "tag": "nb-affix",
       "dependencies": [],
       "componentClass": "Affix",
       "componentPath": "components/affix/affix.js",
-      "styles": {
-        "$": {
-          "stylePaths": [
-            "components/affix/affix.styl"
-          ]
-        }
-      },
+      "styles": {},
       "props": [
         {
           "name": "offset",
@@ -57,9 +52,8 @@
           "attr": "offset"
         },
         {
-          "name": "toTarget",
-          "type": "Any",
-          "attr": "to-target"
+          "name": "targetDom",
+          "attr": "target-dom"
         }
       ],
       "states": [
@@ -74,7 +68,8 @@
         {
           "event": "change"
         }
-      ]
+      ],
+      "shadow": true
     },
     {
       "tag": "nb-badge",
@@ -114,7 +109,8 @@
           "type": "Boolean",
           "attr": "show-zero"
         }
-      ]
+      ],
+      "shadow": true
     },
     {
       "tag": "nb-code-highlight",
@@ -140,6 +136,27 @@
           "attr": "lang"
         }
       ]
+    },
+    {
+      "tag": "nb-list",
+      "dependencies": [],
+      "componentClass": "List",
+      "componentPath": "components/list/list-item.h5.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/list/list-item.h5.styl"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "topSpace",
+          "type": "String",
+          "attr": "top-space"
+        }
+      ],
+      "shadow": true
     },
     {
       "tag": "nb-pagination",
@@ -188,7 +205,8 @@
         {
           "event": "change"
         }
-      ]
+      ],
+      "shadow": true
     },
     {
       "tag": "nb-playground",
@@ -197,6 +215,7 @@
         "nb-affix",
         "nb-badge",
         "nb-code-highlight",
+        "nb-list",
         "nb-pagination",
         "nb-pull-to-do"
       ],
@@ -257,6 +276,11 @@
           "attr": "more-h-t-m-l"
         },
         {
+          "name": "positionSave",
+          "type": "Boolean",
+          "attr": "position-save"
+        },
+        {
           "name": "refreshHTML",
           "type": "String",
           "attr": "refresh-h-t-m-l"
@@ -290,7 +314,8 @@
         {
           "event": "refresh"
         }
-      ]
+      ],
+      "shadow": true
     }
   ],
   "collections": [],

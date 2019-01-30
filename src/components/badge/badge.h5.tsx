@@ -5,7 +5,8 @@ import { Component, Prop } from '@stencil/core';
  */
 @Component({
   tag: 'nb-badge',
-  styleUrl: 'badge.h5.styl'
+  styleUrl: 'badge.h5.styl',
+  shadow: true,
 })
 export class Badge {
   /**

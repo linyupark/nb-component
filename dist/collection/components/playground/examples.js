@@ -1,4 +1,4 @@
-let refTarget;
+let refTarget = {};
 const boxStyles = {
     border: '1px solid #eee',
     width: '30px',
@@ -7,7 +7,26 @@ const boxStyles = {
     lineHeight: '30px',
     background: '#eee'
 };
+/**
+ * 各组件的演示代码
+ */
 export default {
+    /**
+     * 列表
+     */
+    'nb-list': [
+        h("div", { class: "wrapper", style: {
+                padding: '0',
+                background: '#f5f5f5'
+            } },
+            h("nb-list", null,
+                h("div", null, "\u5185\u5BB9")),
+            h("nb-list", null,
+                h("div", null, "\u5185\u5BB9")))
+    ],
+    /**
+     * 徽标数
+     */
     'nb-badge': [
         h("div", { class: "wrapper" },
             h("nb-badge", { count: 213 },
@@ -43,6 +62,9 @@ export default {
   </nb-badge>
       ` })
     ],
+    /**
+     * 下拉刷新上拉加载
+     */
     'nb-pull-to-do': [
         h("nb-pull-to-do", { wrapperSelector: ".wrapper", contentSelector: ".wrapper > div", onRefresh: (ev) => {
                 console.log('刷新开始');
@@ -121,19 +143,25 @@ export default {
     </nb-pull-to-do>
       ` })
     ],
+    /**
+     * 固钉
+     */
     'nb-affix': [
-        h("div", { class: "wrapper", ref: ev => (refTarget = ev), style: {
+        h("div", { class: "wrapper", ref: ev => (refTarget.affix = ev), style: {
                 height: '30vh',
-                overflow: 'auto'
+                overflow: 'auto',
+                padding: '0px'
             } },
-            h("div", { style: {
+            h("div", { class: "content", style: {
                     height: '1000px',
                     overflowX: 'hidden'
                 } },
                 h("br", null),
                 h("nb-affix", { onChange: ({ detail }) => {
-                        const target = document.querySelector('.affix-content');
-                        const wrapper = document.querySelector('.wrapper > div');
+                        if (!refTarget.affix)
+                            return;
+                        const target = refTarget.affix.querySelector('.affix-content');
+                        const wrapper = refTarget.affix.querySelector('.content');
                         if (detail.isFixed) {
                             target.classList.add('fixed');
                             wrapper.style.paddingTop = '64px';
@@ -142,7 +170,7 @@ export default {
                             target.classList.remove('fixed');
                             wrapper.style.paddingTop = '20px';
                         }
-                    }, offset: 0, toTarget: () => refTarget },
+                    }, offset: 0, targetDom: () => refTarget.affix },
                     h("div", { class: "affix-content" },
                         h("div", { class: "item" }, "\u4E8C\u7EF4\u7801"),
                         h("div", { class: "item" }, "\u5173\u7CFB\u9884\u7EA6"),
@@ -183,22 +211,19 @@ export default {
     </div>
       ` })
     ],
+    /**
+     * 分页
+     */
     'nb-pagination': [
         h("div", { class: "wrapper" },
-            h("p", { id: "page-to" }, "\u00A0"),
-            h("nb-pagination", { current: 1, pagesize: 10, total: 100, onChange: ({ detail }) => (document.querySelector('#page-to').innerHTML = `触发转到第${detail.to}页`) })),
+            h("nb-pagination", { current: 1, pagesize: 10, total: 100, onChange: ({ detail }) => console.log(`触发转到第${detail.to}页`) })),
         h("div", { class: "lang" }, "React"),
         h("nb-code-highlight", { code: `
-  <p id="page-to">&nbsp;</p>
   <nb-pagination
     current={1}
     pagesize={10}
     total={100}
-    onChange={({ detail }) =>
-      document.querySelector('#page-to').innerHTML = \`触发转到第$\{
-        detail.to
-      \}页\`;
-    }
+    onChange={({ detail }) => console.log(\`触发转到第\${detail.to}页\`)}
   />
     ` }),
         h("div", { class: "lang" }, "Vue"),
@@ -227,13 +252,16 @@ export default {
   </script>
     ` })
     ],
+    /**
+     * 动作面板
+     */
     'nb-actionsheet': [
-        h("nb-actionsheet", { headTitle: "\u9762\u677F\u6807\u9898", mask: true, ref: ev => (refTarget = ev) },
+        h("nb-actionsheet", { headTitle: "\u9762\u677F\u6807\u9898", mask: true, ref: ev => (refTarget.actionsheet = ev) },
             h("div", { slot: "container" },
                 h("ul", null,
                     h("li", null, "\u9009\u98791")))),
         h("div", { class: "wrapper" },
-            h("button", { onClick: () => refTarget.show() }, "\u6253\u5F00\u9762\u677F")),
+            h("button", { onClick: () => refTarget.actionsheet.show() }, "\u6253\u5F00\u9762\u677F")),
         h("div", { class: "lang" }, "React"),
         h("nb-code-highlight", { code: `
   <nb-actionsheet headTitle="面板标题" mask={true} ref={ev => refTarget = ev}>

@@ -1,16 +1,44 @@
+/**
+ * 上滑交互框
+ */
 export class Actionsheet {
     constructor() {
+        /**
+         * 暂存滚动条位置用于恢复
+         * @type {Number}
+         */
         this.scrollTop = 0;
+        /**
+         * 展示开关
+         */
         this.visible = false;
+        /**
+         * 展示标题内容 （不用title避免跟原生属性冲突）
+         */
         this.headTitle = '标题';
+        /**
+         * 是否需要遮罩
+         */
         this.mask = true;
+        /**
+         * 关闭显示
+         */
         this.onClose = () => {
             this.close();
         };
     }
+    /**
+     * 获取当前滚动位置
+     * @return {Number}
+     */
     getScrollTop() {
         return document.body.scrollTop || document.documentElement.scrollTop;
     }
+    /**
+     * 观察显示状态来控制滚动条（显示时滑动屏幕不能让背景内容一起滚动）
+     * @param  {String} visible 最新的显示状态值
+     * @return {Void}
+     */
     scrollHandler(visible) {
         if (visible) {
             this.scrollTop = this.getScrollTop();
@@ -27,9 +55,15 @@ export class Actionsheet {
     get visibleClassName() {
         return this.visible ? 'actionsheet visible' : 'actionsheet';
     }
+    /**
+     * 关闭显示
+     */
     close() {
         this.visible = false;
     }
+    /**
+     * 显示
+     */
     show() {
         this.visible = true;
     }
@@ -46,6 +80,7 @@ export class Actionsheet {
         ];
     }
     static get is() { return "nb-actionsheet"; }
+    static get encapsulation() { return "shadow"; }
     static get properties() { return {
         "close": {
             "method": true

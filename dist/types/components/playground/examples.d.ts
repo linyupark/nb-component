@@ -1,6 +1,10 @@
 import '../../stencil.core';
 declare const _default: {
     /**
+     * 列表
+     */
+    'nb-list': JSX.Element[];
+    /**
      * 徽标数
      */
     'nb-badge': JSX.Element[];

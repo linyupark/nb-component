@@ -1,18 +1,46 @@
-import { h } from '../nb-component.core.js';
+const h = window.NbComponent.h;
 
+/**
+ * 上滑交互框
+ */
 class Actionsheet {
     constructor() {
+        /**
+         * 暂存滚动条位置用于恢复
+         * @type {Number}
+         */
         this.scrollTop = 0;
+        /**
+         * 展示开关
+         */
         this.visible = false;
+        /**
+         * 展示标题内容 （不用title避免跟原生属性冲突）
+         */
         this.headTitle = '标题';
+        /**
+         * 是否需要遮罩
+         */
         this.mask = true;
+        /**
+         * 关闭显示
+         */
         this.onClose = () => {
             this.close();
         };
     }
+    /**
+     * 获取当前滚动位置
+     * @return {Number}
+     */
     getScrollTop() {
         return document.body.scrollTop || document.documentElement.scrollTop;
     }
+    /**
+     * 观察显示状态来控制滚动条（显示时滑动屏幕不能让背景内容一起滚动）
+     * @param  {String} visible 最新的显示状态值
+     * @return {Void}
+     */
     scrollHandler(visible) {
         if (visible) {
             this.scrollTop = this.getScrollTop();
@@ -29,9 +57,15 @@ class Actionsheet {
     get visibleClassName() {
         return this.visible ? 'actionsheet visible' : 'actionsheet';
     }
+    /**
+     * 关闭显示
+     */
     close() {
         this.visible = false;
     }
+    /**
+     * 显示
+     */
     show() {
         this.visible = true;
     }
@@ -48,6 +82,7 @@ class Actionsheet {
         ];
     }
     static get is() { return "nb-actionsheet"; }
+    static get encapsulation() { return "shadow"; }
     static get properties() { return {
         "close": {
             "method": true
@@ -68,18 +103,32 @@ class Actionsheet {
             "watchCallbacks": ["scrollHandler"]
         }
     }; }
-    static get style() { return ".actionsheet{position:fixed;z-index:1;bottom:0;background:#fff;width:10rem;-webkit-transition:-webkit-transform .1s linear;transition:-webkit-transform .1s linear;transition:transform .1s linear;transition:transform .1s linear,-webkit-transform .1s linear;-webkit-transform:translateY(100%);transform:translateY(100%)}.actionsheet.visible{z-index:999;-webkit-transform:translateY(0);transform:translateY(0)}.actionsheet .container .header{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;height:1.173333333333333rem;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;position:relative;border-bottom:1px solid #ebebeb}.actionsheet .container .header .close{position:absolute;left:.4rem;top:.4rem;width:.37333333333333335rem;height:.37333333333333335rem}.actionsheet .container .header .title{font-size:.4266666666666667rem;color:#202020}.actionsheet .container .header .icon-close{width:.4266666666666667rem;height:.4266666666666667rem;position:absolute;right:.4rem;display:inline-block;stroke-width:0;stroke:currentColor;vertical-align:middle}.mask{position:fixed;top:0;width:10rem;height:100vh;background:rgba(0,0,0,.6);z-index:-1;opacity:0;-webkit-transition:opacity .1s linear;transition:opacity .1s linear}.mask.visible{z-index:1;opacity:1}"; }
+    static get style() { return ".actionsheet {\n  position: fixed;\n  z-index: 1;\n  bottom: 0;\n  background: #fff;\n  width: 10rem;\n  -webkit-transition: -webkit-transform 0.1s linear;\n  transition: -webkit-transform 0.1s linear;\n  transition: transform 0.1s linear;\n  transition: transform 0.1s linear, -webkit-transform 0.1s linear;\n  -webkit-transform: translateY(100%);\n          transform: translateY(100%);\n}\n.actionsheet.visible {\n  z-index: 999;\n  -webkit-transform: translateY(0);\n          transform: translateY(0);\n}\n.actionsheet .container .header {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  height: 1.173333333333333rem;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n          -ms-flex-pack: center;\n          justify-content: center;\n  position: relative;\n  border-bottom: 1px solid #ebebeb;\n}\n.actionsheet .container .header .close {\n  position: absolute;\n  left: 0.4rem;\n  top: 0.4rem;\n  width: 0.373333333333333rem;\n  height: 0.373333333333333rem;\n}\n.actionsheet .container .header .title {\n  font-size: 0.426666666666667rem;\n  color: #202020;\n}\n.actionsheet .container .header .icon-close {\n  width: 0.426666666666667rem;\n  height: 0.426666666666667rem;\n  position: absolute;\n  right: 0.4rem;\n  display: inline-block;\n  stroke-width: 0;\n  stroke: currentColor;\n  vertical-align: middle;\n}\n.mask {\n  position: fixed;\n  top: 0;\n  width: 10rem;\n  height: 100vh;\n  background: rgba(0,0,0,0.6);\n  z-index: -1;\n  opacity: 0;\n  -webkit-transition: opacity 0.1s linear;\n  transition: opacity 0.1s linear;\n}\n.mask.visible {\n  z-index: 1;\n  opacity: 1;\n}"; }
 }
 
+/**
+ * 固钉组件
+ * @description 根据滑动来切换固定跟原始状态的组件
+ */
 class Affix {
     constructor() {
-        this.toTarget = () => document;
+        /**
+         * 计算举例的参照dom
+         */
+        this.targetDom = () => document.body;
     }
+    /**
+     * 观察固定状态变化
+     * @param isFixed
+     */
     onCurrentPageChange(isFixed) {
         this.change.emit({
             isFixed
         });
     }
+    /**
+     * 根据设置来切换固定状态
+     */
     handleFix() {
         if (this.offset >= 0) {
             const rectTop = this.el.getBoundingClientRect().top;
@@ -90,23 +139,25 @@ class Affix {
         try {
             this.handleFix();
             setTimeout(() => {
-                this.toTarget().addEventListener('scroll', this.handleFix.bind(this), false);
-            }, 100);
+                this.targetDom().addEventListener('scroll', this.handleFix.bind(this), false);
+            }, 10);
         }
         catch (e) {
-            throw new TypeError('"toTarget" props maybe not a valid scroll dom.');
+            throw new TypeError(e);
         }
     }
-    async componentDidUnload() {
-        this.toTarget().removeEventListener('scroll', this.handleFix.bind(this), false);
+    componentDidUnload() {
+        this.targetDom().removeEventListener('scroll', this.handleFix.bind(this), false);
     }
     render() {
-        return (h("div", { class: `${this.fixed ? 'fixed' : 'nofixed'}`, style: {
+        return (h("div", { style: {
+                position: this.fixed ? `fixed` : 'relative',
                 top: this.fixed ? `${this.offset}px` : 'auto'
             } },
             h("slot", null)));
     }
     static get is() { return "nb-affix"; }
+    static get encapsulation() { return "shadow"; }
     static get properties() { return {
         "el": {
             "elementRef": true
@@ -119,9 +170,9 @@ class Affix {
             "type": Number,
             "attr": "offset"
         },
-        "toTarget": {
+        "targetDom": {
             "type": "Any",
-            "attr": "to-target"
+            "attr": "target-dom"
         }
     }; }
     static get events() { return [{
@@ -131,28 +182,52 @@ class Affix {
             "cancelable": true,
             "composed": true
         }]; }
-    static get style() { return ".nofixed{position:relative}.fixed{position:fixed}"; }
 }
 
+/**
+ * 徽标数
+ */
 class Badge {
     constructor() {
+        /**
+         * count的封顶数值超出则显示 maxCount+
+         */
         this.maxCount = 99;
+        /**
+         * 不展示数字，显示点
+         */
         this.dot = false;
+        /**
+         * 当count为0的时候也显示
+         */
         this.showZero = false;
+        /**
+         * 徽标底色
+         */
         this.bgColor = '#FB5B4C';
     }
+    /**
+     * 徽标 classList
+     */
     get dotCountClassNames() {
         let classNames = [];
+        // 无论count多少都显示
         if (this.showZero)
             classNames.push('visible');
+        // 显示为 dot
         if (this.dot)
             classNames.push('dot');
+        // 显示为数字
         if (!this.dot)
             classNames.push('count');
+        // 数字为0不显示
         if (!this.showZero && this.count === 0)
             classNames.push('hidden');
         return classNames.join(' ');
     }
+    /**
+     * 实际展示的数字
+     */
     get displayCount() {
         if (this.dot)
             return '';
@@ -169,6 +244,7 @@ class Badge {
             h("slot", null)));
     }
     static get is() { return "nb-badge"; }
+    static get encapsulation() { return "shadow"; }
     static get properties() { return {
         "bgColor": {
             "type": String,
@@ -191,13 +267,25 @@ class Badge {
             "attr": "show-zero"
         }
     }; }
-    static get style() { return ".badge{position:relative;display:inline-block}.badge .count,.badge .dot{position:absolute;border:1px solid #fff;font-style:normal;text-align:center}.badge .count.hidden,.badge .dot.hidden{display:none}.badge .count{font-size:.26666666666666666rem;color:#fff;height:.3466666666666667rem;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;padding:0 .09333333333333334rem;border-radius:.3466666666666667rem;top:-.17333333333333334rem;right:-.17333333333333334rem}.badge .dot{width:.16rem;height:.16rem;border-radius:50%;top:-.08rem;right:-.08rem}"; }
+    static get style() { return ".badge {\n  position: relative;\n  display: inline-block;\n}\n.badge .count,\n.badge .dot {\n  position: absolute;\n  border: 1px solid #fff;\n  font-style: normal;\n  text-align: center;\n}\n.badge .count.hidden,\n.badge .dot.hidden {\n  display: none;\n}\n.badge .count {\n  font-size: 0.266666666666667rem;\n  color: #fff;\n  height: 0.346666666666667rem;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n          -ms-flex-pack: center;\n          justify-content: center;\n  padding: 0 0.093333333333333rem;\n  border-radius: 0.346666666666667rem;\n  top: -0.173333333333333rem;\n  right: -0.173333333333333rem;\n}\n.badge .dot {\n  width: 0.16rem;\n  height: 0.16rem;\n  border-radius: 50%;\n  top: -0.08rem;\n  right: -0.08rem;\n}"; }
 }
 
 var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
+function commonjsRequire () {
+	throw new Error('Dynamic requires are not currently supported by rollup-plugin-commonjs');
+}
+
+function unwrapExports (x) {
+	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x.default : x;
+}
+
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
+}
+
+function getCjsExportFromNamespace (n) {
+	return n && n.default || n;
 }
 
 var prism = createCommonjsModule(function (module) {
@@ -754,7 +842,7 @@ return _self.Prism;
 
 })();
 
-if (module.exports) {
+if ('object' !== 'undefined' && module.exports) {
 	module.exports = Prism;
 }
 
@@ -1079,7 +1167,13 @@ Prism.languages.js = Prism.languages.javascript;
 
 class CodeHighlight {
     constructor() {
+        /**
+         * 代码内容
+         */
         this.code = '';
+        /**
+         * 代码类型
+         */
         this.lang = 'html';
     }
     render() {
@@ -1097,7 +1191,35 @@ class CodeHighlight {
             "attr": "lang"
         }
     }; }
-    static get style() { return "code[class*=language-],pre[class*=language-]{color:#000;background:none;text-shadow:0 1px #fff;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}code[class*=language-]::selection,code[class*=language-] ::selection,pre[class*=language-]::selection,pre[class*=language-] ::selection{text-shadow:none;background:#b3d4fc}\@media print{code[class*=language-],pre[class*=language-]{text-shadow:none}}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto}:not(pre)>code[class*=language-],pre[class*=language-]{background:#f5f2f0}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#708090}.token.punctuation{color:#999}.namespace{opacity:.7}.token.boolean,.token.constant,.token.deleted,.token.number,.token.property,.token.symbol,.token.tag{color:#905}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#690}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url{color:#9a6e3a;background:hsla(0,0%,100%,.5)}.token.atrule,.token.attr-value,.token.keyword{color:#07a}.token.class-name,.token.function{color:#dd4a68}.token.important,.token.regex,.token.variable{color:#e90}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}"; }
+    static get style() { return "/**\n * prism.js default theme for JavaScript, CSS and HTML\n * Based on dabblet (http://dabblet.com)\n * \@author Lea Verou\n */\n\ncode[class*=\"language-\"],\npre[class*=\"language-\"] {\n	color: black;\n	background: none;\n	text-shadow: 0 1px white;\n	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;\n	text-align: left;\n	white-space: pre;\n	word-spacing: normal;\n	word-break: normal;\n	word-wrap: normal;\n	line-height: 1.5;\n	-moz-tab-size: 4;\n	-o-tab-size: 4;\n	tab-size: 4;\n\n	-webkit-hyphens: none;\n	-ms-hyphens: none;\n	hyphens: none;\n}\n\npre[class*=\"language-\"]::selection, pre[class*=\"language-\"] ::selection,\ncode[class*=\"language-\"]::selection, code[class*=\"language-\"] ::selection {\n	text-shadow: none;\n	background: #b3d4fc;\n}\n\n\@media print {\n	code[class*=\"language-\"],\n	pre[class*=\"language-\"] {\n		text-shadow: none;\n	}\n}\n\n/* Code blocks */\npre[class*=\"language-\"] {\n	padding: 1em;\n	margin: .5em 0;\n	overflow: auto;\n}\n\n:not(pre) > code[class*=\"language-\"],\npre[class*=\"language-\"] {\n	background: #f5f2f0;\n}\n\n/* Inline code */\n:not(pre) > code[class*=\"language-\"] {\n	padding: .1em;\n	border-radius: .3em;\n	white-space: normal;\n}\n\n.token.comment,\n.token.prolog,\n.token.doctype,\n.token.cdata {\n	color: slategray;\n}\n\n.token.punctuation {\n	color: #999;\n}\n\n.namespace {\n	opacity: .7;\n}\n\n.token.property,\n.token.tag,\n.token.boolean,\n.token.number,\n.token.constant,\n.token.symbol,\n.token.deleted {\n	color: #905;\n}\n\n.token.selector,\n.token.attr-name,\n.token.string,\n.token.char,\n.token.builtin,\n.token.inserted {\n	color: #690;\n}\n\n.token.operator,\n.token.entity,\n.token.url,\n.language-css .token.string,\n.style .token.string {\n	color: #9a6e3a;\n	background: hsla(0, 0%, 100%, .5);\n}\n\n.token.atrule,\n.token.attr-value,\n.token.keyword {\n	color: #07a;\n}\n\n.token.function,\n.token.class-name {\n	color: #DD4A68;\n}\n\n.token.regex,\n.token.important,\n.token.variable {\n	color: #e90;\n}\n\n.token.important,\n.token.bold {\n	font-weight: bold;\n}\n.token.italic {\n	font-style: italic;\n}\n\n.token.entity {\n	cursor: help;\n}"; }
+}
+
+/**
+ * 上滑交互框
+ */
+class List {
+    constructor() {
+        /**
+         * List之间的间距
+         */
+        this.topSpace = 'm';
+    }
+    render() {
+        return [
+            this.topSpace !== 'none' && h("div", { class: `space ${this.topSpace}` }),
+            h("div", { class: "list" },
+                h("slot", null))
+        ];
+    }
+    static get is() { return "nb-list"; }
+    static get encapsulation() { return "shadow"; }
+    static get properties() { return {
+        "topSpace": {
+            "type": String,
+            "attr": "top-space"
+        }
+    }; }
+    static get style() { return ".space.s {\n  margin-top: 0.133333333333333rem;\n}\n.space.m {\n  margin-top: 0.266666666666667rem;\n}\n.space.l {\n  margin-top: 0.4rem;\n}\n.list {\n  background: #fff;\n}"; }
 }
 
 var Icon = {
@@ -1107,40 +1229,81 @@ var Icon = {
         h("path", { d: "M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z" })))
 };
 
+/**
+ * 分页组件
+ */
 class Pagination {
     constructor() {
+        /**
+         * 当前页面
+         */
         this.current = 1;
+        /**
+         * 每页条数
+         */
         this.pagesize = 10;
+        /**
+         * 总数据条数
+         */
         this.total = 0;
+        /**
+         * 当只有一页的时候自动隐藏
+         */
         this.autoHide = true;
+        /**
+         * 当分页太多时候限制前后显示页数
+         */
         this.limitPage = 4;
     }
+    /**
+     * 观察页数变化
+     * @param to 前往页面
+     * @param from 来自页面
+     */
     onCurrentPageChange(to, from) {
         this.change.emit({
             to, from
         });
     }
+    /**
+     * 计算出一共有几页
+     */
     get totalPages() {
         return Math.ceil(this.total / this.pagesize);
     }
+    /**
+     * 是否上一页可用
+     */
     get hasPrev() {
         return this.current != 1;
     }
+    /**
+     * 是否下一页可用
+     */
     get hasNext() {
         return this.totalPages > this.current;
     }
+    /**
+     * 判断是否可以显示分页
+     */
     get showPagination() {
         return this.totalPages > 1 || !this.autoHide;
     }
+    /**
+     * 数字页数列表（实际中间展示的页码）
+     */
     get numberPageList() {
         let list = [];
+        // 左侧页起始未知
         const leftOffset = this.current - this.limitPage / 2;
         const leftStartAt = leftOffset < 1 ? 1 : leftOffset;
+        // 右侧
         const rightOffset = this.current + this.limitPage / 2;
         const rightEndAt = rightOffset > this.totalPages ? this.totalPages : rightOffset;
         for (let n = leftStartAt; n <= rightEndAt; n++) {
             list.push(n);
         }
+        // 添加第一页
         const prefixSpan = list[0] - 1;
         if (prefixSpan >= 2) {
             list.unshift('<<');
@@ -1148,6 +1311,7 @@ class Pagination {
         if (prefixSpan >= 1) {
             list.unshift(1);
         }
+        // 添加末页
         const suffixSpan = this.totalPages - list.slice(-1)[0];
         if (suffixSpan >= 2) {
             list.push('>>');
@@ -1181,6 +1345,7 @@ class Pagination {
         ];
     }
     static get is() { return "nb-pagination"; }
+    static get encapsulation() { return "shadow"; }
     static get properties() { return {
         "autoHide": {
             "type": Boolean,
@@ -1212,10 +1377,10 @@ class Pagination {
             "cancelable": true,
             "composed": true
         }]; }
-    static get style() { return ".pagination ul{font-size:14px;line-height:1.5;margin:0;padding:0;list-style:none}.pagination ul li{cursor:pointer;min-width:32px;height:32px;line-height:32px;display:inline-block;outline:none;position:relative;margin-right:8px}.pagination ul li.disabled{cursor:not-allowed}.pagination ul li.disabled,.pagination ul li.disabled a:hover{border-color:#d9d9d9;color:rgba(0,0,0,.25)}.pagination ul li .ellipsis{position:absolute;display:block;letter-spacing:2px;color:rgba(0,0,0,.25);text-align:center;top:12px;margin:auto}.pagination ul li a{border:1px solid #d9d9d9;background-color:#fff;border-radius:4px;display:block;-webkit-transition:all .3s;transition:all .3s;font-size:12px;height:100%;text-align:center}.pagination ul li a.active,.pagination ul li a:hover{border-color:#1890ff;color:#1890ff}"; }
+    static get style() { return ".pagination ul {\n  font-size: 14px;\n  line-height: 1.5;\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n.pagination ul li {\n  cursor: pointer;\n  min-width: 32px;\n  height: 32px;\n  line-height: 32px;\n  display: inline-block;\n  outline: none;\n  position: relative;\n  margin-right: 8px;\n}\n.pagination ul li.disabled {\n  border-color: #d9d9d9;\n  color: rgba(0,0,0,0.25);\n  cursor: not-allowed;\n}\n.pagination ul li.disabled a:hover {\n  border-color: #d9d9d9;\n  color: rgba(0,0,0,0.25);\n}\n.pagination ul li .ellipsis {\n  position: absolute;\n  display: block;\n  letter-spacing: 2px;\n  color: rgba(0,0,0,0.25);\n  text-align: center;\n  top: 12px;\n  margin: auto;\n}\n.pagination ul li a {\n  border: 1px solid #d9d9d9;\n  background-color: #fff;\n  border-radius: 4px;\n  display: block;\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n  font-size: 12px;\n  height: 100%;\n  text-align: center;\n}\n.pagination ul li a:hover,\n.pagination ul li a.active {\n  border-color: #1890ff;\n  color: #1890ff;\n}"; }
 }
 
-let refTarget;
+let refTarget = {};
 const boxStyles = {
     border: '1px solid #eee',
     width: '30px',
@@ -1224,7 +1389,26 @@ const boxStyles = {
     lineHeight: '30px',
     background: '#eee'
 };
+/**
+ * 各组件的演示代码
+ */
 var Examples = {
+    /**
+     * 列表
+     */
+    'nb-list': [
+        h("div", { class: "wrapper", style: {
+                padding: '0',
+                background: '#f5f5f5'
+            } },
+            h("nb-list", null,
+                h("div", null, "\u5185\u5BB9")),
+            h("nb-list", null,
+                h("div", null, "\u5185\u5BB9")))
+    ],
+    /**
+     * 徽标数
+     */
     'nb-badge': [
         h("div", { class: "wrapper" },
             h("nb-badge", { count: 213 },
@@ -1260,6 +1444,9 @@ var Examples = {
   </nb-badge>
       ` })
     ],
+    /**
+     * 下拉刷新上拉加载
+     */
     'nb-pull-to-do': [
         h("nb-pull-to-do", { wrapperSelector: ".wrapper", contentSelector: ".wrapper > div", onRefresh: (ev) => {
                 console.log('刷新开始');
@@ -1338,19 +1525,25 @@ var Examples = {
     </nb-pull-to-do>
       ` })
     ],
+    /**
+     * 固钉
+     */
     'nb-affix': [
-        h("div", { class: "wrapper", ref: ev => (refTarget = ev), style: {
+        h("div", { class: "wrapper", ref: ev => (refTarget.affix = ev), style: {
                 height: '30vh',
-                overflow: 'auto'
+                overflow: 'auto',
+                padding: '0px'
             } },
-            h("div", { style: {
+            h("div", { class: "content", style: {
                     height: '1000px',
                     overflowX: 'hidden'
                 } },
                 h("br", null),
                 h("nb-affix", { onChange: ({ detail }) => {
-                        const target = document.querySelector('.affix-content');
-                        const wrapper = document.querySelector('.wrapper > div');
+                        if (!refTarget.affix)
+                            return;
+                        const target = refTarget.affix.querySelector('.affix-content');
+                        const wrapper = refTarget.affix.querySelector('.content');
                         if (detail.isFixed) {
                             target.classList.add('fixed');
                             wrapper.style.paddingTop = '64px';
@@ -1359,7 +1552,7 @@ var Examples = {
                             target.classList.remove('fixed');
                             wrapper.style.paddingTop = '20px';
                         }
-                    }, offset: 0, toTarget: () => refTarget },
+                    }, offset: 0, targetDom: () => refTarget.affix },
                     h("div", { class: "affix-content" },
                         h("div", { class: "item" }, "\u4E8C\u7EF4\u7801"),
                         h("div", { class: "item" }, "\u5173\u7CFB\u9884\u7EA6"),
@@ -1400,22 +1593,19 @@ var Examples = {
     </div>
       ` })
     ],
+    /**
+     * 分页
+     */
     'nb-pagination': [
         h("div", { class: "wrapper" },
-            h("p", { id: "page-to" }, "\u00A0"),
-            h("nb-pagination", { current: 1, pagesize: 10, total: 100, onChange: ({ detail }) => (document.querySelector('#page-to').innerHTML = `触发转到第${detail.to}页`) })),
+            h("nb-pagination", { current: 1, pagesize: 10, total: 100, onChange: ({ detail }) => console.log(`触发转到第${detail.to}页`) })),
         h("div", { class: "lang" }, "React"),
         h("nb-code-highlight", { code: `
-  <p id="page-to">&nbsp;</p>
   <nb-pagination
     current={1}
     pagesize={10}
     total={100}
-    onChange={({ detail }) =>
-      document.querySelector('#page-to').innerHTML = \`触发转到第$\{
-        detail.to
-      \}页\`;
-    }
+    onChange={({ detail }) => console.log(\`触发转到第\${detail.to}页\`)}
   />
     ` }),
         h("div", { class: "lang" }, "Vue"),
@@ -1444,13 +1634,16 @@ var Examples = {
   </script>
     ` })
     ],
+    /**
+     * 动作面板
+     */
     'nb-actionsheet': [
-        h("nb-actionsheet", { headTitle: "\u9762\u677F\u6807\u9898", mask: true, ref: ev => (refTarget = ev) },
+        h("nb-actionsheet", { headTitle: "\u9762\u677F\u6807\u9898", mask: true, ref: ev => (refTarget.actionsheet = ev) },
             h("div", { slot: "container" },
                 h("ul", null,
                     h("li", null, "\u9009\u98791")))),
         h("div", { class: "wrapper" },
-            h("button", { onClick: () => refTarget.show() }, "\u6253\u5F00\u9762\u677F")),
+            h("button", { onClick: () => refTarget.actionsheet.show() }, "\u6253\u5F00\u9762\u677F")),
         h("div", { class: "lang" }, "React"),
         h("nb-code-highlight", { code: `
   <nb-actionsheet headTitle="面板标题" mask={true} ref={ev => refTarget = ev}>
@@ -1487,6 +1680,12 @@ var Examples = {
     ]
 };
 
+/**
+ * hash search 转对象
+ * ?a=a&b=b => {a:'a',b:'b'}
+ * @param  {String} hash
+ * @return {Object}
+ */
 const search2obj = (hash = '') => {
     let ret = {}, seg = decodeURIComponent(hash)
         .replace(/^\?/, '')
@@ -1503,7 +1702,13 @@ const search2obj = (hash = '') => {
 
 class Playground {
     constructor() {
+        /**
+         * 开启h5模式
+         */
         this.h5 = false;
+        /**
+         * 需要演示的组件列表
+         */
         this.demoList = [
             {
                 key: 'actionsheet',
@@ -1534,28 +1739,43 @@ class Playground {
                 text: '徽标数.H5',
                 mobile: true,
                 tag: 'nb-badge'
+            },
+            {
+                key: 'list',
+                text: '列表.H5',
+                mobile: true,
+                tag: 'nb-list'
             }
         ];
+        /**
+         * 当前展示的demo
+         */
         this.demo = this.demoList[0];
     }
     parseHash() {
         const tag = location.hash.match(/#([^\?]+)/);
+        // 获得渲染组件
         if (tag) {
             this.tag = tag[1];
+            // 设定当前demo
             this.demo = this.demoList.filter(demo => {
                 return demo.tag === this.tag;
             })[0];
-            console.log('渲染', this.tag, this.demo);
+            // console.log('渲染', this.tag, this.demo);
         }
         else {
             this.tag = '';
         }
         const search = tag ? search2obj(location.hash.split('?')[1]) : {};
+        // h5 模式
         this.h5 = search.display === 'mobile';
         if (this.h5 && this.tag !== '') {
             this.el.ownerDocument.documentElement.style.fontSize = '37.5px';
         }
     }
+    /**
+     * 从hash来得到需要展示的组件
+     */
     componentWillLoad() {
         this.parseHash();
         window.onhashchange = this.parseHash.bind(this);
@@ -1591,32 +1811,74 @@ class Playground {
             "elementRef": true
         }
     }; }
-    static get style() { return ".site{color:#444;padding:20px}.site h2{font-size:20px;height:40px;line-height:40px;margin:0 0 30px 0}.site h2 small{font-size:12px;color:#999;margin-left:20px}.site a{color:#3779ff;text-decoration:none}.site ul{list-style:none;margin:0;padding:0;width:120px;font-size:14px;float:left}.site ul li{padding:5px 10px 5px 0;margin:0 10px 10px 0;border-right:1px solid #fff}.site ul li.active{border-right:1px solid #3779ff}.site .content{float:left;margin-left:30px}.site .content iframe{width:600px;height:calc(100vh - 120px);display:block;border:1px solid #eee;float:left;background:#fff}.site .content iframe.mobile{width:375px}.example{font-size:16px;position:absolute;top:0;left:0;width:100%;height:100vh;overflow-y:scroll}.example::-webkit-scrollbar{width:1px}.example::-webkit-scrollbar-thumb{background-color:#3779ff}.example .wrapper{padding:20px;overflow-x:hidden}.example .wrapper .affix-content,.example .wrapper .affix-content2{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;-webkit-justify-content:space-around;-ms-flex-pack:distribute;justify-content:space-around;left:0;width:100%;height:88px;background:-webkit-linear-gradient(263deg,#6dc9fe,#3b98fc);background:linear-gradient(187deg,#6dc9fe,#3b98fc);-webkit-box-shadow:0 6px 12px 0 #ccc;box-shadow:0 6px 12px 0 #ccc;border-radius:8px;-webkit-transition:height .3s;transition:height .3s}.example .wrapper .affix-content2 .item,.example .wrapper .affix-content .item{color:#fff}.example .wrapper .affix-content2.fixed,.example .wrapper .affix-content.fixed{width:100vw;height:44px;left:0}.example .lang{background:#ccc;padding:5px}.example pre{font-size:12px;background:#f5f5f5;padding:0;margin:0;overflow:hidden}.example pre code{white-space:pre-wrap;-moz-tab-size:2;-o-tab-size:2;tab-size:2}.example.mobile{font-size:.37333333333333335rem}.example.mobile pre{font-size:.32rem}"; }
+    static get style() { return ".site {\n  color: #444;\n  padding: 20px;\n}\n.site h2 {\n  font-size: 20px;\n  height: 40px;\n  line-height: 40px;\n  margin: 0 0 30px 0;\n}\n.site h2 small {\n  font-size: 12px;\n  color: #999;\n  margin-left: 20px;\n}\n.site a {\n  color: #3779ff;\n  text-decoration: none;\n}\n.site ul {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n  width: 120px;\n  font-size: 14px;\n  float: left;\n}\n.site ul li {\n  padding: 5px 10px 5px 0;\n  margin: 0 10px 10px 0;\n  border-right: 1px solid #fff;\n}\n.site ul li.active {\n  border-right: 1px solid #3779ff;\n}\n.site .content {\n  float: left;\n  margin-left: 30px;\n}\n.site .content iframe {\n  width: 600px;\n  height: calc(100vh - 120px);\n  display: block;\n  border: 1px solid #eee;\n  float: left;\n  background: #fff;\n}\n.site .content iframe.mobile {\n  width: 375px;\n}\n.example {\n  font-size: 16px;\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100vh;\n  overflow-y: scroll;\n}\n.example::-webkit-scrollbar {\n  width: 1px;\n}\n.example::-webkit-scrollbar-thumb {\n  background-color: #3779ff;\n}\n.example .wrapper {\n  padding: 20px;\n  overflow-x: hidden;\n}\n.example .wrapper .affix-content,\n.example .wrapper .affix-content2 {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          -ms-flex-align: center;\n          align-items: center;\n  -webkit-justify-content: space-around;\n          -ms-flex-pack: distribute;\n          justify-content: space-around;\n  left: 0;\n  width: 100%;\n  height: 88px;\n  background: -webkit-linear-gradient(263deg, #6dc9fe 0%, #3b98fc 100%);\n  background: linear-gradient(187deg, #6dc9fe 0%, #3b98fc 100%);\n  -webkit-box-shadow: 0px 6px 12px 0px #ccc;\n  box-shadow: 0px 6px 12px 0px #ccc;\n  border-radius: 8px;\n  -webkit-transition: height 0.3s;\n  transition: height 0.3s;\n}\n.example .wrapper .affix-content .item,\n.example .wrapper .affix-content2 .item {\n  color: #fff;\n}\n.example .wrapper .affix-content.fixed,\n.example .wrapper .affix-content2.fixed {\n  width: 100vw;\n  height: 44px;\n  left: 0;\n}\n.example .lang {\n  background: #ccc;\n  padding: 5px;\n}\n.example pre {\n  font-size: 12px;\n  background: #f5f5f5;\n  padding: 0;\n  margin: 0;\n  overflow: hidden;\n}\n.example pre code {\n  white-space: pre-wrap;\n  -moz-tab-size: 2;\n  -o-tab-size: 2;\n  tab-size: 2;\n}\n.example.mobile {\n  font-size: 0.373333333333333rem;\n}\n.example.mobile pre {\n  font-size: 0.32rem;\n}"; }
 }
 
+let _scrollTopPosition = 0;
+/**
+ * 下滑刷新
+ */
 class PullToRefresh {
     constructor() {
+        /**
+         * 下拉展示的提示
+         */
         this.refreshHTML = '<div class="onrefresh">刷新内容</div>';
+        /**
+         * 上拉加载更多
+         */
         this.moreHTML = '<div class="onmore">加载更多</div>';
+        /**
+         * 加载中的内容
+         */
         this.loadingHTML = '<div class="loading">loading</div>';
+        /**
+         * 拉动限制高度
+         */
         this.dampHeight = 30;
+        /**
+         * 当浏览器是返回状态是否尝试回到上一次的位置
+         */
+        this.positionSave = true;
+        /**
+         * 已经拉动的限制高度(正数为顶部，负数为底部)
+         */
         this.dampingLen = 0;
+        /**
+         * 加载状态
+         */
         this.loading = false;
     }
+    /**
+     * 加载完毕
+     */
     done() {
         this.$content.style.transform = `translateY(0px)`;
         this.dampingLen = 0;
         this.loading = false;
     }
+    /**
+     * 计算拉动距离
+     */
     get pullLength() {
         return this.movePageY - this.startPageY;
     }
+    /**
+     * 获取当前滚动位置
+     * @return {Number}
+     */
     getScrollTop() {
         return this.$wrapper.scrollTop;
     }
+    /**
+     * 滚动区域最多能到达的scrollTop值，判断是否到底部
+     */
     getWrapperScrollTop() {
         return this.$wrapper.scrollHeight - this.$wrapper.clientHeight;
     }
+    /**
+     * 记录阻尼开始位置
+     */
     recordStartDampLen() {
         if (this.startDampLen)
             return;
@@ -1624,16 +1886,27 @@ class PullToRefresh {
             (this.getScrollTop() === this.getWrapperScrollTop() &&
                 this.pullLength < 0)) {
             this.startDampLen = this.pullLength;
+            // console.log('startDampLen', this.startDampLen);
         }
     }
+    /**
+     * 触摸开始操作
+     * @param ev
+     */
     handleTouchStart(ev) {
         this.startPageY = ev.touches[0].pageY;
     }
+    /**
+     * 触摸滑动操作
+     * @param ev
+     */
     handleTouchMove(ev) {
         this.movePageY = ev.touches[0].pageY;
+        // 还在loading
         if (this.loading)
             return;
         this.recordStartDampLen();
+        // 在有阻尼开始位置记录的时候继续拉动
         if (this.startDampLen > 0 && this.disable !== 'refresh') {
             if (this.pullLength > this.startDampLen) {
                 this.dampingLen = this.pullLength - this.startDampLen;
@@ -1662,12 +1935,22 @@ class PullToRefresh {
     handleTouchEnd() {
         this.startDampLen = null;
         if (Math.abs(this.dampingLen) > 3) {
+            // 进入 loading 状态
             this.loading = true;
         }
         this.dampingLen > 3 && this.refresh.emit();
         this.dampingLen < -3 && this.more.emit();
+        // 记录当前位置
+        if (this.positionSave) {
+            _scrollTopPosition = this.getScrollTop();
+        }
     }
+    /**
+     * 对 touch动作监听绑定跟解绑
+     * @param {Boolean} bind 绑定还是解绑？
+     */
     bindTouchScroll(bind = true) {
+        // 绑定
         if (bind) {
             try {
                 this.$wrapper = this.el.querySelector(this.wrapperSelector);
@@ -1683,6 +1966,10 @@ class PullToRefresh {
     }
     componentDidLoad() {
         this.bindTouchScroll();
+        if (this.positionSave) {
+            // console.log('回到位置', _scrollTopPosition);
+            this.$wrapper.scrollTo(0, _scrollTopPosition);
+        }
     }
     render() {
         return (h("div", { class: "pull-to-do" },
@@ -1693,6 +1980,7 @@ class PullToRefresh {
                 h("div", { innerHTML: !this.loading ? this.moreHTML : this.loadingHTML }))));
     }
     static get is() { return "nb-pull-to-do"; }
+    static get encapsulation() { return "shadow"; }
     static get properties() { return {
         "contentSelector": {
             "type": String,
@@ -1726,6 +2014,10 @@ class PullToRefresh {
             "type": String,
             "attr": "more-h-t-m-l"
         },
+        "positionSave": {
+            "type": Boolean,
+            "attr": "position-save"
+        },
         "refreshHTML": {
             "type": String,
             "attr": "refresh-h-t-m-l"
@@ -1748,7 +2040,7 @@ class PullToRefresh {
             "cancelable": true,
             "composed": true
         }]; }
-    static get style() { return ".pull-to-do{position:relative}.pull-to-do .hide,.pull-to-do .show{position:absolute;width:100%;top:0;opacity:1;z-index:2;-webkit-transition:opacity .3s;transition:opacity .3s}.pull-to-do .hide{opacity:0;z-index:-1}.pull-to-do .bottom{top:auto;bottom:0}.loading,.onmore,.onrefresh{text-align:center;color:#ccc;background:#f5f5f5;height:.8rem;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center}"; }
+    static get style() { return ".pull-to-do {\n  position: relative;\n}\n.pull-to-do .show,\n.pull-to-do .hide {\n  position: absolute;\n  width: 100%;\n  top: 0;\n  opacity: 1;\n  z-index: 2;\n  -webkit-transition: opacity 0.3s;\n  transition: opacity 0.3s;\n}\n.pull-to-do .hide {\n  opacity: 0;\n  z-index: -1;\n}\n.pull-to-do .bottom {\n  top: auto;\n  bottom: 0;\n}\n.onrefresh,\n.onmore,\n.loading {\n  text-align: center;\n  color: #ccc;\n  background: #f5f5f5;\n  height: 0.8rem;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n          -ms-flex-pack: center;\n          justify-content: center;\n}"; }
 }
 
-export { Actionsheet as NbActionsheet, Affix as NbAffix, Badge as NbBadge, CodeHighlight as NbCodeHighlight, Pagination as NbPagination, Playground as NbPlayground, PullToRefresh as NbPullToDo };
+export { Actionsheet as NbActionsheet, Affix as NbAffix, Badge as NbBadge, CodeHighlight as NbCodeHighlight, List as NbList, Pagination as NbPagination, Playground as NbPlayground, PullToRefresh as NbPullToDo };

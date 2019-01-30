@@ -6,7 +6,8 @@ import Icon from './svg-icon';
  */
 @Component({
   tag: 'nb-pagination',
-  styleUrl: 'pagination.styl'
+  styleUrl: 'pagination.styl',
+  shadow: true
 })
 export class Pagination {
 

@@ -25,7 +25,7 @@ export declare class Affix {
     /**
      * 计算举例的参照dom
      */
-    toTarget: any;
+    targetDom: () => HTMLElement;
     /**
      * 是否处于固定状态
      */
@@ -35,6 +35,6 @@ export declare class Affix {
      */
     handleFix(): void;
     componentDidLoad(): void;
-    componentDidUnload(): Promise<void>;
+    componentDidUnload(): void;
     render(): JSX.Element;
 }

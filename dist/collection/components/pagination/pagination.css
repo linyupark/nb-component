@@ -1,1 +1,51 @@
-.pagination ul{font-size:14px;line-height:1.5;margin:0;padding:0;list-style:none;}.pagination ul li{cursor:pointer;min-width:32px;height:32px;line-height:32px;display:inline-block;outline:none;position:relative;margin-right:8px;}.pagination ul li.disabled{border-color:#d9d9d9;color:rgba(0,0,0,0.25);cursor:not-allowed;}.pagination ul li.disabled a:hover{border-color:#d9d9d9;color:rgba(0,0,0,0.25)}.pagination ul li .ellipsis{position:absolute;display:block;letter-spacing:2px;color:rgba(0,0,0,0.25);text-align:center;top:12px;margin:auto}.pagination ul li a{border:1px solid #d9d9d9;background-color:#fff;border-radius:4px;display:block;-webkit-transition:all .3s;transition:all .3s;font-size:12px;height:100%;text-align:center;}.pagination ul li a:hover,.pagination ul li a.active{border-color:#1890ff;color:#1890ff}
+.pagination ul {
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.pagination ul li {
+  cursor: pointer;
+  min-width: 32px;
+  height: 32px;
+  line-height: 32px;
+  display: inline-block;
+  outline: none;
+  position: relative;
+  margin-right: 8px;
+}
+.pagination ul li.disabled {
+  border-color: #d9d9d9;
+  color: rgba(0,0,0,0.25);
+  cursor: not-allowed;
+}
+.pagination ul li.disabled a:hover {
+  border-color: #d9d9d9;
+  color: rgba(0,0,0,0.25);
+}
+.pagination ul li .ellipsis {
+  position: absolute;
+  display: block;
+  letter-spacing: 2px;
+  color: rgba(0,0,0,0.25);
+  text-align: center;
+  top: 12px;
+  margin: auto;
+}
+.pagination ul li a {
+  border: 1px solid #d9d9d9;
+  background-color: #fff;
+  border-radius: 4px;
+  display: block;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  font-size: 12px;
+  height: 100%;
+  text-align: center;
+}
+.pagination ul li a:hover,
+.pagination ul li a.active {
+  border-color: #1890ff;
+  color: #1890ff;
+}

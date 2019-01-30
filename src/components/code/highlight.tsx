@@ -3,7 +3,7 @@ import Prism from 'prismjs';
 
 @Component({
   tag: 'nb-code-highlight',
-  styleUrl: '../../../node_modules/prismjs/themes/prism.css'
+  styleUrl: '../../../node_modules/prismjs/themes/prism.css',
 })
 export class CodeHighlight {
   /**

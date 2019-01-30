@@ -2,7 +2,13 @@ import Examples from './examples';
 import { search2obj } from '@utils/string';
 export class Playground {
     constructor() {
+        /**
+         * 开启h5模式
+         */
         this.h5 = false;
+        /**
+         * 需要演示的组件列表
+         */
         this.demoList = [
             {
                 key: 'actionsheet',
@@ -33,28 +39,43 @@ export class Playground {
                 text: '徽标数.H5',
                 mobile: true,
                 tag: 'nb-badge'
+            },
+            {
+                key: 'list',
+                text: '列表.H5',
+                mobile: true,
+                tag: 'nb-list'
             }
         ];
+        /**
+         * 当前展示的demo
+         */
         this.demo = this.demoList[0];
     }
     parseHash() {
         const tag = location.hash.match(/#([^\?]+)/);
+        // 获得渲染组件
         if (tag) {
             this.tag = tag[1];
+            // 设定当前demo
             this.demo = this.demoList.filter(demo => {
                 return demo.tag === this.tag;
             })[0];
-            console.log('渲染', this.tag, this.demo);
+            // console.log('渲染', this.tag, this.demo);
         }
         else {
             this.tag = '';
         }
         const search = tag ? search2obj(location.hash.split('?')[1]) : {};
+        // h5 模式
         this.h5 = search.display === 'mobile';
         if (this.h5 && this.tag !== '') {
             this.el.ownerDocument.documentElement.style.fontSize = '37.5px';
         }
     }
+    /**
+     * 从hash来得到需要展示的组件
+     */
     componentWillLoad() {
         this.parseHash();
         window.onhashchange = this.parseHash.bind(this);

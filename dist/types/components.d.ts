@@ -49,7 +49,7 @@ export namespace Components {
     /**
     * 计算举例的参照dom
     */
-    'toTarget': any;
+    'targetDom': () => HTMLElement;
   }
   interface NbAffixAttributes extends StencilHTMLAttributes {
     /**
@@ -63,7 +63,7 @@ export namespace Components {
     /**
     * 计算举例的参照dom
     */
-    'toTarget'?: any;
+    'targetDom'?: () => HTMLElement;
   }
 
   interface NbBadge {
@@ -130,6 +130,19 @@ export namespace Components {
     * 代码类型
     */
     'lang'?: string;
+  }
+
+  interface NbList {
+    /**
+    * List之间的间距
+    */
+    'topSpace': 's' | 'm' | 'l' | 'none';
+  }
+  interface NbListAttributes extends StencilHTMLAttributes {
+    /**
+    * List之间的间距
+    */
+    'topSpace'?: 's' | 'm' | 'l' | 'none';
   }
 
   interface NbPagination {
@@ -210,6 +223,10 @@ export namespace Components {
     */
     'moreHTML': string;
     /**
+    * 当浏览器是返回状态是否尝试回到上一次的位置
+    */
+    'positionSave': boolean;
+    /**
     * 下拉展示的提示
     */
     'refreshHTML': string;
@@ -248,6 +265,10 @@ export namespace Components {
     */
     'onRefresh'?: (event: CustomEvent) => void;
     /**
+    * 当浏览器是返回状态是否尝试回到上一次的位置
+    */
+    'positionSave'?: boolean;
+    /**
     * 下拉展示的提示
     */
     'refreshHTML'?: string;
@@ -264,6 +285,7 @@ declare global {
     'NbAffix': Components.NbAffix;
     'NbBadge': Components.NbBadge;
     'NbCodeHighlight': Components.NbCodeHighlight;
+    'NbList': Components.NbList;
     'NbPagination': Components.NbPagination;
     'NbPlayground': Components.NbPlayground;
     'NbPullToDo': Components.NbPullToDo;
@@ -274,6 +296,7 @@ declare global {
     'nb-affix': Components.NbAffixAttributes;
     'nb-badge': Components.NbBadgeAttributes;
     'nb-code-highlight': Components.NbCodeHighlightAttributes;
+    'nb-list': Components.NbListAttributes;
     'nb-pagination': Components.NbPaginationAttributes;
     'nb-playground': Components.NbPlaygroundAttributes;
     'nb-pull-to-do': Components.NbPullToDoAttributes;
@@ -304,6 +327,12 @@ declare global {
     new (): HTMLNbCodeHighlightElement;
   };
 
+  interface HTMLNbListElement extends Components.NbList, HTMLStencilElement {}
+  var HTMLNbListElement: {
+    prototype: HTMLNbListElement;
+    new (): HTMLNbListElement;
+  };
+
   interface HTMLNbPaginationElement extends Components.NbPagination, HTMLStencilElement {}
   var HTMLNbPaginationElement: {
     prototype: HTMLNbPaginationElement;
@@ -327,6 +356,7 @@ declare global {
     'nb-affix': HTMLNbAffixElement
     'nb-badge': HTMLNbBadgeElement
     'nb-code-highlight': HTMLNbCodeHighlightElement
+    'nb-list': HTMLNbListElement
     'nb-pagination': HTMLNbPaginationElement
     'nb-playground': HTMLNbPlaygroundElement
     'nb-pull-to-do': HTMLNbPullToDoElement
@@ -337,6 +367,7 @@ declare global {
     'nb-affix': HTMLNbAffixElement;
     'nb-badge': HTMLNbBadgeElement;
     'nb-code-highlight': HTMLNbCodeHighlightElement;
+    'nb-list': HTMLNbListElement;
     'nb-pagination': HTMLNbPaginationElement;
     'nb-playground': HTMLNbPlaygroundElement;
     'nb-pull-to-do': HTMLNbPullToDoElement;

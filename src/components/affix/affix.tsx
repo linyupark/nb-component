@@ -14,7 +14,7 @@ import {
  */
 @Component({
   tag: 'nb-affix',
-  styleUrl: 'affix.styl'
+  shadow: true
 })
 export class Affix {
   /**
@@ -45,7 +45,7 @@ export class Affix {
   /**
    * 计算举例的参照dom
    */
-  @Prop() toTarget: any = () => document;
+  @Prop() targetDom: () => HTMLElement = () => document.body;
 
   /**
    * 是否处于固定状态
@@ -66,23 +66,30 @@ export class Affix {
     try {
       this.handleFix();
       setTimeout(() => {
-        this.toTarget().addEventListener('scroll', this.handleFix.bind(this), false);
-      }, 100);
-    }
-    catch(e) {
-      throw new TypeError('"toTarget" props maybe not a valid scroll dom.');
+        this.targetDom().addEventListener(
+          'scroll',
+          this.handleFix.bind(this),
+          false
+        );
+      }, 10);
+    } catch (e) {
+      throw new TypeError(e);
     }
   }
 
-  async componentDidUnload() {
-    this.toTarget().removeEventListener('scroll', this.handleFix.bind(this), false);
+  componentDidUnload() {
+    this.targetDom().removeEventListener(
+      'scroll',
+      this.handleFix.bind(this),
+      false
+    );
   }
 
   render() {
     return (
       <div
-        class={`${this.fixed ? 'fixed' : 'nofixed'}`}
         style={{
+          position: this.fixed ? `fixed` : 'relative',
           top: this.fixed ? `${this.offset}px` : 'auto'
         }}
       >

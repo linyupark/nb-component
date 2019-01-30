@@ -1,3 +1,9 @@
+/**
+ * hash search 转对象
+ * ?a=a&b=b => {a:'a',b:'b'}
+ * @param  {String} hash
+ * @return {Object}
+ */
 export const search2obj = (hash = '') => {
     let ret = {}, seg = decodeURIComponent(hash)
         .replace(/^\?/, '')

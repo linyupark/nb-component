@@ -1,12 +1,26 @@
+/**
+ * 固钉组件
+ * @description 根据滑动来切换固定跟原始状态的组件
+ */
 export class Affix {
     constructor() {
-        this.toTarget = () => document;
+        /**
+         * 计算举例的参照dom
+         */
+        this.targetDom = () => document.body;
     }
+    /**
+     * 观察固定状态变化
+     * @param isFixed
+     */
     onCurrentPageChange(isFixed) {
         this.change.emit({
             isFixed
         });
     }
+    /**
+     * 根据设置来切换固定状态
+     */
     handleFix() {
         if (this.offset >= 0) {
             const rectTop = this.el.getBoundingClientRect().top;
@@ -17,23 +31,25 @@ export class Affix {
         try {
             this.handleFix();
             setTimeout(() => {
-                this.toTarget().addEventListener('scroll', this.handleFix.bind(this), false);
-            }, 100);
+                this.targetDom().addEventListener('scroll', this.handleFix.bind(this), false);
+            }, 10);
         }
         catch (e) {
-            throw new TypeError('"toTarget" props maybe not a valid scroll dom.');
+            throw new TypeError(e);
         }
     }
-    async componentDidUnload() {
-        this.toTarget().removeEventListener('scroll', this.handleFix.bind(this), false);
+    componentDidUnload() {
+        this.targetDom().removeEventListener('scroll', this.handleFix.bind(this), false);
     }
     render() {
-        return (h("div", { class: `${this.fixed ? 'fixed' : 'nofixed'}`, style: {
+        return (h("div", { style: {
+                position: this.fixed ? `fixed` : 'relative',
                 top: this.fixed ? `${this.offset}px` : 'auto'
             } },
             h("slot", null)));
     }
     static get is() { return "nb-affix"; }
+    static get encapsulation() { return "shadow"; }
     static get properties() { return {
         "el": {
             "elementRef": true
@@ -46,9 +62,9 @@ export class Affix {
             "type": Number,
             "attr": "offset"
         },
-        "toTarget": {
+        "targetDom": {
             "type": "Any",
-            "attr": "to-target"
+            "attr": "target-dom"
         }
     }; }
     static get events() { return [{
@@ -58,5 +74,4 @@ export class Affix {
             "cancelable": true,
             "composed": true
         }]; }
-    static get style() { return "/**style-placeholder:nb-affix:**/"; }
 }

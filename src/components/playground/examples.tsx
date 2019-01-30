@@ -1,4 +1,4 @@
-let refTarget;
+let refTarget: any = {};
 
 const boxStyles = {
   border: '1px solid #eee',
@@ -14,6 +14,22 @@ const boxStyles = {
  */
 
 export default {
+  /**
+   * 列表
+   */
+  'nb-list': [
+    <div class="wrapper" style={{
+      padding: '0',
+      background: '#f5f5f5'
+    }}>
+      <nb-list>
+        <div>内容</div>
+      </nb-list>
+      <nb-list>
+        <div>内容</div>
+      </nb-list>
+    </div>
+  ],
   /**
    * 徽标数
    */
@@ -162,13 +178,15 @@ export default {
   'nb-affix': [
     <div
       class="wrapper"
-      ref={ev => (refTarget = ev)}
+      ref={ev => (refTarget.affix = ev)}
       style={{
         height: '30vh',
-        overflow: 'auto'
+        overflow: 'auto',
+        padding: '0px'
       }}
     >
       <div
+        class="content"
         style={{
           height: '1000px',
           overflowX: 'hidden'
@@ -177,8 +195,9 @@ export default {
         <br />
         <nb-affix
           onChange={({ detail }) => {
-            const target = document.querySelector('.affix-content');
-            const wrapper: any = document.querySelector('.wrapper > div');
+            if (!refTarget.affix) return;
+            const target = refTarget.affix.querySelector('.affix-content');
+            const wrapper: any = refTarget.affix.querySelector('.content');
             if (detail.isFixed) {
               target.classList.add('fixed');
               wrapper.style.paddingTop = '64px';
@@ -188,7 +207,7 @@ export default {
             }
           }}
           offset={0}
-          toTarget={() => refTarget}
+          targetDom={() => refTarget.affix}
         >
           <div class="affix-content">
             <div class="item">二维码</div>
@@ -263,31 +282,21 @@ export default {
    */
   'nb-pagination': [
     <div class="wrapper">
-      <p id="page-to">&nbsp;</p>
       <nb-pagination
         current={1}
         pagesize={10}
         total={100}
-        onChange={({ detail }) =>
-          (document.querySelector('#page-to').innerHTML = `触发转到第${
-            detail.to
-          }页`)
-        }
+        onChange={({ detail }) => console.log(`触发转到第${detail.to}页`)}
       />
     </div>,
     <div class="lang">React</div>,
     <nb-code-highlight
       code={`
-  <p id="page-to">&nbsp;</p>
   <nb-pagination
     current={1}
     pagesize={10}
     total={100}
-    onChange={({ detail }) =>
-      document.querySelector('#page-to').innerHTML = \`触发转到第$\{
-        detail.to
-      \}页\`;
-    }
+    onChange={({ detail }) => console.log(\`触发转到第\${detail.to}页\`)}
   />
     `}
     />,
@@ -328,7 +337,7 @@ export default {
     <nb-actionsheet
       headTitle="面板标题"
       mask={true}
-      ref={ev => (refTarget = ev)}
+      ref={ev => (refTarget.actionsheet = ev)}
     >
       <div slot="container">
         <ul>
@@ -337,7 +346,7 @@ export default {
       </div>
     </nb-actionsheet>,
     <div class="wrapper">
-      <button onClick={() => refTarget.show()}>打开面板</button>
+      <button onClick={() => refTarget.actionsheet.show()}>打开面板</button>
     </div>,
     <div class="lang">React</div>,
     <nb-code-highlight

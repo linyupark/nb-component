@@ -7,6 +7,7 @@ import { Component, State, Prop, Method, Watch } from '@stencil/core';
 @Component({
   tag: 'nb-actionsheet',
   styleUrl: 'actionsheet.h5.styl',
+  shadow: true,
 })
 export class Actionsheet {
 

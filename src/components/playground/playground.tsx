@@ -52,6 +52,12 @@ export class Playground {
       text: '徽标数.H5',
       mobile: true,
       tag: 'nb-badge'
+    },
+    {
+      key: 'list',
+      text: '列表.H5',
+      mobile: true,
+      tag: 'nb-list'
     }
   ];
 
@@ -69,7 +75,7 @@ export class Playground {
       this.demo = this.demoList.filter(demo => {
         return demo.tag === this.tag;
       })[0];
-      console.log('渲染', this.tag, this.demo);
+      // console.log('渲染', this.tag, this.demo);
     } else {
       this.tag = '';
     }

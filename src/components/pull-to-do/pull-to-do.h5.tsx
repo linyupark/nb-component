@@ -8,12 +8,15 @@ import {
   Method
 } from '@stencil/core';
 
+let _scrollTopPosition = 0;
+
 /**
  * 下滑刷新
  */
 @Component({
   tag: 'nb-pull-to-do',
-  styleUrl: 'pull-to-do.h5.styl'
+  styleUrl: 'pull-to-do.h5.styl',
+  shadow: true,
 })
 export class PullToRefresh {
   /**
@@ -65,6 +68,11 @@ export class PullToRefresh {
    * 拉动限制高度
    */
   @Prop() dampHeight: number = 30;
+
+  /**
+   * 当浏览器是返回状态是否尝试回到上一次的位置
+   */
+  @Prop() positionSave: boolean = true;
 
   /**
    * 已经拉动的限制高度(正数为顶部，负数为底部)
@@ -202,6 +210,10 @@ export class PullToRefresh {
     }
     this.dampingLen > 3 && this.refresh.emit();
     this.dampingLen < -3 && this.more.emit();
+    // 记录当前位置
+    if (this.positionSave) {
+      _scrollTopPosition = this.getScrollTop();
+    }
   }
 
   /**
@@ -239,6 +251,10 @@ export class PullToRefresh {
 
   componentDidLoad() {
     this.bindTouchScroll();
+    if (this.positionSave) {
+      // console.log('回到位置', _scrollTopPosition);
+      this.$wrapper.scrollTo(0, _scrollTopPosition);
+    }
   }
 
   render() {

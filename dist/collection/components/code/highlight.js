@@ -1,7 +1,13 @@
 import Prism from 'prismjs';
 export class CodeHighlight {
     constructor() {
+        /**
+         * 代码内容
+         */
         this.code = '';
+        /**
+         * 代码类型
+         */
         this.lang = 'html';
     }
     render() {

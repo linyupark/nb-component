@@ -45,6 +45,10 @@ export declare class PullToRefresh {
      */
     dampHeight: number;
     /**
+     * 当浏览器是返回状态是否尝试回到上一次的位置
+     */
+    positionSave: boolean;
+    /**
      * 已经拉动的限制高度(正数为顶部，负数为底部)
      */
     dampingLen: number;
