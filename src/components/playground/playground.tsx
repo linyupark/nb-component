@@ -1,5 +1,6 @@
 import { Component, State, Element } from '@stencil/core';
 import Examples from './examples';
+import { search2obj } from '@utils/string';
 
 @Component({
   tag: 'nb-playground',
@@ -59,15 +60,11 @@ export class Playground {
    */
   @State() demo: any = this.demoList[0];
 
-  /**
-   * 从hash来得到需要展示的组件
-   */
-  componentWillLoad() {
-    const hash = location.hash.split('#');
-    const search = location.search;
+  private parseHash() {
+    const tag = location.hash.match(/#([^\?]+)/);
     // 获得渲染组件
-    if (hash.length > 1) {
-      this.tag = hash[1];
+    if (tag) {
+      this.tag = tag[1];
       // 设定当前demo
       this.demo = this.demoList.filter(demo => {
         return demo.tag === this.tag;
@@ -76,11 +73,20 @@ export class Playground {
     } else {
       this.tag = '';
     }
+    const search = tag ? search2obj(location.hash.split('?')[1]) : {};
     // h5 模式
-    this.h5 = !!~search.search('mobile');
+    this.h5 = search.display === 'mobile';
     if (this.h5 && this.tag !== '') {
       this.el.ownerDocument.documentElement.style.fontSize = '37.5px';
     }
+  }
+
+  /**
+   * 从hash来得到需要展示的组件
+   */
+  componentWillLoad() {
+    this.parseHash();
+    window.onhashchange = this.parseHash.bind(this);
   }
 
   render() {
@@ -121,7 +127,7 @@ export class Playground {
           <iframe
             scrolling="no"
             class={this.demo.mobile ? 'mobile' : ''}
-            src={`./?${this.demo.mobile ? 'mobile' : ''}${Date.now()}#${this.demo.tag}`}
+            src={`#${this.demo.tag}?display=${this.demo.mobile ? 'mobile' : 'pc'}`}
           />
         </div>
       </div>

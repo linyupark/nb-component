@@ -22,6 +22,7 @@ export declare class Playground {
      * 当前展示的demo
      */
     demo: any;
+    private parseHash;
     /**
      * 从hash来得到需要展示的组件
      */

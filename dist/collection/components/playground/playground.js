@@ -1,4 +1,5 @@
 import Examples from './examples';
+import { search2obj } from '@utils/string';
 export class Playground {
     constructor() {
         this.h5 = false;
@@ -36,11 +37,10 @@ export class Playground {
         ];
         this.demo = this.demoList[0];
     }
-    componentWillLoad() {
-        const hash = location.hash.split('#');
-        const search = location.search;
-        if (hash.length > 1) {
-            this.tag = hash[1];
+    parseHash() {
+        const tag = location.hash.match(/#([^\?]+)/);
+        if (tag) {
+            this.tag = tag[1];
             this.demo = this.demoList.filter(demo => {
                 return demo.tag === this.tag;
             })[0];
@@ -49,10 +49,15 @@ export class Playground {
         else {
             this.tag = '';
         }
-        this.h5 = !!~search.search('mobile');
+        const search = tag ? search2obj(location.hash.split('?')[1]) : {};
+        this.h5 = search.display === 'mobile';
         if (this.h5 && this.tag !== '') {
             this.el.ownerDocument.documentElement.style.fontSize = '37.5px';
         }
+    }
+    componentWillLoad() {
+        this.parseHash();
+        window.onhashchange = this.parseHash.bind(this);
     }
     render() {
         return this.tag === '' ? (h("div", { class: "site" },
@@ -74,7 +79,7 @@ export class Playground {
                     h("br", null),
                     demo.key))))),
             h("div", { class: "content" },
-                h("iframe", { scrolling: "no", class: this.demo.mobile ? 'mobile' : '', src: `./?${this.demo.mobile ? 'mobile' : ''}${Date.now()}#${this.demo.tag}` })))) : (h("div", { class: this.demo.mobile ? 'example mobile' : 'example' }, Examples[this.tag]));
+                h("iframe", { scrolling: "no", class: this.demo.mobile ? 'mobile' : '', src: `#${this.demo.tag}?display=${this.demo.mobile ? 'mobile' : 'pc'}` })))) : (h("div", { class: this.demo.mobile ? 'example mobile' : 'example' }, Examples[this.tag]));
     }
     static get is() { return "nb-playground"; }
     static get properties() { return {

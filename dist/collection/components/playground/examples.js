@@ -148,31 +148,6 @@ export default {
                         h("div", { class: "item" }, "\u5173\u7CFB\u9884\u7EA6"),
                         h("div", { class: "item" }, "\u9A7E\u9A76\u8231"),
                         h("div", { class: "item" }, "\u4EA7\u54C1\u4E2D\u5FC3"))))),
-        h("div", { class: "lang" }, "Stylus"),
-        h("nb-code-highlight", { code: `
-      .affix-content {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        left: 0;
-        width: 100%;
-        height: 88px;
-        background: linear-gradient(187deg, rgba(109, 201, 254, 1) 0%, rgba(59, 152, 252, 1) 100%);
-        box-shadow: 0px 6px 12px 0px rgba(204, 204, 204, 1);
-        border-radius: 8px;
-        transition: height .3s;
-  
-        .item {
-          color: #fff;
-        }
-  
-        &.fixed {
-          width: 100vw;
-          height: 44px;
-          left: 0;
-        }
-      }
-      `, lang: "css" }),
         h("div", { class: "lang" }, "React"),
         h("nb-code-highlight", { code: `
     <div

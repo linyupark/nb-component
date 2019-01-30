@@ -1365,31 +1365,6 @@ var Examples = {
                         h("div", { class: "item" }, "\u5173\u7CFB\u9884\u7EA6"),
                         h("div", { class: "item" }, "\u9A7E\u9A76\u8231"),
                         h("div", { class: "item" }, "\u4EA7\u54C1\u4E2D\u5FC3"))))),
-        h("div", { class: "lang" }, "Stylus"),
-        h("nb-code-highlight", { code: `
-      .affix-content {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        left: 0;
-        width: 100%;
-        height: 88px;
-        background: linear-gradient(187deg, rgba(109, 201, 254, 1) 0%, rgba(59, 152, 252, 1) 100%);
-        box-shadow: 0px 6px 12px 0px rgba(204, 204, 204, 1);
-        border-radius: 8px;
-        transition: height .3s;
-  
-        .item {
-          color: #fff;
-        }
-  
-        &.fixed {
-          width: 100vw;
-          height: 44px;
-          left: 0;
-        }
-      }
-      `, lang: "css" }),
         h("div", { class: "lang" }, "React"),
         h("nb-code-highlight", { code: `
     <div
@@ -1512,6 +1487,20 @@ var Examples = {
     ]
 };
 
+const search2obj = (hash = '') => {
+    let ret = {}, seg = decodeURIComponent(hash)
+        .replace(/^\?/, '')
+        .split('&'), len = seg.length, i = 0, s;
+    for (; i < len; i++) {
+        if (!seg[i]) {
+            continue;
+        }
+        s = seg[i].split('=');
+        ret[s[0]] = s[1];
+    }
+    return ret;
+};
+
 class Playground {
     constructor() {
         this.h5 = false;
@@ -1549,11 +1538,10 @@ class Playground {
         ];
         this.demo = this.demoList[0];
     }
-    componentWillLoad() {
-        const hash = location.hash.split('#');
-        const search = location.search;
-        if (hash.length > 1) {
-            this.tag = hash[1];
+    parseHash() {
+        const tag = location.hash.match(/#([^\?]+)/);
+        if (tag) {
+            this.tag = tag[1];
             this.demo = this.demoList.filter(demo => {
                 return demo.tag === this.tag;
             })[0];
@@ -1562,10 +1550,15 @@ class Playground {
         else {
             this.tag = '';
         }
-        this.h5 = !!~search.search('mobile');
+        const search = tag ? search2obj(location.hash.split('?')[1]) : {};
+        this.h5 = search.display === 'mobile';
         if (this.h5 && this.tag !== '') {
             this.el.ownerDocument.documentElement.style.fontSize = '37.5px';
         }
+    }
+    componentWillLoad() {
+        this.parseHash();
+        window.onhashchange = this.parseHash.bind(this);
     }
     render() {
         return this.tag === '' ? (h("div", { class: "site" },
@@ -1587,7 +1580,7 @@ class Playground {
                     h("br", null),
                     demo.key))))),
             h("div", { class: "content" },
-                h("iframe", { scrolling: "no", class: this.demo.mobile ? 'mobile' : '', src: `./?${this.demo.mobile ? 'mobile' : ''}${Date.now()}#${this.demo.tag}` })))) : (h("div", { class: this.demo.mobile ? 'example mobile' : 'example' }, Examples[this.tag]));
+                h("iframe", { scrolling: "no", class: this.demo.mobile ? 'mobile' : '', src: `#${this.demo.tag}?display=${this.demo.mobile ? 'mobile' : 'pc'}` })))) : (h("div", { class: this.demo.mobile ? 'example mobile' : 'example' }, Examples[this.tag]));
     }
     static get is() { return "nb-playground"; }
     static get properties() { return {

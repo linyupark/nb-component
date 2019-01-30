@@ -221,34 +221,6 @@ export default {
         </nb-affix> */}
       </div>
     </div>,
-    <div class="lang">Stylus</div>,
-    <nb-code-highlight
-      code={`
-      .affix-content {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        left: 0;
-        width: 100%;
-        height: 88px;
-        background: linear-gradient(187deg, rgba(109, 201, 254, 1) 0%, rgba(59, 152, 252, 1) 100%);
-        box-shadow: 0px 6px 12px 0px rgba(204, 204, 204, 1);
-        border-radius: 8px;
-        transition: height .3s;
-  
-        .item {
-          color: #fff;
-        }
-  
-        &.fixed {
-          width: 100vw;
-          height: 44px;
-          left: 0;
-        }
-      }
-      `}
-      lang="css"
-    />,
     <div class="lang">React</div>,
     <nb-code-highlight
       code={`
