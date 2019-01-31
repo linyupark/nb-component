@@ -1,1 +1,0 @@
-// NbComponent: CommonJS Main
