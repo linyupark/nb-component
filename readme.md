@@ -18,3 +18,4 @@ Stencil components are just Web Components, so they work in any major framework 
  * [pull-to-do 上下拉操作.H5](./src/components/pull-to-do/readme.md)
  * [badge 徽标数.H5](./src/components/badge/readme.md)
  * [list 列表.H5](./src/components/list/readme.md) [list-item](./src/components/list-item/readme.md)
+ * [svg-icon 图标.H5](./src/components/svg-icon/readme.md)
