@@ -11,8 +11,8 @@
     "dist/"
   ],
   "scripts": {
-    "build": "stencil build --docs",
-    "start": "stencil build --dev --watch --serve",
+    "build": "cross-env NODE_ENV=production stencil build --docs",
+    "start": "cross-env NODE_ENV=develop stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll"
   },
@@ -22,6 +22,7 @@
     "@stencil/postcss": "^0.1.0",
     "@stencil/stylus": "^0.1.0",
     "@types/jest": "^23.3.13",
+    "cross-env": "^5.2.0",
     "postcss-preset-env": "^6.5.0",
     "prismjs": "^1.15.0"
   },

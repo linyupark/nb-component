@@ -3,7 +3,7 @@ import { postcss } from '@stencil/postcss';
 import { stylus } from '@stencil/stylus';
 import cssnext from 'postcss-preset-env';
 
-export const config: Config = {
+let config: Config = {
   namespace: 'nb-component',
   outputTargets: [
     { type: 'dist' },
@@ -33,6 +33,10 @@ export const config: Config = {
       ]
     })
   ],
-  // 正式使用库下面的注释取消build后再食用
-  // excludeSrc: ['/test/', '**/.spec.', '**/playground/**']
 };
+
+if (process.env.NODE_ENV === 'production') {
+  config.excludeSrc = ['/test/', '**/.spec.', '**/playground/**', '**/code/**']
+}
+
+export { config };
