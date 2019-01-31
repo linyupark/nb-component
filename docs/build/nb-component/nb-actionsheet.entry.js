@@ -1439,6 +1439,34 @@ const iconBox = {
  */
 var Examples = {
     /**
+     * 滑动开关
+     * */
+    'nb-switch': [
+        h("div", { class: "wrapper" },
+            "\u70B9\u51FB\u5207\u6362\uFF1A",
+            h("nb-switch", { onChange: ev => {
+                    console.log(ev.detail.checked);
+                } }),
+            "\u00A0\u00A0\u00A0 \u7981\u7528\u65E0\u6CD5\u70B9\u51FB\uFF1A",
+            h("nb-switch", { disabled: true }),
+            h("br", null),
+            " \u66F4\u6362\u80CC\u666F\u8272\uFF1A",
+            h("nb-switch", { color: "red", checked: true })),
+        h("div", { class: "lang" }, "React"),
+        h("nb-code-highlight", { code: `
+  点击切换：
+  <nb-switch
+    onChange={ev => {
+      console.log(ev.detail.checked);
+    }}
+  />
+  &nbsp;&nbsp;&nbsp; 禁用无法点击：
+  <nb-switch disabled={true} />
+  <br /> 更换背景色：
+  <nb-switch color="red" checked={true} />
+      ` })
+    ],
+    /**
      * 图标
      */
     'nb-svg-icon': [
@@ -1886,6 +1914,12 @@ class Playground {
                 text: '图标.H5',
                 mobile: true,
                 tag: 'nb-svg-icon'
+            },
+            {
+                key: 'switch',
+                text: '滑动开关.H5',
+                mobile: true,
+                tag: 'nb-switch'
             }
         ];
         /**
@@ -2270,4 +2304,65 @@ class SvgIcon {
     static get style() { return ".icon {\n  display: inline-block;\n  stroke-width: 0;\n  stroke: currentColor;\n  vertical-align: middle;\n}\n.icon.xs {\n  width: 0.32rem;\n  height: 0.32rem;\n}\n.icon.s {\n  width: 0.453333333333333rem;\n  height: 0.453333333333333rem;\n}\n.icon.m {\n  width: 0.586666666666667rem;\n  height: 0.586666666666667rem;\n}\n.icon.l {\n  width: 0.72rem;\n  height: 0.72rem;\n}\n.icon.xl {\n  width: 0.853333333333333rem;\n  height: 0.853333333333333rem;\n}\n.icon.rotate {\n  -webkit-animation: rotate 1s linear infinite;\n          animation: rotate 1s linear infinite;\n}\n\@-webkit-keyframes rotate {\n  from {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n\@keyframes rotate {\n  from {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}"; }
 }
 
-export { Actionsheet as NbActionsheet, Affix as NbAffix, Badge as NbBadge, CodeHighlight as NbCodeHighlight, List as NbList, ListItem as NbListItem, Pagination as NbPagination, Playground as NbPlayground, PullToRefresh as NbPullToDo, SvgIcon as NbSvgIcon };
+/**
+ * 滑动开关
+ */
+class Switch {
+    constructor() {
+        /**
+         * 是否默认选中
+         */
+        this.checked = false;
+        /**
+         * 是否不可修改
+         */
+        this.disabled = false;
+        /**
+         * 开关背景颜色
+         */
+        this.color = '#4C98FC';
+        /**
+         * 点击处理
+         */
+        this.onChange = () => {
+            // 禁用无效
+            if (this.disabled)
+                return;
+            this.checked = !this.checked;
+            this.change.emit({ checked: this.checked });
+        };
+    }
+    render() {
+        return (h("div", { onClick: this.onChange, class: `switch ${this.checked ? 'checked' : ''} ${this.disabled ? 'disabled' : ''}`, style: {
+                backgroundColor: this.checked ? this.color : '#C7C7C7'
+            } },
+            h("div", { class: "roundball" })));
+    }
+    static get is() { return "nb-switch"; }
+    static get encapsulation() { return "shadow"; }
+    static get properties() { return {
+        "checked": {
+            "type": Boolean,
+            "attr": "checked",
+            "mutable": true
+        },
+        "color": {
+            "type": String,
+            "attr": "color"
+        },
+        "disabled": {
+            "type": Boolean,
+            "attr": "disabled"
+        }
+    }; }
+    static get events() { return [{
+            "name": "change",
+            "method": "change",
+            "bubbles": true,
+            "cancelable": true,
+            "composed": true
+        }]; }
+    static get style() { return ".switch {\n  width: 1.066666666666667rem;\n  height: 0.64rem;\n  border-radius: 0.32rem;\n  position: relative;\n  display: inline-block;\n  vertical-align: middle;\n}\n.switch.disabled {\n  opacity: 0.8;\n}\n.switch .roundball {\n  height: 0.533333333333333rem;\n  width: 0.533333333333333rem;\n  background: #fff;\n  border: 1px solid #f5f5f5;\n  border-radius: 50%;\n  position: absolute;\n  left: 0.026666666666667rem;\n  top: 0.026666666666667rem;\n  -webkit-transition: -webkit-transform 0.3s;\n  transition: -webkit-transform 0.3s;\n  transition: transform 0.3s;\n  transition: transform 0.3s, -webkit-transform 0.3s;\n}\n.switch.checked .roundball {\n  -webkit-transform: translateX(0.426666666666667rem);\n          transform: translateX(0.426666666666667rem);\n}"; }
+}
+
+export { Actionsheet as NbActionsheet, Affix as NbAffix, Badge as NbBadge, CodeHighlight as NbCodeHighlight, List as NbList, ListItem as NbListItem, Pagination as NbPagination, Playground as NbPlayground, PullToRefresh as NbPullToDo, SvgIcon as NbSvgIcon, Switch as NbSwitch };

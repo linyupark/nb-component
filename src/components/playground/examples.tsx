@@ -21,6 +21,38 @@ const iconBox = {
 
 export default {
   /**
+   * 滑动开关
+   * */
+  'nb-switch': [
+    <div class="wrapper">
+      点击切换：
+      <nb-switch
+        onChange={ev => {
+          console.log(ev.detail.checked);
+        }}
+      />
+      &nbsp;&nbsp;&nbsp; 禁用无法点击：
+      <nb-switch disabled={true} />
+      <br /> 更换背景色：
+      <nb-switch color="red" checked={true} />
+    </div>,
+    <div class="lang">React</div>,
+    <nb-code-highlight
+      code={`
+  点击切换：
+  <nb-switch
+    onChange={ev => {
+      console.log(ev.detail.checked);
+    }}
+  />
+  &nbsp;&nbsp;&nbsp; 禁用无法点击：
+  <nb-switch disabled={true} />
+  <br /> 更换背景色：
+  <nb-switch color="red" checked={true} />
+      `}
+    />
+  ],
+  /**
    * 图标
    */
   'nb-svg-icon': [

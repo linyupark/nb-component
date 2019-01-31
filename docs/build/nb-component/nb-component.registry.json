@@ -62,6 +62,12 @@
         "$": "nb-actionsheet"
       },
       "encapsulation": "shadow"
+    },
+    "nb-switch": {
+      "bundleIds": {
+        "$": "nb-actionsheet"
+      },
+      "encapsulation": "shadow"
     }
   }
 }

@@ -335,6 +335,39 @@ export namespace Components {
     */
     'type'?: string;
   }
+
+  interface NbSwitch {
+    /**
+    * 是否默认选中
+    */
+    'checked': boolean;
+    /**
+    * 开关背景颜色
+    */
+    'color': string;
+    /**
+    * 是否不可修改
+    */
+    'disabled': boolean;
+  }
+  interface NbSwitchAttributes extends StencilHTMLAttributes {
+    /**
+    * 是否默认选中
+    */
+    'checked'?: boolean;
+    /**
+    * 开关背景颜色
+    */
+    'color'?: string;
+    /**
+    * 是否不可修改
+    */
+    'disabled'?: boolean;
+    /**
+    * 当状态发生改变
+    */
+    'onChange'?: (event: CustomEvent) => void;
+  }
 }
 
 declare global {
@@ -349,6 +382,7 @@ declare global {
     'NbPlayground': Components.NbPlayground;
     'NbPullToDo': Components.NbPullToDo;
     'NbSvgIcon': Components.NbSvgIcon;
+    'NbSwitch': Components.NbSwitch;
   }
 
   interface StencilIntrinsicElements {
@@ -362,6 +396,7 @@ declare global {
     'nb-playground': Components.NbPlaygroundAttributes;
     'nb-pull-to-do': Components.NbPullToDoAttributes;
     'nb-svg-icon': Components.NbSvgIconAttributes;
+    'nb-switch': Components.NbSwitchAttributes;
   }
 
 
@@ -425,6 +460,12 @@ declare global {
     new (): HTMLNbSvgIconElement;
   };
 
+  interface HTMLNbSwitchElement extends Components.NbSwitch, HTMLStencilElement {}
+  var HTMLNbSwitchElement: {
+    prototype: HTMLNbSwitchElement;
+    new (): HTMLNbSwitchElement;
+  };
+
   interface HTMLElementTagNameMap {
     'nb-actionsheet': HTMLNbActionsheetElement
     'nb-affix': HTMLNbAffixElement
@@ -436,6 +477,7 @@ declare global {
     'nb-playground': HTMLNbPlaygroundElement
     'nb-pull-to-do': HTMLNbPullToDoElement
     'nb-svg-icon': HTMLNbSvgIconElement
+    'nb-switch': HTMLNbSwitchElement
   }
 
   interface ElementTagNameMap {
@@ -449,6 +491,7 @@ declare global {
     'nb-playground': HTMLNbPlaygroundElement;
     'nb-pull-to-do': HTMLNbPullToDoElement;
     'nb-svg-icon': HTMLNbSvgIconElement;
+    'nb-switch': HTMLNbSwitchElement;
   }
 
 

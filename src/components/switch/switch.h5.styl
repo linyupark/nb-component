@@ -1,0 +1,30 @@
+.switch {
+  width: rem(80px);
+  height: rem(48px);
+  border-radius: rem(24px);
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+
+  &.disabled {
+    opacity: 0.8;
+  }
+
+  .roundball {
+    height: rem(40px);
+    width: rem(40px);
+    background: #fff;
+    border: 1px solid #f5f5f5;
+    border-radius: 50%;
+    position: absolute;
+    left: rem(2px);
+    top: rem(2px);
+    transition: transform .3s;
+  }
+
+  &.checked {
+    .roundball {
+      transform: translateX(rem(32px));
+    }
+  }
+}

@@ -64,6 +64,12 @@ export class Playground {
       text: '图标.H5',
       mobile: true,
       tag: 'nb-svg-icon'
+    },
+    {
+      key: 'switch',
+      text: '滑动开关.H5',
+      mobile: true,
+      tag: 'nb-switch'
     }
   ];
 
