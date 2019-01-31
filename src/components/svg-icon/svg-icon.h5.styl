@@ -1,0 +1,46 @@
+
+.icon {
+  display: inline-block;
+  stroke-width: 0;
+  stroke: currentColor;
+  vertical-align: middle;
+
+  &.xs {
+    width: rem(24px);
+    height: rem(24px);
+  }
+
+  &.s {
+    width: rem(34px);
+    height: rem(34px);
+  }
+
+  &.m {
+    width: rem(44px);
+    height: rem(44px);
+  }
+
+  &.l {
+    width: rem(54px);
+    height: rem(54px);
+  }
+
+  &.xl {
+    width: rem(64px);
+    height: rem(64px);
+  }
+
+  &.rotate {
+    animation: rotate 1s linear infinite;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -8,6 +8,12 @@ const boxStyles = {
   lineHeight: '30px',
   background: '#eee'
 };
+const iconBox = {
+  display: 'inline-block',
+  width: '25%',
+  padding: '20px 0',
+  textAlign: 'center'
+};
 
 /**
  * 各组件的演示代码
@@ -15,13 +21,101 @@ const boxStyles = {
 
 export default {
   /**
+   * 图标
+   */
+  'nb-svg-icon': [
+    <div class="wrapper">
+      <div style={iconBox}>
+        <nb-svg-icon type="forward" size="xs" />
+        <br />
+        forward(XS)
+      </div>
+      <div style={iconBox}>
+        <nb-svg-icon type="back" size="s" />
+        <br />
+        back(S)
+      </div>
+      <div style={iconBox}>
+        <nb-svg-icon type="loading" />
+        <br />
+        loading(M)
+      </div>
+      <div style={iconBox}>
+        <nb-svg-icon type="add" size="l" />
+        <br />
+        add (L)
+      </div>
+      <div style={iconBox}>
+        <nb-svg-icon type="close" size="xl" />
+        <br />
+        close(XL)
+      </div>
+      <div style={iconBox}>
+        <nb-svg-icon>
+          <svg viewBox="0 0 32 32">
+            <path
+              d="M16,32 C7.163444,32 0,24.836556 0,16 C0,7.163444 7.163444,0 16,0 C24.836556,0 32,7.163444 32,16 C32,24.836556 24.836556,32 16,32 Z M22.8823123,11.1582487 L13.6200552,20.2918445 L9.7475544,16.6425102 C9.48246798,16.3731249 9.05246304,16.3731249 8.78737662,16.6425102 C8.5222902,16.9112336 8.5222902,17.3476334 8.78737662,17.6170187 L13.15007,21.7647489 C13.4153737,22.0343548 13.8451613,22.0343548 14.110465,21.7647489 C14.1406675,21.7343024 14.166307,21.7009878 14.1893391,21.66657 L23.8427073,12.1331984 C24.1077937,11.8640338 24.1077937,11.4274134 23.8427073,11.1582487 C23.5774036,10.8888634 23.147616,10.8888634 22.8823123,11.1582487 Z"
+              fill="#3BC49D"
+            />
+          </svg>
+        </nb-svg-icon>
+        <br />
+        自定义svg内容(M)
+      </div>
+    </div>,
+    <div class="lang">React</div>,
+    <nb-code-highlight
+      code={`
+    <div style={iconBox}>
+      <nb-svg-icon type="forward" size="xs" />
+      <br />
+      forward(XS)
+    </div>
+    <div style={iconBox}>
+      <nb-svg-icon type="back" size="s" />
+      <br />
+      back(S)
+    </div>
+    <div style={iconBox}>
+      <nb-svg-icon type="loading" />
+      <br />
+      loading(M)
+    </div>
+    <div style={iconBox}>
+      <nb-svg-icon type="add" size="l" />
+      <br />
+      add (L)
+    </div>
+    <div style={iconBox}>
+      <nb-svg-icon type="close" size="xl" />
+      <br />
+      close(XL)
+    </div>
+    <div style={iconBox}>
+      <nb-svg-icon>
+        <svg viewBox="0 0 32 32">
+          <path
+            d="M16,32 C7.163444,32 0,24.836556 0,16 C0,7.163444 7.163444,0 16,0 C24.836556,0 32,7.163444 32,16 C32,24.836556 24.836556,32 16,32 Z M22.8823123,11.1582487 L13.6200552,20.2918445 L9.7475544,16.6425102 C9.48246798,16.3731249 9.05246304,16.3731249 8.78737662,16.6425102 C8.5222902,16.9112336 8.5222902,17.3476334 8.78737662,17.6170187 L13.15007,21.7647489 C13.4153737,22.0343548 13.8451613,22.0343548 14.110465,21.7647489 C14.1406675,21.7343024 14.166307,21.7009878 14.1893391,21.66657 L23.8427073,12.1331984 C24.1077937,11.8640338 24.1077937,11.4274134 23.8427073,11.1582487 C23.5774036,10.8888634 23.147616,10.8888634 22.8823123,11.1582487 Z"
+            fill="#3BC49D"
+          />
+        </svg>
+      </nb-svg-icon>
+      <br />
+      自定义svg内容(M)
+    </div>`}
+    />
+  ],
+  /**
    * 列表
    */
   'nb-list': [
-    <div class="wrapper" style={{
-      padding: '0',
-      background: '#f5f5f5'
-    }}>
+    <div
+      class="wrapper"
+      style={{
+        padding: '0',
+        background: '#f5f5f5'
+      }}
+    >
       <nb-list>
         <nb-list-item>default 默认</nb-list-item>
         <nb-list-item short="left">short=left 左边缩进</nb-list-item>

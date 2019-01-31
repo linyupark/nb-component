@@ -1428,10 +1428,87 @@ const boxStyles = {
     lineHeight: '30px',
     background: '#eee'
 };
+const iconBox = {
+    display: 'inline-block',
+    width: '25%',
+    padding: '20px 0',
+    textAlign: 'center'
+};
 /**
  * 各组件的演示代码
  */
 var Examples = {
+    /**
+     * 图标
+     */
+    'nb-svg-icon': [
+        h("div", { class: "wrapper" },
+            h("div", { style: iconBox },
+                h("nb-svg-icon", { type: "forward", size: "xs" }),
+                h("br", null),
+                "forward(XS)"),
+            h("div", { style: iconBox },
+                h("nb-svg-icon", { type: "back", size: "s" }),
+                h("br", null),
+                "back(S)"),
+            h("div", { style: iconBox },
+                h("nb-svg-icon", { type: "loading" }),
+                h("br", null),
+                "loading(M)"),
+            h("div", { style: iconBox },
+                h("nb-svg-icon", { type: "add", size: "l" }),
+                h("br", null),
+                "add (L)"),
+            h("div", { style: iconBox },
+                h("nb-svg-icon", { type: "close", size: "xl" }),
+                h("br", null),
+                "close(XL)"),
+            h("div", { style: iconBox },
+                h("nb-svg-icon", null,
+                    h("svg", { viewBox: "0 0 32 32" },
+                        h("path", { d: "M16,32 C7.163444,32 0,24.836556 0,16 C0,7.163444 7.163444,0 16,0 C24.836556,0 32,7.163444 32,16 C32,24.836556 24.836556,32 16,32 Z M22.8823123,11.1582487 L13.6200552,20.2918445 L9.7475544,16.6425102 C9.48246798,16.3731249 9.05246304,16.3731249 8.78737662,16.6425102 C8.5222902,16.9112336 8.5222902,17.3476334 8.78737662,17.6170187 L13.15007,21.7647489 C13.4153737,22.0343548 13.8451613,22.0343548 14.110465,21.7647489 C14.1406675,21.7343024 14.166307,21.7009878 14.1893391,21.66657 L23.8427073,12.1331984 C24.1077937,11.8640338 24.1077937,11.4274134 23.8427073,11.1582487 C23.5774036,10.8888634 23.147616,10.8888634 22.8823123,11.1582487 Z", fill: "#3BC49D" }))),
+                h("br", null),
+                "\u81EA\u5B9A\u4E49svg\u5185\u5BB9(M)")),
+        h("div", { class: "lang" }, "React"),
+        h("nb-code-highlight", { code: `
+    <div style={iconBox}>
+      <nb-svg-icon type="forward" size="xs" />
+      <br />
+      forward(XS)
+    </div>
+    <div style={iconBox}>
+      <nb-svg-icon type="back" size="s" />
+      <br />
+      back(S)
+    </div>
+    <div style={iconBox}>
+      <nb-svg-icon type="loading" />
+      <br />
+      loading(M)
+    </div>
+    <div style={iconBox}>
+      <nb-svg-icon type="add" size="l" />
+      <br />
+      add (L)
+    </div>
+    <div style={iconBox}>
+      <nb-svg-icon type="close" size="xl" />
+      <br />
+      close(XL)
+    </div>
+    <div style={iconBox}>
+      <nb-svg-icon>
+        <svg viewBox="0 0 32 32">
+          <path
+            d="M16,32 C7.163444,32 0,24.836556 0,16 C0,7.163444 7.163444,0 16,0 C24.836556,0 32,7.163444 32,16 C32,24.836556 24.836556,32 16,32 Z M22.8823123,11.1582487 L13.6200552,20.2918445 L9.7475544,16.6425102 C9.48246798,16.3731249 9.05246304,16.3731249 8.78737662,16.6425102 C8.5222902,16.9112336 8.5222902,17.3476334 8.78737662,17.6170187 L13.15007,21.7647489 C13.4153737,22.0343548 13.8451613,22.0343548 14.110465,21.7647489 C14.1406675,21.7343024 14.166307,21.7009878 14.1893391,21.66657 L23.8427073,12.1331984 C24.1077937,11.8640338 24.1077937,11.4274134 23.8427073,11.1582487 C23.5774036,10.8888634 23.147616,10.8888634 22.8823123,11.1582487 Z"
+            fill="#3BC49D"
+          />
+        </svg>
+      </nb-svg-icon>
+      <br />
+      自定义svg内容(M)
+    </div>` })
+    ],
     /**
      * 列表
      */
@@ -1803,6 +1880,12 @@ class Playground {
                 text: '列表.H5',
                 mobile: true,
                 tag: 'nb-list'
+            },
+            {
+                key: 'icon',
+                text: '图标.H5',
+                mobile: true,
+                tag: 'nb-svg-icon'
             }
         ];
         /**
@@ -2101,4 +2184,90 @@ class PullToRefresh {
     static get style() { return ".pull-to-do {\n  position: relative;\n}\n.pull-to-do .show,\n.pull-to-do .hide {\n  position: absolute;\n  width: 100%;\n  top: 0;\n  opacity: 1;\n  z-index: 2;\n  -webkit-transition: opacity 0.3s;\n  transition: opacity 0.3s;\n}\n.pull-to-do .hide {\n  opacity: 0;\n  z-index: -1;\n}\n.pull-to-do .bottom {\n  top: auto;\n  bottom: 0;\n}\n.onrefresh,\n.onmore,\n.loading {\n  text-align: center;\n  color: #ccc;\n  background: #f5f5f5;\n  height: 0.8rem;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n          -ms-flex-pack: center;\n          justify-content: center;\n}"; }
 }
 
-export { Actionsheet as NbActionsheet, Affix as NbAffix, Badge as NbBadge, CodeHighlight as NbCodeHighlight, List as NbList, ListItem as NbListItem, Pagination as NbPagination, Playground as NbPlayground, PullToRefresh as NbPullToDo };
+/**
+ * 内置一部分icon，不需要的话可以注释
+ */
+const IconSvgs = {
+    loading: {
+        svg: `
+    <svg id="loading" viewBox="1 2 30 30">
+      <path
+        d="M25.8398645,8.20762762 C26.1552348,8.4458118 26.311805,8.85961997 26.2032246,9.26484749 C26.0602828,9.79831359 25.5119459,10.1148961 24.9784798,9.97195427 C24.7421163,9.90862086 24.5483297,9.76570348 24.4182249,9.57975695 C24.3367971,9.50525336 24.2441862,9.4044728 24.1278227,9.28120929 C22.8128468,7.88825905 21.1287293,6.8698644 19.2176,6.35777882 C13.6162059,4.8568898 7.85866785,8.18100594 6.35777882,13.7824 C4.8568898,19.3837941 8.18100594,25.1413322 13.7824,26.6422212 C19.0720434,28.0595768 24.552585,25.1698044 26.3834549,20.0470559 C26.4217667,19.9398599 26.4584077,19.8318805 26.4933625,19.7231406 C26.4990319,19.705504 26.5083828,19.6888457 26.5206271,19.6729547 C26.674803,19.1562347 27.213359,18.8529978 27.7375565,18.9934561 C28.2710226,19.1363979 28.5876051,19.6847349 28.4446633,20.218201 C28.4273975,20.2826378 28.404217,20.3439103 28.3758624,20.4015909 C28.3408271,20.5085506 28.3044602,20.6147442 28.2667853,20.7201581 C26.0984988,26.7869934 19.5977991,30.271005 13.2647619,28.5740728 C6.59643565,26.7873002 2.63915453,19.9330882 4.42592717,13.2647619 C6.21269982,6.59643565 13.0669118,2.63915453 19.7352381,4.42592717 C22.1507323,5.07315691 24.210501,6.38530283 25.7703854,8.11267456 C25.8005232,8.1460484 25.8233552,8.17760934 25.8398645,8.20762762 Z"
+        fill="#595959"
+      />
+    </svg>
+    `,
+        anim: 'rotate'
+    },
+    add: {
+        svg: `
+    <svg id="add" viewBox="0 0 32 32">
+      <path d="M15,15 L15,4 C15,3.44771525 15.4477153,3 16,3 C16.5522847,3 17,3.44771525 17,4 L17,15 L28,15 C28.5522847,15 29,15.4477153 29,16 C29,16.5522847 28.5522847,17 28,17 L17,17 L17,28 C17,28.5522847 16.5522847,29 16,29 C15.4477153,29 15,28.5522847 15,28 L15,17 L4,17 C3.44771525,17 3,16.5522847 3,16 C3,15.4477153 3.44771525,15 4,15 L15,15 Z" fill="#595959"></path>
+    </svg>
+    `
+    },
+    close: {
+        svg: `
+    <svg id="close" viewBox="0 0 32 32">
+      <path d="M16,14.5857864 L25.1923882,5.39339828 C25.5829124,5.00287399 26.2160774,5.00287399 26.6066017,5.39339828 C26.997126,5.78392257 26.997126,6.41708755 26.6066017,6.80761184 L17.4142136,16 L26.6066017,25.1923882 C26.997126,25.5829124 26.997126,26.2160774 26.6066017,26.6066017 C26.2160774,26.997126 25.5829124,26.997126 25.1923882,26.6066017 L16,17.4142136 L6.80761184,26.6066017 C6.41708755,26.997126 5.78392257,26.997126 5.39339828,26.6066017 C5.00287399,26.2160774 5.00287399,25.5829124 5.39339828,25.1923882 L14.5857864,16 L5.39339828,6.80761184 C5.00287399,6.41708755 5.00287399,5.78392257 5.39339828,5.39339828 C5.78392257,5.00287399 6.41708755,5.00287399 6.80761184,5.39339828 L16,14.5857864 Z" fill="#595959"></path>
+    </svg>
+    `
+    },
+    back: {
+        svg: `
+    <svg id="back" viewBox="0 0 32 32">
+      <path d="M20.5857864,16 L9.29289322,4.70710678 C8.90236893,4.31658249 8.90236893,3.68341751 9.29289322,3.29289322 C9.68341751,2.90236893 10.3165825,2.90236893 10.7071068,3.29289322 L22.7071068,15.2928932 C23.0976311,15.6834175 23.0976311,16.3165825 22.7071068,16.7071068 L10.7071068,28.7071068 C10.3165825,29.0976311 9.68341751,29.0976311 9.29289322,28.7071068 C8.90236893,28.3165825 8.90236893,27.6834175 9.29289322,27.2928932 L20.5857864,16 Z" fill="#595959" transform="translate(16.000000, 16.000000) scale(-1, 1) translate(-16.000000, -16.000000)"></path>
+    </svg>
+    `
+    },
+    forward: {
+        svg: `
+    <svg id="forward" viewBox="0 0 32 32">
+      <path d="M20.5857864,16 L9.29289322,4.70710678 C8.90236893,4.31658249 8.90236893,3.68341751 9.29289322,3.29289322 C9.68341751,2.90236893 10.3165825,2.90236893 10.7071068,3.29289322 L22.7071068,15.2928932 C23.0976311,15.6834175 23.0976311,16.3165825 22.7071068,16.7071068 L10.7071068,28.7071068 C10.3165825,29.0976311 9.68341751,29.0976311 9.29289322,28.7071068 C8.90236893,28.3165825 8.90236893,27.6834175 9.29289322,27.2928932 L20.5857864,16 Z" fill="#595959""></path>
+    </svg>
+    `
+    }
+};
+/**
+ * svg 图标
+ */
+class SvgIcon {
+    constructor() {
+        /**
+         * svg 大小
+         */
+        this.size = 'm';
+        /**
+         * 加入动画名称
+         */
+        this.anim = '';
+    }
+    get animation() {
+        return this.anim || (this.type && IconSvgs[this.type])
+            ? IconSvgs[this.type].anim
+            : '';
+    }
+    render() {
+        return (h("div", { class: `icon ${this.size} ${this.animation}`, innerHTML: this.type && IconSvgs[this.type] ? IconSvgs[this.type].svg : '' },
+            h("slot", null)));
+    }
+    static get is() { return "nb-svg-icon"; }
+    static get encapsulation() { return "shadow"; }
+    static get properties() { return {
+        "anim": {
+            "type": String,
+            "attr": "anim"
+        },
+        "size": {
+            "type": String,
+            "attr": "size"
+        },
+        "type": {
+            "type": String,
+            "attr": "type"
+        }
+    }; }
+    static get style() { return ".icon {\n  display: inline-block;\n  stroke-width: 0;\n  stroke: currentColor;\n  vertical-align: middle;\n}\n.icon.xs {\n  width: 0.32rem;\n  height: 0.32rem;\n}\n.icon.s {\n  width: 0.453333333333333rem;\n  height: 0.453333333333333rem;\n}\n.icon.m {\n  width: 0.586666666666667rem;\n  height: 0.586666666666667rem;\n}\n.icon.l {\n  width: 0.72rem;\n  height: 0.72rem;\n}\n.icon.xl {\n  width: 0.853333333333333rem;\n  height: 0.853333333333333rem;\n}\n.icon.rotate {\n  -webkit-animation: rotate 1s linear infinite;\n          animation: rotate 1s linear infinite;\n}\n\@-webkit-keyframes rotate {\n  from {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n\@keyframes rotate {\n  from {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}"; }
+}
+
+export { Actionsheet as NbActionsheet, Affix as NbAffix, Badge as NbBadge, CodeHighlight as NbCodeHighlight, List as NbList, ListItem as NbListItem, Pagination as NbPagination, Playground as NbPlayground, PullToRefresh as NbPullToDo, SvgIcon as NbSvgIcon };

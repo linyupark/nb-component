@@ -58,6 +58,12 @@ export class Playground {
       text: '列表.H5',
       mobile: true,
       tag: 'nb-list'
+    },
+    {
+      key: 'icon',
+      text: '图标.H5',
+      mobile: true,
+      tag: 'nb-svg-icon'
     }
   ];
 

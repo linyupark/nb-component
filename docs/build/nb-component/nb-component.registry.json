@@ -56,6 +56,12 @@
         "$": "nb-actionsheet"
       },
       "encapsulation": "shadow"
+    },
+    "nb-svg-icon": {
+      "bundleIds": {
+        "$": "nb-actionsheet"
+      },
+      "encapsulation": "shadow"
     }
   }
 }

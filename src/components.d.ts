@@ -306,6 +306,35 @@ export namespace Components {
     */
     'wrapperSelector'?: string;
   }
+
+  interface NbSvgIcon {
+    /**
+    * 加入动画名称
+    */
+    'anim': 'rotate' | '';
+    /**
+    * svg 大小
+    */
+    'size': 'xs' | 's' | 'm' | 'l' | 'xl';
+    /**
+    * type 图标类型，不使用内置的话不需要设置
+    */
+    'type'?: string;
+  }
+  interface NbSvgIconAttributes extends StencilHTMLAttributes {
+    /**
+    * 加入动画名称
+    */
+    'anim'?: 'rotate' | '';
+    /**
+    * svg 大小
+    */
+    'size'?: 'xs' | 's' | 'm' | 'l' | 'xl';
+    /**
+    * type 图标类型，不使用内置的话不需要设置
+    */
+    'type'?: string;
+  }
 }
 
 declare global {
@@ -319,6 +348,7 @@ declare global {
     'NbPagination': Components.NbPagination;
     'NbPlayground': Components.NbPlayground;
     'NbPullToDo': Components.NbPullToDo;
+    'NbSvgIcon': Components.NbSvgIcon;
   }
 
   interface StencilIntrinsicElements {
@@ -331,6 +361,7 @@ declare global {
     'nb-pagination': Components.NbPaginationAttributes;
     'nb-playground': Components.NbPlaygroundAttributes;
     'nb-pull-to-do': Components.NbPullToDoAttributes;
+    'nb-svg-icon': Components.NbSvgIconAttributes;
   }
 
 
@@ -388,6 +419,12 @@ declare global {
     new (): HTMLNbPullToDoElement;
   };
 
+  interface HTMLNbSvgIconElement extends Components.NbSvgIcon, HTMLStencilElement {}
+  var HTMLNbSvgIconElement: {
+    prototype: HTMLNbSvgIconElement;
+    new (): HTMLNbSvgIconElement;
+  };
+
   interface HTMLElementTagNameMap {
     'nb-actionsheet': HTMLNbActionsheetElement
     'nb-affix': HTMLNbAffixElement
@@ -398,6 +435,7 @@ declare global {
     'nb-pagination': HTMLNbPaginationElement
     'nb-playground': HTMLNbPlaygroundElement
     'nb-pull-to-do': HTMLNbPullToDoElement
+    'nb-svg-icon': HTMLNbSvgIconElement
   }
 
   interface ElementTagNameMap {
@@ -410,6 +448,7 @@ declare global {
     'nb-pagination': HTMLNbPaginationElement;
     'nb-playground': HTMLNbPlaygroundElement;
     'nb-pull-to-do': HTMLNbPullToDoElement;
+    'nb-svg-icon': HTMLNbSvgIconElement;
   }
 
 
