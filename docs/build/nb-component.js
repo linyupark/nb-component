@@ -131,4 +131,4 @@ function createComponentOnReadyPrototype(win, namespace, HTMLElementPrototype) {
 
   init(win, doc, namespace, fsNamespace, resourcesUrl, appCore, appCoreSsr, appCorePolyfilled, hydratedCssClass, components);
 
-  })(window, document, "NbComponent","nb-component",0,"nb-component.core.js","es5-build-disabled.js","hydrated","nb-actionsheet,nb-affix,nb-badge,nb-code-highlight,nb-list,nb-list-item,nb-pagination,nb-playground,nb-pull-to-do,nb-svg-icon,nb-switch",HTMLElement.prototype);
+  })(window, document, "NbComponent","nb-component",0,"nb-component.core.js","es5-build-disabled.js","hydrated","nb-actionsheet,nb-affix,nb-badge,nb-canvas-radar,nb-code-highlight,nb-list,nb-list-item,nb-pagination,nb-playground,nb-pull-to-do,nb-svg-icon,nb-switch",HTMLElement.prototype);

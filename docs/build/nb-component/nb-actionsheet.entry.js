@@ -270,6 +270,206 @@ class Badge {
     static get style() { return ".badge {\n  position: relative;\n  display: inline-block;\n}\n.badge .count,\n.badge .dot {\n  position: absolute;\n  border: 1px solid #fff;\n  font-style: normal;\n  text-align: center;\n}\n.badge .count.hidden,\n.badge .dot.hidden {\n  display: none;\n}\n.badge .count {\n  font-size: 0.266666666666667rem;\n  color: #fff;\n  height: 0.346666666666667rem;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n          -ms-flex-pack: center;\n          justify-content: center;\n  padding: 0 0.093333333333333rem;\n  border-radius: 0.346666666666667rem;\n  top: -0.173333333333333rem;\n  right: -0.173333333333333rem;\n}\n.badge .dot {\n  width: 0.16rem;\n  height: 0.16rem;\n  border-radius: 50%;\n  top: -0.08rem;\n  right: -0.08rem;\n}"; }
 }
 
+/**
+ * canvas - 雷达图
+ */
+class CanvasRadar {
+    constructor() {
+        /**
+         * 画布宽高
+         */
+        this.wh = [400, 400];
+        /**
+         * 雷达线颜色
+         */
+        this.borderColor = '#2E3F63';
+        /**
+         * 半径间隔数
+         */
+        this.unit = 5;
+        /**
+         * 角顶文案
+         */
+        this.labelDataList = [
+            '选时',
+            '选股',
+            '配置',
+            '日内交易',
+            '风格把控',
+            '风控能力'
+        ];
+        /**
+         * 背景色以及分值
+         */
+        this.points = [
+            {
+                bgcolor: 'RGBA(18, 105, 191, 0.5)',
+                data: [30, 50, 60, 70, 80, 90]
+            },
+            {
+                bgcolor: 'RGBA(102, 56, 240, 0.8)',
+                data: [40, 40, 30, 70, 60, 100]
+            }
+        ];
+        /**
+         * 字体大小
+         */
+        this.fontSize = 14;
+    }
+    /**
+     * 边数
+     */
+    get countNumber() {
+        return this.labelDataList.length;
+    }
+    /**
+     * 中心位置
+     */
+    get centerLen() {
+        return this.wh[0] / 2;
+    }
+    /**
+     * 绘图半径
+     */
+    get radius() {
+        return this.centerLen - 50;
+    }
+    /**
+     * 角度
+     */
+    get angle() {
+        return (Math.PI * 2) / this.countNumber;
+    }
+    /**
+     * 绘制半径折线
+     */
+    drawPolygon() {
+        const centerLen = this.centerLen;
+        const radius = this.radius;
+        const angle = this.angle;
+        this.canvas.save();
+        this.canvas.strokeStyle = this.borderColor;
+        const r = radius / this.unit;
+        for (let i = 0; i < this.unit; i++) {
+            this.canvas.beginPath();
+            const currR = r * (i + 1); //当前半径
+            //画6条边
+            for (let j = 0; j < this.countNumber; j++) {
+                const x = centerLen + currR * Math.cos(angle * j);
+                const y = centerLen + currR * Math.sin(angle * j);
+                this.canvas.lineTo(y, x);
+            }
+            this.canvas.closePath();
+            this.canvas.stroke();
+        }
+        this.canvas.restore();
+    }
+    /**
+     * 绘制顶线
+     */
+    drawLines() {
+        this.canvas.save();
+        this.canvas.beginPath();
+        this.canvas.strokeStyle = this.borderColor;
+        for (let i = 0; i < this.countNumber; i++) {
+            const x = this.centerLen + this.radius * Math.cos(this.angle * i);
+            const y = this.centerLen + this.radius * Math.sin(this.angle * i);
+            this.canvas.moveTo(this.centerLen, this.centerLen);
+            this.canvas.lineTo(y, x);
+        }
+        this.canvas.stroke();
+        this.canvas.restore();
+    }
+    /**
+     * 绘制文字
+     */
+    drawText() {
+        this.canvas.save();
+        this.canvas.font = `${this.fontSize}px Arial`;
+        this.canvas.fillStyle = '#444';
+        for (let i = 0; i < this.countNumber; i++) {
+            const y = this.centerLen + this.radius * Math.cos(this.angle * i);
+            const x = this.centerLen + this.radius * Math.sin(this.angle * i);
+            const label = this.labelDataList[i];
+            const textWidth = this.canvas.measureText(label).width;
+            if (this.angle * i >= 0 && this.angle * i <= Math.PI / 2) {
+                this.canvas.fillText(label, x - textWidth / 2 + (i * textWidth) / 2, y + this.fontSize);
+            }
+            else if (this.angle * i > Math.PI / 2 && this.angle * i <= Math.PI) {
+                this.canvas.fillText(label, x - ((i % 2) * textWidth) / 2, y - this.fontSize / 2);
+            }
+            else if (this.angle * i > Math.PI &&
+                this.angle * i <= (Math.PI * 3) / 2) {
+                this.canvas.fillText(label, x - textWidth, y - this.fontSize / 2);
+            }
+            else {
+                this.canvas.fillText(label, x - textWidth, y + this.fontSize);
+            }
+        }
+        this.canvas.restore();
+    }
+    /**
+     * 绘制得分区块
+     */
+    drawRegion(index) {
+        this.canvas.save();
+        this.canvas.beginPath();
+        for (var i = 0; i < this.centerLen; i++) {
+            var x = this.centerLen +
+                (this.radius * Math.cos(this.angle * i) * this.points[index].data[i]) /
+                    100;
+            var y = this.centerLen +
+                (this.radius * Math.sin(this.angle * i) * this.points[index].data[i]) /
+                    100;
+            this.canvas.lineTo(y, x);
+        }
+        this.canvas.closePath();
+        this.canvas.fillStyle = this.points[index].bgcolor;
+        this.canvas.fill();
+        this.canvas.restore();
+    }
+    componentDidLoad() {
+        this.canvas = this.canvas.getContext('2d');
+        this.drawPolygon();
+        this.drawLines();
+        this.drawText();
+        for (let index in this.points) {
+            this.drawRegion(Number(index));
+        }
+    }
+    render() {
+        return (h("div", { class: "radar" },
+            h("canvas", { ref: ev => (this.canvas = ev), width: this.wh[0], height: this.wh[1] })));
+    }
+    static get is() { return "nb-canvas-radar"; }
+    static get properties() { return {
+        "borderColor": {
+            "type": String,
+            "attr": "border-color"
+        },
+        "fontSize": {
+            "type": Number,
+            "attr": "font-size"
+        },
+        "labelDataList": {
+            "type": "Any",
+            "attr": "label-data-list"
+        },
+        "points": {
+            "type": "Any",
+            "attr": "points"
+        },
+        "unit": {
+            "type": Number,
+            "attr": "unit"
+        },
+        "wh": {
+            "type": "Any",
+            "attr": "wh"
+        }
+    }; }
+}
+
 var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
 function commonjsRequire () {
@@ -1439,6 +1639,37 @@ const iconBox = {
  */
 var Examples = {
     /**
+     * canvas 雷达图
+     */
+    'nb-canvas-radar': [
+        h("div", { class: "wrapper" },
+            h("nb-canvas-radar", { fontSize: 14 })),
+        h("div", { class: "lang" }, "React"),
+        h("nb-code-highlight", { code: `
+    <nb-canvas-radar 
+      fontSize={14} 
+      borderColor="#2E3F63"
+      labelDataList={['选时',
+        '选股',
+        '配置',
+        '日内交易',
+        '风格把控',
+        '风控能力'
+      ]}
+      points={[
+        {
+          bgcolor: 'RGBA(18, 105, 191, 0.5)',
+          data: [30, 50, 60, 70, 80, 90]
+        },
+        {
+          bgcolor: 'RGBA(102, 56, 240, 0.8)',
+          data: [40, 40, 30, 70, 60, 100]
+        }
+      ]}
+    />
+    ` })
+    ],
+    /**
      * 滑动开关
      * */
     'nb-switch': [
@@ -1920,6 +2151,12 @@ class Playground {
                 text: '滑动开关.H5',
                 mobile: true,
                 tag: 'nb-switch'
+            },
+            {
+                key: 'canvas-radar',
+                text: 'canvas雷达图',
+                mobile: false,
+                tag: 'nb-canvas-radar'
             }
         ];
         /**
@@ -2365,4 +2602,4 @@ class Switch {
     static get style() { return ".switch {\n  width: 1.066666666666667rem;\n  height: 0.64rem;\n  border-radius: 0.32rem;\n  position: relative;\n  display: inline-block;\n  vertical-align: middle;\n}\n.switch.disabled {\n  opacity: 0.8;\n}\n.switch .roundball {\n  height: 0.533333333333333rem;\n  width: 0.533333333333333rem;\n  background: #fff;\n  border: 1px solid #f5f5f5;\n  border-radius: 50%;\n  position: absolute;\n  left: 0.026666666666667rem;\n  top: 0.026666666666667rem;\n  -webkit-transition: -webkit-transform 0.3s;\n  transition: -webkit-transform 0.3s;\n  transition: transform 0.3s;\n  transition: transform 0.3s, -webkit-transform 0.3s;\n}\n.switch.checked .roundball {\n  -webkit-transform: translateX(0.426666666666667rem);\n          transform: translateX(0.426666666666667rem);\n}"; }
 }
 
-export { Actionsheet as NbActionsheet, Affix as NbAffix, Badge as NbBadge, CodeHighlight as NbCodeHighlight, List as NbList, ListItem as NbListItem, Pagination as NbPagination, Playground as NbPlayground, PullToRefresh as NbPullToDo, SvgIcon as NbSvgIcon, Switch as NbSwitch };
+export { Actionsheet as NbActionsheet, Affix as NbAffix, Badge as NbBadge, CanvasRadar as NbCanvasRadar, CodeHighlight as NbCodeHighlight, List as NbList, ListItem as NbListItem, Pagination as NbPagination, Playground as NbPlayground, PullToRefresh as NbPullToDo, SvgIcon as NbSvgIcon, Switch as NbSwitch };

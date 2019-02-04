@@ -21,6 +21,40 @@ const iconBox = {
 
 export default {
   /**
+   * canvas 雷达图
+   */
+  'nb-canvas-radar': [
+    <div class="wrapper">
+      <nb-canvas-radar fontSize={14} />
+    </div>,
+    <div class="lang">React</div>,
+    <nb-code-highlight
+      code={`
+    <nb-canvas-radar 
+      fontSize={14} 
+      borderColor="#2E3F63"
+      labelDataList={['选时',
+        '选股',
+        '配置',
+        '日内交易',
+        '风格把控',
+        '风控能力'
+      ]}
+      points={[
+        {
+          bgcolor: 'RGBA(18, 105, 191, 0.5)',
+          data: [30, 50, 60, 70, 80, 90]
+        },
+        {
+          bgcolor: 'RGBA(102, 56, 240, 0.8)',
+          data: [40, 40, 30, 70, 60, 100]
+        }
+      ]}
+    />
+    `}
+    />
+  ],
+  /**
    * 滑动开关
    * */
   'nb-switch': [

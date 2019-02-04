@@ -23,6 +23,11 @@
       },
       "encapsulation": "shadow"
     },
+    "nb-canvas-radar": {
+      "bundleIds": {
+        "$": "nb-actionsheet"
+      }
+    },
     "nb-code-highlight": {
       "bundleIds": {
         "$": "nb-actionsheet"

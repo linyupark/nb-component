@@ -70,6 +70,12 @@ export class Playground {
       text: '滑动开关.H5',
       mobile: true,
       tag: 'nb-switch'
+    },
+    {
+      key: 'canvas-radar',
+      text: 'canvas雷达图',
+      mobile: false,
+      tag: 'nb-canvas-radar'
     }
   ];
 

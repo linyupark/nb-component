@@ -111,6 +111,59 @@ export namespace Components {
     'showZero'?: boolean;
   }
 
+  interface NbCanvasRadar {
+    /**
+    * 雷达线颜色
+    */
+    'borderColor': string;
+    /**
+    * 字体大小
+    */
+    'fontSize': number;
+    /**
+    * 角顶文案
+    */
+    'labelDataList': string[];
+    /**
+    * 背景色以及分值
+    */
+    'points': any;
+    /**
+    * 半径间隔数
+    */
+    'unit': number;
+    /**
+    * 画布宽高
+    */
+    'wh': [number, number];
+  }
+  interface NbCanvasRadarAttributes extends StencilHTMLAttributes {
+    /**
+    * 雷达线颜色
+    */
+    'borderColor'?: string;
+    /**
+    * 字体大小
+    */
+    'fontSize'?: number;
+    /**
+    * 角顶文案
+    */
+    'labelDataList'?: string[];
+    /**
+    * 背景色以及分值
+    */
+    'points'?: any;
+    /**
+    * 半径间隔数
+    */
+    'unit'?: number;
+    /**
+    * 画布宽高
+    */
+    'wh'?: [number, number];
+  }
+
   interface NbCodeHighlight {
     /**
     * 代码内容
@@ -375,6 +428,7 @@ declare global {
     'NbActionsheet': Components.NbActionsheet;
     'NbAffix': Components.NbAffix;
     'NbBadge': Components.NbBadge;
+    'NbCanvasRadar': Components.NbCanvasRadar;
     'NbCodeHighlight': Components.NbCodeHighlight;
     'NbListItem': Components.NbListItem;
     'NbList': Components.NbList;
@@ -389,6 +443,7 @@ declare global {
     'nb-actionsheet': Components.NbActionsheetAttributes;
     'nb-affix': Components.NbAffixAttributes;
     'nb-badge': Components.NbBadgeAttributes;
+    'nb-canvas-radar': Components.NbCanvasRadarAttributes;
     'nb-code-highlight': Components.NbCodeHighlightAttributes;
     'nb-list-item': Components.NbListItemAttributes;
     'nb-list': Components.NbListAttributes;
@@ -416,6 +471,12 @@ declare global {
   var HTMLNbBadgeElement: {
     prototype: HTMLNbBadgeElement;
     new (): HTMLNbBadgeElement;
+  };
+
+  interface HTMLNbCanvasRadarElement extends Components.NbCanvasRadar, HTMLStencilElement {}
+  var HTMLNbCanvasRadarElement: {
+    prototype: HTMLNbCanvasRadarElement;
+    new (): HTMLNbCanvasRadarElement;
   };
 
   interface HTMLNbCodeHighlightElement extends Components.NbCodeHighlight, HTMLStencilElement {}
@@ -470,6 +531,7 @@ declare global {
     'nb-actionsheet': HTMLNbActionsheetElement
     'nb-affix': HTMLNbAffixElement
     'nb-badge': HTMLNbBadgeElement
+    'nb-canvas-radar': HTMLNbCanvasRadarElement
     'nb-code-highlight': HTMLNbCodeHighlightElement
     'nb-list-item': HTMLNbListItemElement
     'nb-list': HTMLNbListElement
@@ -484,6 +546,7 @@ declare global {
     'nb-actionsheet': HTMLNbActionsheetElement;
     'nb-affix': HTMLNbAffixElement;
     'nb-badge': HTMLNbBadgeElement;
+    'nb-canvas-radar': HTMLNbCanvasRadarElement;
     'nb-code-highlight': HTMLNbCodeHighlightElement;
     'nb-list-item': HTMLNbListItemElement;
     'nb-list': HTMLNbListElement;
