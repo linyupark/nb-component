@@ -20,5 +20,5 @@ Stencil components are just Web Components, so they work in any major framework 
  * [list 列表.H5](./src/components/list/readme.md) [list-item](./src/components/list-item/readme.md)
  * [svg-icon 图标.H5](./src/components/svg-icon/readme.md)
  * [滑动开关.H5](./src/components/switch/readme.md)
- * [雷达图](./src/components/radar/readme.md)
+ * [雷达图](./src/components/canvas-radar/readme.md)
  
