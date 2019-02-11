@@ -7,7 +7,7 @@
     "experimentalDecorators": true,
     "lib": [
       "dom",
-      "es2017"
+      "es2017",
     ],
     "paths": {
       "@utils/*": ["src/utils/*"]
