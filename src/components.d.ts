@@ -164,6 +164,27 @@ export namespace Components {
     'wh'?: [number, number];
   }
 
+  interface NbCodeHighlight {
+    /**
+    * 代码内容
+    */
+    'code': string;
+    /**
+    * 代码类型
+    */
+    'lang': string;
+  }
+  interface NbCodeHighlightAttributes extends StencilHTMLAttributes {
+    /**
+    * 代码内容
+    */
+    'code'?: string;
+    /**
+    * 代码类型
+    */
+    'lang'?: string;
+  }
+
   interface NbListItem {
     /**
     * 下边框, 0则不显示
@@ -254,6 +275,9 @@ export namespace Components {
     */
     'total'?: number;
   }
+
+  interface NbPlayground {}
+  interface NbPlaygroundAttributes extends StencilHTMLAttributes {}
 
   interface NbPullToDo {
     /**
@@ -438,9 +462,11 @@ declare global {
     'NbAffix': Components.NbAffix;
     'NbBadge': Components.NbBadge;
     'NbCanvasRadar': Components.NbCanvasRadar;
+    'NbCodeHighlight': Components.NbCodeHighlight;
     'NbListItem': Components.NbListItem;
     'NbList': Components.NbList;
     'NbPagination': Components.NbPagination;
+    'NbPlayground': Components.NbPlayground;
     'NbPullToDo': Components.NbPullToDo;
     'NbRollPicker': Components.NbRollPicker;
     'NbSvgIcon': Components.NbSvgIcon;
@@ -452,9 +478,11 @@ declare global {
     'nb-affix': Components.NbAffixAttributes;
     'nb-badge': Components.NbBadgeAttributes;
     'nb-canvas-radar': Components.NbCanvasRadarAttributes;
+    'nb-code-highlight': Components.NbCodeHighlightAttributes;
     'nb-list-item': Components.NbListItemAttributes;
     'nb-list': Components.NbListAttributes;
     'nb-pagination': Components.NbPaginationAttributes;
+    'nb-playground': Components.NbPlaygroundAttributes;
     'nb-pull-to-do': Components.NbPullToDoAttributes;
     'nb-roll-picker': Components.NbRollPickerAttributes;
     'nb-svg-icon': Components.NbSvgIconAttributes;
@@ -486,6 +514,12 @@ declare global {
     new (): HTMLNbCanvasRadarElement;
   };
 
+  interface HTMLNbCodeHighlightElement extends Components.NbCodeHighlight, HTMLStencilElement {}
+  var HTMLNbCodeHighlightElement: {
+    prototype: HTMLNbCodeHighlightElement;
+    new (): HTMLNbCodeHighlightElement;
+  };
+
   interface HTMLNbListItemElement extends Components.NbListItem, HTMLStencilElement {}
   var HTMLNbListItemElement: {
     prototype: HTMLNbListItemElement;
@@ -502,6 +536,12 @@ declare global {
   var HTMLNbPaginationElement: {
     prototype: HTMLNbPaginationElement;
     new (): HTMLNbPaginationElement;
+  };
+
+  interface HTMLNbPlaygroundElement extends Components.NbPlayground, HTMLStencilElement {}
+  var HTMLNbPlaygroundElement: {
+    prototype: HTMLNbPlaygroundElement;
+    new (): HTMLNbPlaygroundElement;
   };
 
   interface HTMLNbPullToDoElement extends Components.NbPullToDo, HTMLStencilElement {}
@@ -533,9 +573,11 @@ declare global {
     'nb-affix': HTMLNbAffixElement
     'nb-badge': HTMLNbBadgeElement
     'nb-canvas-radar': HTMLNbCanvasRadarElement
+    'nb-code-highlight': HTMLNbCodeHighlightElement
     'nb-list-item': HTMLNbListItemElement
     'nb-list': HTMLNbListElement
     'nb-pagination': HTMLNbPaginationElement
+    'nb-playground': HTMLNbPlaygroundElement
     'nb-pull-to-do': HTMLNbPullToDoElement
     'nb-roll-picker': HTMLNbRollPickerElement
     'nb-svg-icon': HTMLNbSvgIconElement
@@ -547,9 +589,11 @@ declare global {
     'nb-affix': HTMLNbAffixElement;
     'nb-badge': HTMLNbBadgeElement;
     'nb-canvas-radar': HTMLNbCanvasRadarElement;
+    'nb-code-highlight': HTMLNbCodeHighlightElement;
     'nb-list-item': HTMLNbListItemElement;
     'nb-list': HTMLNbListElement;
     'nb-pagination': HTMLNbPaginationElement;
+    'nb-playground': HTMLNbPlaygroundElement;
     'nb-pull-to-do': HTMLNbPullToDoElement;
     'nb-roll-picker': HTMLNbRollPickerElement;
     'nb-svg-icon': HTMLNbSvgIconElement;
