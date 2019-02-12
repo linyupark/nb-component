@@ -27,6 +27,11 @@ export class RollPicker {
   scrollTop: number = 0;
 
   /**
+   * 滚动计时器
+   */
+  scrollTimer: any;
+
+  /**
    * 选中索引值
    */
   @State() selectIndex: number = 0;
@@ -114,6 +119,7 @@ export class RollPicker {
   protected handleScroll() {
     this.selectIndex = Math.round(this.$wrapper.scrollTop / this.itemHeight);
     this.scrollTop = this.$wrapper.scrollTop;
+    this.rescroll(this.scrollTop);
     // console.log(this.scrollTop);
   }
 
@@ -121,7 +127,10 @@ export class RollPicker {
    * 修正滚动高度确保选中
    */
   protected rescroll(preScrollTop: number) {
-    setTimeout(() => {
+    if (this.scrollTimer) {
+      clearTimeout(this.scrollTimer);
+    }
+    this.scrollTimer = setTimeout(() => {
       if (preScrollTop !== this.scrollTop) {
         return this.rescroll(this.scrollTop);
       } else {

@@ -18,6 +18,16 @@ $select-height=rem(70px);
     width: calc(100% + 6px);
     overflow-y: scroll;
     transition .1s transform ease;
+    cursor: default;
+    user-select: none;
+
+    &::-webkit-scrollbar {
+      width: 0px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: none;
+    }
     // -webkit-overflow-scrolling: touch;
 
     .item-list {
