@@ -1,4 +1,4 @@
-import { Component, Prop, State, Method, Element, Listen } from '@stencil/core';
+import { Component, Prop, State, Method, Element } from '@stencil/core';
 
 /**
  * 仿ios滚动选择器
@@ -106,14 +106,6 @@ export class RollPicker {
   }
 
   /**
-   * 滑动结束操作
-   */
-  @Listen('touchend')
-  protected handleTouchEnd() {
-    this.rescroll(this.scrollTop);
-  }
-
-  /**
    * 滑动操作
    */
   protected handleScroll() {
@@ -170,14 +162,6 @@ export class RollPicker {
       this.selectIndex = this.items.indexOf(currentItem);
       this.$wrapper.scrollTop = this.selectIndex * this.itemHeight;
     }
-  }
-
-  /**
-   * 偏移样式
-   */
-  protected offsetItem(ev) {
-    console.log(ev);
-    return ``;
   }
 
   /**

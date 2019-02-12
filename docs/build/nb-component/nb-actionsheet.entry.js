@@ -2552,12 +2552,6 @@ class RollPicker {
         return this.items.filter(item => item.key === this.currentKey)[0] || {};
     }
     /**
-     * 滑动结束操作
-     */
-    handleTouchEnd() {
-        this.rescroll(this.scrollTop);
-    }
-    /**
      * 滑动操作
      */
     handleScroll() {
@@ -2614,13 +2608,6 @@ class RollPicker {
         }
     }
     /**
-     * 偏移样式
-     */
-    offsetItem(ev) {
-        console.log(ev);
-        return ``;
-    }
-    /**
      * 获取 wrapper dom
      */
     get $wrapper() {
@@ -2672,11 +2659,6 @@ class RollPicker {
             "state": true
         }
     }; }
-    static get listeners() { return [{
-            "name": "touchend",
-            "method": "handleTouchEnd",
-            "passive": true
-        }]; }
     static get style() { return ".roll-picker {\n  position: relative;\n  display: inline-block;\n  height: 4.666666666666667rem;\n  overflow-x: hidden;\n}\n.roll-picker .wrapper {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: calc(100% + 6px);\n  overflow-y: scroll;\n  -webkit-transition: 0.1s -webkit-transform ease;\n  transition: 0.1s -webkit-transform ease;\n  transition: 0.1s transform ease;\n  transition: 0.1s transform ease, 0.1s -webkit-transform ease;\n  cursor: default;\n  -webkit-user-select: none;\n          -moz-user-select: none;\n          -ms-user-select: none;\n          user-select: none;\n}\n.roll-picker .wrapper::-webkit-scrollbar {\n  width: 0px;\n}\n.roll-picker .wrapper::-webkit-scrollbar-thumb {\n  background-color: none;\n}\n.roll-picker .wrapper .item-list {\n  list-style: none;\n  margin: 0 0 0 -3px;\n  padding: 1.866666666666667rem 0;\n}\n.roll-picker .wrapper .item-list li {\n  height: 0.933333333333333rem;\n  line-height: 0.933333333333333rem;\n  visibility: hidden;\n  opacity: 0;\n}\n.roll-picker .wrapper .item-list li.offset-0 {\n  font-size: 0.64rem;\n  line-height: 0.933333333333333rem;\n  visibility: visible;\n  opacity: 1;\n}\n.roll-picker .wrapper .item-list li.offset-1,\n.roll-picker .wrapper .item-list li.offset-2,\n.roll-picker .wrapper .item-list li.offset-3,\n.roll-picker .wrapper .item-list li.offset--3,\n.roll-picker .wrapper .item-list li.offset--2,\n.roll-picker .wrapper .item-list li.offset--1 {\n  color: rgba(51,51,51,0.5);\n  font-size: 0.506666666666667rem;\n  visibility: visible;\n  opacity: 1;\n}\n.roll-picker .wrapper .item-list li.offset-1 {\n  -webkit-transform: translateY(0.066666666666667rem);\n          transform: translateY(0.066666666666667rem);\n}\n.roll-picker .wrapper .item-list li.offset--1 {\n  -webkit-transform: translateY(-0.066666666666667rem);\n          transform: translateY(-0.066666666666667rem);\n}\n.roll-picker .wrapper .item-list li.offset-2,\n.roll-picker .wrapper .item-list li.offset--2 {\n  font-size: 0.4rem;\n}\n.roll-picker .wrapper .item-list li.offset-2 {\n  -webkit-transform: translateY(0.4rem);\n          transform: translateY(0.4rem);\n}\n.roll-picker .wrapper .item-list li.offset--2 {\n  -webkit-transform: translateY(-0.4rem);\n          transform: translateY(-0.4rem);\n}\n.roll-picker .wrapper .item-list li.offset-3,\n.roll-picker .wrapper .item-list li.offset--3 {\n  font-size: 0.293333333333333rem;\n}\n.roll-picker .wrapper .item-list li.offset-3 {\n  -webkit-transform: translateY(0.8rem);\n          transform: translateY(0.8rem);\n}\n.roll-picker .wrapper .item-list li.offset--3 {\n  -webkit-transform: translateY(-0.8rem);\n          transform: translateY(-0.8rem);\n}\n.roll-picker .wrapper .item-list.invisible {\n  position: absolute;\n  top: 0;\n  left: 0;\n  padding: 0;\n  visibility: hidden;\n}\n.roll-picker .select-box {\n  position: absolute;\n  left: 0;\n  top: 1.866666666666667rem;\n  width: calc(100% - 2px);\n  height: 0.933333333333333rem;\n  border: 1px solid #d9d9d9;\n  pointer-events: none;\n}"; }
 }
 
