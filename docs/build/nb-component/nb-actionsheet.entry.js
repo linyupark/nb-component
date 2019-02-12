@@ -1639,6 +1639,31 @@ const iconBox = {
  */
 var Examples = {
     /**
+     * 滚动选择器
+     */
+    'nb-roll-picker': [
+        h("div", { class: "wrapper" },
+            h("nb-roll-picker", { ref: ev => (refTarget.rollPicker = ev), defaultKey: 2 }),
+            h("button", { onClick: async (ev) => {
+                    const selectItem = await refTarget.rollPicker.getCurrentItem();
+                    ev.target.innerHTML = `确定(${selectItem.label})`;
+                } }, "\u786E\u5B9A")),
+        h("div", { class: "lang" }, "React"),
+        h("nb-code-highlight", { code: `
+  <nb-roll-picker defaultKey={2} items={[
+    {
+      key: 1,
+      label: '选项1'
+    },
+    ...
+  ]} />
+  <button onClick={async (ev: any) => {
+      const selectItem = await refTarget.rollPicker.getCurrentItem();
+      ev.target.innerHTML = \`确定($\{selectItem.label\})\`;
+    }}>确定</button>
+    ` })
+    ],
+    /**
      * canvas 雷达图
      */
     'nb-canvas-radar': [
@@ -2157,6 +2182,12 @@ class Playground {
                 text: 'canvas雷达图',
                 mobile: false,
                 tag: 'nb-canvas-radar'
+            },
+            {
+                key: 'roll-picker',
+                text: '滚动选择器.H5',
+                mobile: true,
+                tag: 'nb-roll-picker'
             }
         ];
         /**
@@ -2340,8 +2371,8 @@ class PullToRefresh {
             }
         }
         if (this.startDampLen !== 0) {
-            this.$content.style.transition = 'transform 0.3s';
-            this.$content.style.transform = `translateY(${this.dampingLen}px)`;
+            this.$content.style.webkitTransition = 'transform 0.3s';
+            this.$content.style.webkitTransform = `translateY(${this.dampingLen}px)`;
         }
     }
     handleTouchEnd() {
@@ -2453,6 +2484,196 @@ class PullToRefresh {
             "composed": true
         }]; }
     static get style() { return ".pull-to-do {\n  position: relative;\n}\n.pull-to-do .show,\n.pull-to-do .hide {\n  position: absolute;\n  width: 100%;\n  top: 0;\n  opacity: 1;\n  z-index: 2;\n  -webkit-transition: opacity 0.3s;\n  transition: opacity 0.3s;\n}\n.pull-to-do .hide {\n  opacity: 0;\n  z-index: -1;\n}\n.pull-to-do .bottom {\n  top: auto;\n  bottom: 0;\n}\n.onrefresh,\n.onmore,\n.loading {\n  text-align: center;\n  color: #ccc;\n  background: #f5f5f5;\n  height: 0.8rem;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n          -ms-flex-pack: center;\n          justify-content: center;\n}"; }
+}
+
+/**
+ * 仿ios滚动选择器
+ */
+class RollPicker {
+    constructor() {
+        /**
+         * 滚动距离
+         */
+        this.scrollTop = 0;
+        /**
+         * 选中索引值
+         */
+        this.selectIndex = 0;
+        /**
+         * 选项内容对齐方向
+         */
+        this.align = 'center';
+        /**
+         * 选项内容列表
+         */
+        this.items = [{
+                key: 1,
+                label: '选项1'
+            },
+            {
+                key: 2,
+                label: '选项2'
+            },
+            {
+                key: 3,
+                label: '选项3'
+            },
+            {
+                key: 4,
+                label: '选项4'
+            },
+            {
+                key: 5,
+                label: '选项5'
+            },
+            {
+                key: 6,
+                label: '选项6'
+            },
+            {
+                key: 7,
+                label: '选项7'
+            },
+            {
+                key: 8,
+                label: '选项8'
+            },
+            {
+                key: 9,
+                label: '选项9'
+            }
+        ];
+    }
+    /**
+     * 获取当前选中的选项的数据
+     * @return {Object}
+     */
+    async getCurrentItem() {
+        return this.items.filter(item => item.key === this.currentKey)[0] || {};
+    }
+    /**
+     * 滑动结束操作
+     */
+    handleTouchEnd() {
+        this.rescroll(this.scrollTop);
+    }
+    /**
+     * 滑动操作
+     */
+    handleScroll() {
+        this.selectIndex = Math.round(this.$wrapper.scrollTop / this.itemHeight);
+        this.scrollTop = this.$wrapper.scrollTop;
+        // console.log(this.scrollTop);
+    }
+    /**
+     * 修正滚动高度确保选中
+     */
+    rescroll(preScrollTop) {
+        setTimeout(() => {
+            if (preScrollTop !== this.scrollTop) {
+                return this.rescroll(this.scrollTop);
+            }
+            else {
+                // 完全停止
+                const selectIndex = Math.round(this.scrollTop / this.itemHeight);
+                // 添加动画
+                // const offset = selectIndex * this.itemHeight - this.scrollTop;
+                // this.$wrapper.style.transform = `translateY(${-offset}px)`;
+                // this.$wrapper.style.webkitTransform = `translateY(${-offset}px)`;
+                // setTimeout(() => {
+                // this.$wrapper.scrollTop = selectIndex * this.itemHeight;
+                // this.$wrapper.style.transform = `translateY(0px)`;
+                // this.$wrapper.style.webkitTransform = `translateY(0px)`;
+                // }, 100);
+                this.$wrapper.scrollTop = selectIndex * this.itemHeight;
+                this.currentKey = this.items[selectIndex].key;
+                this.selectIndex = selectIndex;
+                console.log('滚动停止', selectIndex + 1);
+            }
+        }, 100);
+    }
+    /**
+     * 每个单元格高度
+     */
+    setItemHeight() {
+        this.itemHeight = Math.round(this.$itemListInvisible.scrollHeight / this.items.length);
+        console.log('itemHeight', this.itemHeight);
+    }
+    /**
+     * 设置默认选中
+     */
+    async setDefaultItem() {
+        if (this.defaultKey) {
+            const currentItem = await this.getCurrentItem();
+            this.selectIndex = this.items.indexOf(currentItem);
+            this.$wrapper.scrollTop = this.selectIndex * this.itemHeight;
+        }
+    }
+    /**
+     * 偏移样式
+     */
+    offsetItem(ev) {
+        console.log(ev);
+        return ``;
+    }
+    /**
+     * 获取 wrapper dom
+     */
+    get $wrapper() {
+        return this.el.shadowRoot.querySelector('.wrapper');
+    }
+    render() {
+        return (h("div", { class: "roll-picker", style: {
+                width: '25%',
+                textAlign: 'center'
+            } },
+            h("div", { class: "wrapper", onScroll: this.handleScroll.bind(this) },
+                h("ul", { class: "item-list", ref: ev => (this.$itemList = ev) }, this.items.map((item, i) => {
+                    const classString = `offset-${this.selectIndex - i}`;
+                    return h("li", { key: item.key, class: classString }, item.label);
+                })),
+                h("ul", { class: "item-list invisible", ref: ev => (this.$itemListInvisible = ev) }, this.items.map(item => (h("li", { key: item.key }, item.label))))),
+            h("div", { class: "select-box" })));
+    }
+    componentDidLoad() {
+        this.currentKey = this.defaultKey;
+        this.setItemHeight();
+        this.setDefaultItem();
+    }
+    static get is() { return "nb-roll-picker"; }
+    static get encapsulation() { return "shadow"; }
+    static get properties() { return {
+        "align": {
+            "type": String,
+            "attr": "align"
+        },
+        "currentKey": {
+            "state": true
+        },
+        "defaultKey": {
+            "type": Number,
+            "attr": "default-key"
+        },
+        "el": {
+            "elementRef": true
+        },
+        "getCurrentItem": {
+            "method": true
+        },
+        "items": {
+            "type": "Any",
+            "attr": "items"
+        },
+        "selectIndex": {
+            "state": true
+        }
+    }; }
+    static get listeners() { return [{
+            "name": "touchend",
+            "method": "handleTouchEnd",
+            "passive": true
+        }]; }
+    static get style() { return ".roll-picker {\n  position: relative;\n  display: inline-block;\n  height: 4.666666666666667rem;\n  overflow-x: hidden;\n}\n.roll-picker .wrapper {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: calc(100% + 6px);\n  overflow-y: scroll;\n  -webkit-transition: 0.1s -webkit-transform ease;\n  transition: 0.1s -webkit-transform ease;\n  transition: 0.1s transform ease;\n  transition: 0.1s transform ease, 0.1s -webkit-transform ease;\n}\n.roll-picker .wrapper .item-list {\n  list-style: none;\n  margin: 0 0 0 -3px;\n  padding: 1.866666666666667rem 0;\n}\n.roll-picker .wrapper .item-list li {\n  height: 0.933333333333333rem;\n  line-height: 0.933333333333333rem;\n  visibility: hidden;\n  opacity: 0;\n}\n.roll-picker .wrapper .item-list li.offset-0 {\n  font-size: 0.64rem;\n  line-height: 0.933333333333333rem;\n  visibility: visible;\n  opacity: 1;\n}\n.roll-picker .wrapper .item-list li.offset-1,\n.roll-picker .wrapper .item-list li.offset-2,\n.roll-picker .wrapper .item-list li.offset-3,\n.roll-picker .wrapper .item-list li.offset--3,\n.roll-picker .wrapper .item-list li.offset--2,\n.roll-picker .wrapper .item-list li.offset--1 {\n  color: rgba(51,51,51,0.5);\n  font-size: 0.506666666666667rem;\n  visibility: visible;\n  opacity: 1;\n}\n.roll-picker .wrapper .item-list li.offset-1 {\n  -webkit-transform: translateY(0.066666666666667rem);\n          transform: translateY(0.066666666666667rem);\n}\n.roll-picker .wrapper .item-list li.offset--1 {\n  -webkit-transform: translateY(-0.066666666666667rem);\n          transform: translateY(-0.066666666666667rem);\n}\n.roll-picker .wrapper .item-list li.offset-2,\n.roll-picker .wrapper .item-list li.offset--2 {\n  font-size: 0.4rem;\n}\n.roll-picker .wrapper .item-list li.offset-2 {\n  -webkit-transform: translateY(0.4rem);\n          transform: translateY(0.4rem);\n}\n.roll-picker .wrapper .item-list li.offset--2 {\n  -webkit-transform: translateY(-0.4rem);\n          transform: translateY(-0.4rem);\n}\n.roll-picker .wrapper .item-list li.offset-3,\n.roll-picker .wrapper .item-list li.offset--3 {\n  font-size: 0.293333333333333rem;\n}\n.roll-picker .wrapper .item-list li.offset-3 {\n  -webkit-transform: translateY(0.8rem);\n          transform: translateY(0.8rem);\n}\n.roll-picker .wrapper .item-list li.offset--3 {\n  -webkit-transform: translateY(-0.8rem);\n          transform: translateY(-0.8rem);\n}\n.roll-picker .wrapper .item-list.invisible {\n  position: absolute;\n  top: 0;\n  left: 0;\n  padding: 0;\n  visibility: hidden;\n}\n.roll-picker .select-box {\n  position: absolute;\n  left: 0;\n  top: 1.866666666666667rem;\n  width: calc(100% - 2px);\n  height: 0.933333333333333rem;\n  border: 1px solid #d9d9d9;\n  pointer-events: none;\n}"; }
 }
 
 /**
@@ -2602,4 +2823,4 @@ class Switch {
     static get style() { return ".switch {\n  width: 1.066666666666667rem;\n  height: 0.64rem;\n  border-radius: 0.32rem;\n  position: relative;\n  display: inline-block;\n  vertical-align: middle;\n}\n.switch.disabled {\n  opacity: 0.8;\n}\n.switch .roundball {\n  height: 0.533333333333333rem;\n  width: 0.533333333333333rem;\n  background: #fff;\n  border: 1px solid #f5f5f5;\n  border-radius: 50%;\n  position: absolute;\n  left: 0.026666666666667rem;\n  top: 0.026666666666667rem;\n  -webkit-transition: -webkit-transform 0.3s;\n  transition: -webkit-transform 0.3s;\n  transition: transform 0.3s;\n  transition: transform 0.3s, -webkit-transform 0.3s;\n}\n.switch.checked .roundball {\n  -webkit-transform: translateX(0.426666666666667rem);\n          transform: translateX(0.426666666666667rem);\n}"; }
 }
 
-export { Actionsheet as NbActionsheet, Affix as NbAffix, Badge as NbBadge, CanvasRadar as NbCanvasRadar, CodeHighlight as NbCodeHighlight, List as NbList, ListItem as NbListItem, Pagination as NbPagination, Playground as NbPlayground, PullToRefresh as NbPullToDo, SvgIcon as NbSvgIcon, Switch as NbSwitch };
+export { Actionsheet as NbActionsheet, Affix as NbAffix, Badge as NbBadge, CanvasRadar as NbCanvasRadar, CodeHighlight as NbCodeHighlight, List as NbList, ListItem as NbListItem, Pagination as NbPagination, Playground as NbPlayground, PullToRefresh as NbPullToDo, RollPicker as NbRollPicker, SvgIcon as NbSvgIcon, Switch as NbSwitch };

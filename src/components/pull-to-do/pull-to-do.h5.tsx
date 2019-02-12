@@ -197,8 +197,8 @@ export class PullToRefresh {
     }
 
     if (this.startDampLen !== 0) {
-      this.$content.style.transition = 'transform 0.3s';
-      this.$content.style.transform = `translateY(${this.dampingLen}px)`;
+      this.$content.style.webkitTransition = 'transform 0.3s';
+      this.$content.style.webkitTransform = `translateY(${this.dampingLen}px)`;
     }
   }
 

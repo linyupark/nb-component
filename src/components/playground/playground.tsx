@@ -76,6 +76,12 @@ export class Playground {
       text: 'canvas雷达图',
       mobile: false,
       tag: 'nb-canvas-radar'
+    },
+    {
+      key: 'roll-picker',
+      text: '滚动选择器.H5',
+      mobile: true,
+      tag: 'nb-roll-picker'
     }
   ];
 

@@ -62,6 +62,12 @@
       },
       "encapsulation": "shadow"
     },
+    "nb-roll-picker": {
+      "bundleIds": {
+        "$": "nb-actionsheet"
+      },
+      "encapsulation": "shadow"
+    },
     "nb-svg-icon": {
       "bundleIds": {
         "$": "nb-actionsheet"

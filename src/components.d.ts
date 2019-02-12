@@ -360,6 +360,39 @@ export namespace Components {
     'wrapperSelector'?: string;
   }
 
+  interface NbRollPicker {
+    /**
+    * 选项内容对齐方向
+    */
+    'align': 'left' | 'center' | 'right';
+    /**
+    * 默认选中项目的key值
+    */
+    'defaultKey'?: number;
+    /**
+    * 获取当前选中的选项的数据
+    */
+    'getCurrentItem': () => Promise<any>;
+    /**
+    * 选项内容列表
+    */
+    'items': any[];
+  }
+  interface NbRollPickerAttributes extends StencilHTMLAttributes {
+    /**
+    * 选项内容对齐方向
+    */
+    'align'?: 'left' | 'center' | 'right';
+    /**
+    * 默认选中项目的key值
+    */
+    'defaultKey'?: number;
+    /**
+    * 选项内容列表
+    */
+    'items'?: any[];
+  }
+
   interface NbSvgIcon {
     /**
     * 加入动画名称
@@ -435,6 +468,7 @@ declare global {
     'NbPagination': Components.NbPagination;
     'NbPlayground': Components.NbPlayground;
     'NbPullToDo': Components.NbPullToDo;
+    'NbRollPicker': Components.NbRollPicker;
     'NbSvgIcon': Components.NbSvgIcon;
     'NbSwitch': Components.NbSwitch;
   }
@@ -450,6 +484,7 @@ declare global {
     'nb-pagination': Components.NbPaginationAttributes;
     'nb-playground': Components.NbPlaygroundAttributes;
     'nb-pull-to-do': Components.NbPullToDoAttributes;
+    'nb-roll-picker': Components.NbRollPickerAttributes;
     'nb-svg-icon': Components.NbSvgIconAttributes;
     'nb-switch': Components.NbSwitchAttributes;
   }
@@ -515,6 +550,12 @@ declare global {
     new (): HTMLNbPullToDoElement;
   };
 
+  interface HTMLNbRollPickerElement extends Components.NbRollPicker, HTMLStencilElement {}
+  var HTMLNbRollPickerElement: {
+    prototype: HTMLNbRollPickerElement;
+    new (): HTMLNbRollPickerElement;
+  };
+
   interface HTMLNbSvgIconElement extends Components.NbSvgIcon, HTMLStencilElement {}
   var HTMLNbSvgIconElement: {
     prototype: HTMLNbSvgIconElement;
@@ -538,6 +579,7 @@ declare global {
     'nb-pagination': HTMLNbPaginationElement
     'nb-playground': HTMLNbPlaygroundElement
     'nb-pull-to-do': HTMLNbPullToDoElement
+    'nb-roll-picker': HTMLNbRollPickerElement
     'nb-svg-icon': HTMLNbSvgIconElement
     'nb-switch': HTMLNbSwitchElement
   }
@@ -553,6 +595,7 @@ declare global {
     'nb-pagination': HTMLNbPaginationElement;
     'nb-playground': HTMLNbPlaygroundElement;
     'nb-pull-to-do': HTMLNbPullToDoElement;
+    'nb-roll-picker': HTMLNbRollPickerElement;
     'nb-svg-icon': HTMLNbSvgIconElement;
     'nb-switch': HTMLNbSwitchElement;
   }

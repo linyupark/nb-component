@@ -21,6 +21,34 @@ const iconBox = {
 
 export default {
   /**
+   * 滚动选择器
+   */
+  'nb-roll-picker': [
+    <div class="wrapper">
+      <nb-roll-picker ref={ev => (refTarget.rollPicker = ev)} defaultKey={2} />
+      <button onClick={async (ev: any) => {
+        const selectItem = await refTarget.rollPicker.getCurrentItem();
+        ev.target.innerHTML = `确定(${selectItem.label})`;
+      }}>确定</button>
+    </div>,
+    <div class="lang">React</div>,
+    <nb-code-highlight
+      code={`
+  <nb-roll-picker defaultKey={2} items={[
+    {
+      key: 1,
+      label: '选项1'
+    },
+    ...
+  ]} />
+  <button onClick={async (ev: any) => {
+      const selectItem = await refTarget.rollPicker.getCurrentItem();
+      ev.target.innerHTML = \`确定($\{selectItem.label\})\`;
+    }}>确定</button>
+    `}
+    />
+  ],
+  /**
    * canvas 雷达图
    */
   'nb-canvas-radar': [

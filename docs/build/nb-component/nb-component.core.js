@@ -1150,6 +1150,26 @@ const initComponentInstance = (plt, elm, hostSnapshot, perf, instance, component
         });
       }
     }(plt, componentConstructor.events, instance);
+    try {
+      if (
+      // replay any event listeners on the instance that
+      // were queued up between the time the element was
+      // connected and before the instance was ready
+      queuedEvents = plt.queuedEvents.get(elm), queuedEvents) {
+        // events may have already fired before the instance was even ready
+        // now that the instance is ready, let's replay all of the events that
+        // we queued up earlier that were originally meant for the instance
+        for (i = 0; i < queuedEvents.length; i += 2) 
+        // data was added in sets of two
+        // first item the eventMethodName
+        // second item is the event data
+        // take a look at initElementListener()
+        instance[queuedEvents[i]](queuedEvents[i + 1]);
+        plt.queuedEvents.delete(elm);
+      }
+    } catch (e) {
+      plt.onError(e, 2 /* QueueEventsError */ , elm);
+    }
   } catch (e) {
     // something done went wrong trying to create a component instance
     // create a dumby instance so other stuff can load
@@ -1261,6 +1281,14 @@ const initHostElement = (plt, cmpMeta, HostElementConstructor, hydratedCssClass,
   HostElementConstructor.connectedCallback = function() {
     // coolsville, our host element has just hit the DOM
     ((plt, cmpMeta, elm, perf) => {
+      // initialize our event listeners on the host element
+      // we do this now so that we can listening to events that may
+      // have fired even before the instance is ready
+      plt.hasListenersMap.has(elm) || (
+      // it's possible we've already connected
+      // then disconnected
+      // and the same element is reconnected again
+      plt.hasListenersMap.set(elm, true), initElementListeners(plt, elm)), 
       // this element just connected, which may be re-connecting
       // ensure we remove it from our map of disconnected
       plt.isDisconnectedMap.delete(elm), plt.hasConnectedMap.has(elm) || (plt.hasConnectedComponent = true, 
@@ -1599,7 +1627,26 @@ const initHostElement = (plt, cmpMeta, HostElementConstructor, hydratedCssClass,
   // set App Context
   Context.isServer = Context.isPrerender = !(Context.isClient = true), Context.window = win, 
   Context.location = win.location, Context.document = doc, Context.resourcesUrl = Context.publicPath = resourcesUrl, 
-  plt.emitEvent = Context.emit = ((elm, eventName, data) => domApi.$dispatchEvent(elm, Context.eventNameFn ? Context.eventNameFn(eventName) : eventName, data)), 
+  Context.enableListener = ((instance, eventName, enabled, attachTo, passive) => (function enableEventListener(plt, instance, eventName, shouldEnable, attachTo, passive) {
+    if (instance) {
+      // cool, we've got an instance, it's get the element it's on
+      const elm = plt.hostElementMap.get(instance);
+      const cmpMeta = plt.getComponentMeta(elm);
+      if (cmpMeta && cmpMeta.listenersMeta) 
+      // alrighty, so this cmp has listener meta
+      if (shouldEnable) {
+        // we want to enable this event
+        // find which listen meta we're talking about
+        const listenMeta = cmpMeta.listenersMeta.find(l => l.eventName === eventName);
+        listenMeta && 
+        // found the listen meta, so let's add the listener
+        plt.domApi.$addEventListener(elm, eventName, ev => instance[listenMeta.eventMethodName](ev), 1, listenMeta.eventCapture, void 0 === passive ? listenMeta.eventPassive : !!passive, attachTo);
+      } else 
+      // we're disabling the event listener
+      // so let's just remove it entirely
+      plt.domApi.$removeEventListener(elm, eventName, 1);
+    }
+  })(plt, instance, eventName, enabled, attachTo, passive)), plt.emitEvent = Context.emit = ((elm, eventName, data) => domApi.$dispatchEvent(elm, Context.eventNameFn ? Context.eventNameFn(eventName) : eventName, data)), 
   // add the h() fn to the app's global namespace
   App.h = h$1, App.Context = Context, 
   // create a method that returns a promise
@@ -1670,4 +1717,4 @@ const initHostElement = (plt, cmpMeta, HostElementConstructor, hydratedCssClass,
   // but note that the components have not fully loaded yet
   App.initialized = true;
 })(n, x, w, d, r, h, c);
-})(window,document,{},"NbComponent","hydrated",[["nb-actionsheet","nb-actionsheet",1,[["close",32],["headTitle",1,0,"head-title",2],["mask",1,0,1,4],["show",32],["visible",16]],1],["nb-affix","nb-actionsheet",0,[["el",64],["fixed",16],["offset",1,0,1,8],["targetDom",1]],1],["nb-badge","nb-actionsheet",1,[["bgColor",1,0,"bg-color",2],["count",1,0,1,8],["dot",1,0,1,4],["maxCount",1,0,"max-count",8],["showZero",1,0,"show-zero",4]],1],["nb-canvas-radar","nb-actionsheet",0,[["borderColor",1,0,"border-color",2],["fontSize",1,0,"font-size",8],["labelDataList",1],["points",1,0,1,1],["unit",1,0,1,8],["wh",1]]],["nb-code-highlight","nb-actionsheet",1,[["code",1,0,1,2],["lang",1,0,1,2]]],["nb-list","nb-actionsheet",1,[["topSpace",1,0,"top-space",2]],1],["nb-list-item","nb-actionsheet",1,[["border",1,0,1,8],["color",1,0,1,2],["short",1,0,1,2]],1],["nb-pagination","nb-actionsheet",1,[["autoHide",1,0,"auto-hide",4],["current",2,0,1,8],["limitPage",1,0,"limit-page",8],["pagesize",1,0,1,8],["total",1,0,1,8]],1],["nb-playground","nb-actionsheet",1,[["demo",16],["el",64]]],["nb-pull-to-do","nb-actionsheet",1,[["contentSelector",1,0,"content-selector",2],["dampHeight",1,0,"damp-height",8],["dampingLen",16],["disable",1,0,1,2],["done",32],["el",64],["loading",16],["loadingHTML",1,0,"loading-h-t-m-l",2],["moreHTML",1,0,"more-h-t-m-l",2],["positionSave",1,0,"position-save",4],["refreshHTML",1,0,"refresh-h-t-m-l",2],["wrapperSelector",1,0,"wrapper-selector",2]],1],["nb-svg-icon","nb-actionsheet",1,[["anim",1,0,1,2],["size",1,0,1,2],["type",1,0,1,2]],1],["nb-switch","nb-actionsheet",1,[["checked",2,0,1,4],["color",1,0,1,2],["disabled",1,0,1,4]],1]]);
+})(window,document,{},"NbComponent","hydrated",[["nb-actionsheet","nb-actionsheet",1,[["close",32],["headTitle",1,0,"head-title",2],["mask",1,0,1,4],["show",32],["visible",16]],1],["nb-affix","nb-actionsheet",0,[["el",64],["fixed",16],["offset",1,0,1,8],["targetDom",1]],1],["nb-badge","nb-actionsheet",1,[["bgColor",1,0,"bg-color",2],["count",1,0,1,8],["dot",1,0,1,4],["maxCount",1,0,"max-count",8],["showZero",1,0,"show-zero",4]],1],["nb-canvas-radar","nb-actionsheet",0,[["borderColor",1,0,"border-color",2],["fontSize",1,0,"font-size",8],["labelDataList",1],["points",1,0,1,1],["unit",1,0,1,8],["wh",1]]],["nb-code-highlight","nb-actionsheet",1,[["code",1,0,1,2],["lang",1,0,1,2]]],["nb-list","nb-actionsheet",1,[["topSpace",1,0,"top-space",2]],1],["nb-list-item","nb-actionsheet",1,[["border",1,0,1,8],["color",1,0,1,2],["short",1,0,1,2]],1],["nb-pagination","nb-actionsheet",1,[["autoHide",1,0,"auto-hide",4],["current",2,0,1,8],["limitPage",1,0,"limit-page",8],["pagesize",1,0,1,8],["total",1,0,1,8]],1],["nb-playground","nb-actionsheet",1,[["demo",16],["el",64]]],["nb-pull-to-do","nb-actionsheet",1,[["contentSelector",1,0,"content-selector",2],["dampHeight",1,0,"damp-height",8],["dampingLen",16],["disable",1,0,1,2],["done",32],["el",64],["loading",16],["loadingHTML",1,0,"loading-h-t-m-l",2],["moreHTML",1,0,"more-h-t-m-l",2],["positionSave",1,0,"position-save",4],["refreshHTML",1,0,"refresh-h-t-m-l",2],["wrapperSelector",1,0,"wrapper-selector",2]],1],["nb-roll-picker","nb-actionsheet",1,[["align",1,0,1,2],["currentKey",16],["defaultKey",1,0,"default-key",8],["el",64],["getCurrentItem",32],["items",1],["selectIndex",16]],1,[["touchend","handleTouchEnd",0,1]]],["nb-svg-icon","nb-actionsheet",1,[["anim",1,0,1,2],["size",1,0,1,2],["type",1,0,1,2]],1],["nb-switch","nb-actionsheet",1,[["checked",2,0,1,4],["color",1,0,1,2],["disabled",1,0,1,4]],1]]);
