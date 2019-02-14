@@ -416,7 +416,7 @@ export default {
             }
           }}
           offset={0}
-          targetDom={() => refTarget.affix}
+          relativeSelector=".wrapper"
         >
           <div class="affix-content">
             <div class="item">二维码</div>
@@ -425,63 +425,52 @@ export default {
             <div class="item">产品中心</div>
           </div>
         </nb-affix>
-        {/* <br />
-        <br />
-        <nb-affix
-          onChange={({ detail }) => {
-            const target = document.querySelector('.affix-content2');
-            if (detail.isFixed) {
-              target.classList.add('fixed');
-            }
-            else {
-              target.classList.remove('fixed');
-            }
-          }}
-          offset={44}
-          toTarget={() => refTarget}
-        >
-          <div class="affix-content2">
-            <div class="item">二维码</div>
-            <div class="item">关系预约</div>
-            <div class="item">驾驶舱</div>
-            <div class="item">产品中心</div>
-          </div>
-        </nb-affix> */}
       </div>
     </div>,
     <div class="lang">React</div>,
     <nb-code-highlight
       code={`
     <div
+      class="wrapper"
+      ref={ev => (refTarget.affix = ev)}
       style={{
-        height: '1000px',
-        overflowX: 'hidden'
+        height: '30vh',
+        overflow: 'auto',
+        padding: '0px'
       }}
     >
-      <br />
-      <nb-affix
-        onChange={({ detail }) => {
-          const target = document.querySelector('.affix-content');
-          const wrapper: any = document.querySelector('.wrapper > div');
-          if (detail.isFixed) {
-            target.classList.add('fixed');
-            wrapper.style.paddingTop = '64px';
-          }
-          else {
-            target.classList.remove('fixed');
-            wrapper.style.paddingTop = '20px';
-          }
+      <div
+        class="content"
+        style={{
+          height: '1000px',
+          overflowX: 'hidden'
         }}
-        offset={0}
-        toTarget={() => refTarget}
       >
-        <div class="affix-content">
-          <div class="item">二维码</div>
-          <div class="item">关系预约</div>
-          <div class="item">驾驶舱</div>
-          <div class="item">产品中心</div>
-        </div>
-      </nb-affix>
+        <br />
+        <nb-affix
+          onChange={({ detail }) => {
+            if (!refTarget.affix) return;
+            const target = refTarget.affix.querySelector('.affix-content');
+            const wrapper: any = refTarget.affix.querySelector('.content');
+            if (detail.isFixed) {
+              target.classList.add('fixed');
+              wrapper.style.paddingTop = '64px';
+            } else {
+              target.classList.remove('fixed');
+              wrapper.style.paddingTop = '20px';
+            }
+          }}
+          offset={0}
+          relativeSelector=".wrapper"
+        >
+          <div class="affix-content">
+            <div class="item">二维码</div>
+            <div class="item">关系预约</div>
+            <div class="item">驾驶舱</div>
+            <div class="item">产品中心</div>
+          </div>
+        </nb-affix>
+      </div>
     </div>
       `}
     />

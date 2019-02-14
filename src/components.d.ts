@@ -49,7 +49,7 @@ export namespace Components {
     /**
     * 计算举例的参照dom
     */
-    'targetDom': () => HTMLElement;
+    'relativeSelector'?: string;
   }
   interface NbAffixAttributes extends StencilHTMLAttributes {
     /**
@@ -63,7 +63,7 @@ export namespace Components {
     /**
     * 计算举例的参照dom
     */
-    'targetDom'?: () => HTMLElement;
+    'relativeSelector'?: string;
   }
 
   interface NbBadge {

@@ -17,6 +17,12 @@ import {
   shadow: true
 })
 export class Affix {
+  
+  /**
+   * 参照对象
+   */
+  target: HTMLElement;
+
   /**
    * 当固定状态发生变化对外发送事件
    */
@@ -45,7 +51,7 @@ export class Affix {
   /**
    * 计算举例的参照dom
    */
-  @Prop() targetDom: () => HTMLElement = () => document.body;
+  @Prop() relativeSelector?: string;
 
   /**
    * 是否处于固定状态
@@ -56,17 +62,33 @@ export class Affix {
    * 根据设置来切换固定状态
    */
   handleFix() {
+    const rectTop = this.el.getBoundingClientRect().top;
+     const parentTop = this.target.getBoundingClientRect().top;
     if (this.offset >= 0) {
-      const rectTop = this.el.getBoundingClientRect().top;
-      this.fixed = rectTop <= this.offset;
+      // 已经固定住的时候判断滚动位置能不能释放固定
+      if (this.fixed) {
+        this.fixed = !(this.target.scrollTop < this.offset);
+      }
+      else {
+        this.fixed = (rectTop - parentTop) <= this.offset;
+      }
     }
+  }
+  
+  /**
+   * 计算出固定时候的高度
+   */
+  get fixedTop() {
+    if (!this.target) return this.offset;
+    return this.target.getBoundingClientRect().top + this.offset;
   }
 
   componentDidLoad() {
     try {
-      this.handleFix();
       setTimeout(() => {
-        this.targetDom().addEventListener(
+        this.target = this.relativeSelector ? document.querySelector(this.relativeSelector) : document.body;
+        this.handleFix();
+        this.target.addEventListener(
           'scroll',
           this.handleFix.bind(this),
           false
@@ -78,7 +100,7 @@ export class Affix {
   }
 
   componentDidUnload() {
-    this.targetDom().removeEventListener(
+    this.target && this.target.removeEventListener(
       'scroll',
       this.handleFix.bind(this),
       false
@@ -90,7 +112,7 @@ export class Affix {
       <div
         style={{
           position: this.fixed ? `fixed` : 'relative',
-          top: this.fixed ? `${this.offset}px` : 'auto'
+          top: this.fixed ? `${this.fixedTop}px` : 'auto'
         }}
       >
         <slot />

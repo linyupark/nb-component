@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property    | Attribute | Description           | Type                | Default               |
-| ----------- | --------- | --------------------- | ------------------- | --------------------- |
-| `offset`    | `offset`  | 距离偏移量后触发（正数举例上沿，负数下沿） | `number`            | `undefined`           |
-| `targetDom` | --        | 计算举例的参照dom            | `() => HTMLElement` | `() => document.body` |
+| Property           | Attribute           | Description           | Type     | Default     |
+| ------------------ | ------------------- | --------------------- | -------- | ----------- |
+| `offset`           | `offset`            | 距离偏移量后触发（正数举例上沿，负数下沿） | `number` | `undefined` |
+| `relativeSelector` | `relative-selector` | 计算举例的参照dom            | `string` | `undefined` |
 
 
 ## Events
