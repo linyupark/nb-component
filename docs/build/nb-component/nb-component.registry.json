@@ -2,81 +2,81 @@
   "namespace": "NbComponent",
   "fsNamespace": "nb-component",
   "loader": "../nb-component.js",
-  "core": "nb-component.pdfw4aqa.js",
-  "corePolyfilled": "nb-component.axjv7qzf.js",
+  "core": "nb-component.lojpqbdh.js",
+  "corePolyfilled": "nb-component.ljljws3b.js",
   "components": {
     "nb-actionsheet": {
       "bundleIds": {
-        "$": "lqr8a88l"
+        "$": "ggdthxuo"
       },
       "encapsulation": "shadow"
     },
     "nb-affix": {
       "bundleIds": {
-        "$": "lqr8a88l"
+        "$": "ggdthxuo"
       },
       "encapsulation": "shadow"
     },
     "nb-badge": {
       "bundleIds": {
-        "$": "lqr8a88l"
+        "$": "ggdthxuo"
       },
       "encapsulation": "shadow"
     },
     "nb-canvas-radar": {
       "bundleIds": {
-        "$": "lqr8a88l"
+        "$": "ggdthxuo"
       }
     },
     "nb-code-highlight": {
       "bundleIds": {
-        "$": "lqr8a88l"
+        "$": "ggdthxuo"
       }
     },
     "nb-list": {
       "bundleIds": {
-        "$": "lqr8a88l"
+        "$": "ggdthxuo"
       },
       "encapsulation": "shadow"
     },
     "nb-list-item": {
       "bundleIds": {
-        "$": "lqr8a88l"
+        "$": "ggdthxuo"
       },
       "encapsulation": "shadow"
     },
     "nb-pagination": {
       "bundleIds": {
-        "$": "lqr8a88l"
+        "$": "ggdthxuo"
       },
       "encapsulation": "shadow"
     },
     "nb-playground": {
       "bundleIds": {
-        "$": "lqr8a88l"
+        "$": "ggdthxuo"
       }
     },
     "nb-pull-to-do": {
       "bundleIds": {
-        "$": "lqr8a88l"
+        "$": "ggdthxuo"
       },
       "encapsulation": "shadow"
     },
     "nb-roll-picker": {
       "bundleIds": {
-        "$": "lqr8a88l"
+        "$": "ggdthxuo"
       },
       "encapsulation": "shadow"
     },
     "nb-svg-icon": {
       "bundleIds": {
-        "$": "lqr8a88l"
+        "$": "ggdthxuo"
       },
       "encapsulation": "shadow"
     },
     "nb-switch": {
       "bundleIds": {
-        "$": "lqr8a88l"
+        "$": "ggdthxuo"
       },
       "encapsulation": "shadow"
     }

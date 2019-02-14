@@ -21,7 +21,12 @@ export class Affix {
   /**
    * 参照对象
    */
-  target: HTMLElement;
+  target?: HTMLElement;
+
+  /**
+   * 初始化时固定对象在滚动区域的位置
+   */
+  initScrollTop?: number;
 
   /**
    * 当固定状态发生变化对外发送事件
@@ -67,7 +72,7 @@ export class Affix {
     if (this.offset >= 0) {
       // 已经固定住的时候判断滚动位置能不能释放固定
       if (this.fixed) {
-        this.fixed = !(this.target.scrollTop < this.offset);
+        this.fixed = this.target.scrollTop > this.initScrollTop;
       }
       else {
         this.fixed = (rectTop - parentTop) <= this.offset;
@@ -79,7 +84,9 @@ export class Affix {
    * 计算出固定时候的高度
    */
   get fixedTop() {
-    if (!this.target) return this.offset;
+    if (!this.target) {
+      return this.el.getBoundingClientRect().top;
+    }
     return this.target.getBoundingClientRect().top + this.offset;
   }
 
@@ -87,6 +94,7 @@ export class Affix {
     try {
       setTimeout(() => {
         this.target = this.relativeSelector ? document.querySelector(this.relativeSelector) : document.body;
+        this.initScrollTop = this.el.getBoundingClientRect().top - this.target.getBoundingClientRect().top;
         this.handleFix();
         this.target.addEventListener(
           'scroll',
