@@ -37,7 +37,12 @@ export class PullToRefresh {
   /**
    * 禁用哪项功能 refresh: 下拉刷新 | more: 加载更多
    */
-  @Prop() disable?: 'refresh' | 'more';
+  @Prop() disable ? : 'refresh' | 'more';
+
+  /**
+   * 启用功能
+   */
+  @Prop() enable: boolean = true;
 
   /**
    * 实际滚动显示区块选择器
@@ -48,21 +53,6 @@ export class PullToRefresh {
    * 展示内容选择器
    */
   @Prop() contentSelector: string;
-
-  /**
-   * 下拉展示的提示
-   */
-  @Prop() refreshHTML: string = '<div class="onrefresh">刷新内容</div>';
-
-  /**
-   * 上拉加载更多
-   */
-  @Prop() moreHTML: string = '<div class="onmore">加载更多</div>';
-
-  /**
-   * 加载中的内容
-   */
-  @Prop() loadingHTML: string = '<div class="loading">loading</div>';
 
   /**
    * 拉动限制高度
@@ -116,7 +106,7 @@ export class PullToRefresh {
   /**
    * 开始阻尼位置记录
    */
-  startDampLen?: number;
+  startDampLen ? : number;
 
   /**
    * 计算拉动距离
@@ -169,6 +159,9 @@ export class PullToRefresh {
    */
   protected handleTouchMove(ev) {
     this.movePageY = ev.touches[0].pageY;
+
+    // 临时禁用
+    if (!this.enable) return;
 
     // 还在loading
     if (this.loading) return;
@@ -224,8 +217,8 @@ export class PullToRefresh {
     // 绑定
     if (bind) {
       try {
-        this.$wrapper = this.el.querySelector(this.wrapperSelector);
-        this.$content = this.el.querySelector(this.contentSelector);
+        this.$wrapper = document.querySelector(this.wrapperSelector);
+        this.$content = document.querySelector(this.contentSelector);
         this.$wrapper.addEventListener(
           'touchstart',
           this.handleTouchStart.bind(this),
@@ -242,6 +235,7 @@ export class PullToRefresh {
           false
         );
       } catch (e) {
+        console.log(e);
         throw new TypeError(
           '"wrapperSelector" or "contentSelector" props maybe not a valid scroll dom selector.'
         );
@@ -261,19 +255,27 @@ export class PullToRefresh {
     return (
       <div class="pull-to-do">
         <div
-          class={`${this.dampingLen > this.dampHeight * 0.8 ? 'show' : 'hide'}`}
+          class={`${(this.dampingLen > this.dampHeight * 0.8 && this.enable) ? 'show' : 'hide'}`}
         >
-          <div
-            innerHTML={!this.loading ? this.refreshHTML : this.loadingHTML}
-          />
+          <div class={this.loading ? 'show' : 'hide'}>
+            <slot name="refresh-loading" />
+          </div>
+          <div class={this.loading ? 'hide' : 'show'}>
+            <slot name="refresh" />
+          </div>
         </div>
-        <slot />
+        <slot name="main" />
         <div
           class={`bottom ${
-            this.dampingLen < -this.dampHeight * 0.8 ? 'show' : 'hide'
+            (this.dampingLen < -this.dampHeight * 0.8 && this.enable) ? 'show' : 'hide'
           }`}
         >
-          <div innerHTML={!this.loading ? this.moreHTML : this.loadingHTML} />
+          <div class={this.loading ? 'show' : 'hide'}>
+            <slot name="more-loading" />
+          </div>
+          <div class={this.loading ? 'hide' : 'show'}>
+            <slot name="more" />
+          </div>
         </div>
       </div>
     );

@@ -5,7 +5,8 @@ import {
   Element,
   Event,
   EventEmitter,
-  Watch
+  Watch,
+  Method
 } from '@stencil/core';
 
 /**
@@ -26,7 +27,11 @@ export class Affix {
   /**
    * 初始化时固定对象在滚动区域的位置
    */
-  initScrollTop?: number;
+  startFixedScrollTop?: number;
+
+  @Method() async getStartFixedScrollTop() {
+    return this.startFixedScrollTop;
+  }
 
   /**
    * 当固定状态发生变化对外发送事件
@@ -38,6 +43,9 @@ export class Affix {
    * @param isFixed
    */
   @Watch('fixed') onCurrentPageChange(isFixed) {
+    if (isFixed) {
+      this.startFixedScrollTop = this.target.scrollTop;
+    }
     this.change.emit({
       isFixed
     });
@@ -47,6 +55,11 @@ export class Affix {
    * 组件自身
    */
   @Element() el: HTMLElement;
+  
+  /**
+   * 固定时候zindex值
+   */
+  @Prop() zIndex: number = 2;
 
   /**
    * 距离偏移量后触发（正数举例上沿，负数下沿）
@@ -68,11 +81,11 @@ export class Affix {
    */
   handleFix() {
     const rectTop = this.el.getBoundingClientRect().top;
-     const parentTop = this.target.getBoundingClientRect().top;
+    const parentTop = this.target.getBoundingClientRect().top;
     if (this.offset >= 0) {
       // 已经固定住的时候判断滚动位置能不能释放固定
       if (this.fixed) {
-        this.fixed = this.target.scrollTop > this.initScrollTop;
+        this.fixed = this.target.scrollTop > this.startFixedScrollTop;
       }
       else {
         this.fixed = (rectTop - parentTop) <= this.offset;
@@ -94,8 +107,6 @@ export class Affix {
     try {
       setTimeout(() => {
         this.target = this.relativeSelector ? document.querySelector(this.relativeSelector) : document.body;
-        this.initScrollTop = this.el.getBoundingClientRect().top - this.target.getBoundingClientRect().top;
-        this.handleFix();
         this.target.addEventListener(
           'scroll',
           this.handleFix.bind(this),
@@ -120,7 +131,8 @@ export class Affix {
       <div
         style={{
           position: this.fixed ? `fixed` : 'relative',
-          top: this.fixed ? `${this.fixedTop}px` : 'auto'
+          top: this.fixed ? `${this.fixedTop}px` : 'auto',
+          zIndex: String(this.zIndex),
         }}
       >
         <slot />

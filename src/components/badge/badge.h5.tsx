@@ -35,6 +35,11 @@ export class Badge {
   @Prop() bgColor: string = '#FB5B4C';
 
   /**
+   * 位置偏移量
+   */
+  @Prop() offset: number = 0;
+
+  /**
    * 徽标 classList
    */
   get dotCountClassNames() {
@@ -47,6 +52,10 @@ export class Badge {
     if (!this.dot) classNames.push('count');
     // 数字为0不显示
     if (!this.showZero && this.count === 0) classNames.push('hidden');
+    // 有偏移量
+    if (this.offset !== 0) {
+      classNames.push(`offset-${this.offset}`);
+    }
     return classNames.join(' ');
   }
 

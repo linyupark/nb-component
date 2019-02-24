@@ -6,6 +6,7 @@
     border: 1px solid #fff;
     font-style: normal;
     text-align: center;
+    z-index: 2;
 
     &.hidden {
       display: none;
@@ -22,6 +23,11 @@
     border-radius: rem(26px);
     top: rem(-13px);
     right: rem(-13px);
+    
+    &.offset-1 {
+      top: rem(-16px);
+      right: rem(-16px);
+    }
   }
   .dot {
     width: rem(12px);
@@ -29,5 +35,9 @@
     border-radius: 50%;
     top: rem(-6px);
     right: rem(-6px);
+    &.offset-1 {
+      top: rem(-9px);
+      right: rem(-9px);
+    }
   }
 }

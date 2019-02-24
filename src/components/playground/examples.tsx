@@ -323,6 +323,7 @@ export default {
         }}
       >
         <div
+          slot="main"
           style={{
             overflowX: 'hidden',
             background: '#fff',
@@ -332,6 +333,24 @@ export default {
           下拉试试刷新, 上拉到底试试加载更多（touch模式）
           <br />
           {'...........................'.split('').map(w => [w, <br />])}
+          <div
+            slot="more"
+          >上拉加载更多</div>
+          <div
+            slot="more-loading"
+          >
+            加载中
+          </div>
+          <div
+            slot="refresh-loading"
+          >
+            加载中
+          </div>
+          <div
+            slot="refresh"
+          >
+            下拉刷新
+          </div>
         </div>
       </div>
     </nb-pull-to-do>,

@@ -42,6 +42,7 @@ export namespace Components {
   }
 
   interface NbAffix {
+    'getStartFixedScrollTop': () => Promise<number>;
     /**
     * 距离偏移量后触发（正数举例上沿，负数下沿）
     */
@@ -50,6 +51,10 @@ export namespace Components {
     * 计算举例的参照dom
     */
     'relativeSelector'?: string;
+    /**
+    * 固定时候zindex值
+    */
+    'zIndex': number;
   }
   interface NbAffixAttributes extends StencilHTMLAttributes {
     /**
@@ -64,6 +69,10 @@ export namespace Components {
     * 计算举例的参照dom
     */
     'relativeSelector'?: string;
+    /**
+    * 固定时候zindex值
+    */
+    'zIndex'?: number;
   }
 
   interface NbBadge {
@@ -83,6 +92,10 @@ export namespace Components {
     * count的封顶数值超出则显示 maxCount+
     */
     'maxCount': number;
+    /**
+    * 位置偏移量
+    */
+    'offset': number;
     /**
     * 当count为0的时候也显示
     */
@@ -105,6 +118,10 @@ export namespace Components {
     * count的封顶数值超出则显示 maxCount+
     */
     'maxCount'?: number;
+    /**
+    * 位置偏移量
+    */
+    'offset'?: number;
     /**
     * 当count为0的时候也显示
     */
@@ -297,21 +314,13 @@ export namespace Components {
     */
     'done': () => void;
     /**
-    * 加载中的内容
+    * 启用功能
     */
-    'loadingHTML': string;
-    /**
-    * 上拉加载更多
-    */
-    'moreHTML': string;
+    'enable': boolean;
     /**
     * 当浏览器是返回状态是否尝试回到上一次的位置
     */
     'positionSave': boolean;
-    /**
-    * 下拉展示的提示
-    */
-    'refreshHTML': string;
     /**
     * 实际滚动显示区块选择器
     */
@@ -331,13 +340,9 @@ export namespace Components {
     */
     'disable'?: 'refresh' | 'more';
     /**
-    * 加载中的内容
+    * 启用功能
     */
-    'loadingHTML'?: string;
-    /**
-    * 上拉加载更多
-    */
-    'moreHTML'?: string;
+    'enable'?: boolean;
     /**
     * 当上拉触发加载更多
     */
@@ -350,10 +355,6 @@ export namespace Components {
     * 当浏览器是返回状态是否尝试回到上一次的位置
     */
     'positionSave'?: boolean;
-    /**
-    * 下拉展示的提示
-    */
-    'refreshHTML'?: string;
     /**
     * 实际滚动显示区块选择器
     */

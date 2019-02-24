@@ -19,11 +19,11 @@
     "test.watch": "stencil test --spec --e2e --watchAll"
   },
   "devDependencies": {
-    "@stencil/core": "^0.17.0",
+    "@stencil/core": "^0.18.1-0",
     "@stencil/postcss": "^0.1.0",
     "@stencil/stylus": "^0.1.0",
-    "@types/jest": "^23.3.13",
-    "@types/node": "^10.12.24",
+    "@types/jest": "^23.3.14",
+    "@types/node": "^10.12.27",
     "cross-env": "^5.2.0",
     "postcss-preset-env": "^6.5.0",
     "prismjs": "^1.15.0"
