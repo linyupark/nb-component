@@ -8,6 +8,10 @@
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 
+<br />
+<br />
+<br />
+
 #### Pagination:分页 [API](https://github.com/linyupark/nb-component/blob/master/src/components/pagination/readme.md)
 
 <p class="codepen" data-height="431" data-theme-id="0" data-default-tab="html,result" data-user="linyupark" data-slug-hash="GzVLNX" style="height: 431px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid black; margin: 1em 0; padding: 1em;" data-pen-title="nb-component/pagination">
