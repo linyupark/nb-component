@@ -24,7 +24,7 @@ let config: Config = {
     }
   ],
   // enableCache: false,
-  // globalStyle: 'src/global/main.styl',
+  globalStyle: 'src/global/main.styl',
   // globalScript: 'src/global/main.ts',
   plugins: [
     stylus({
@@ -40,11 +40,11 @@ let config: Config = {
         })
       ]
     })
-  ],
+  ]
 };
 
 if (process.env.NODE_ENV === 'production' && process.env.DEMO !== 'yes') {
-  config.excludeSrc = ['/test/', '**/.spec.', '**/playground/**', '**/code/**']
+  config.excludeSrc = ['/test/', '**/.spec.', '**/playground/**', '**/code/**'];
 }
 
 export { config };

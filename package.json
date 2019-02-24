@@ -11,7 +11,7 @@
     "dist/"
   ],
   "scripts": {
-    "build": "cross-env NODE_ENV=production stencil build --docs",
+    "build": "cross-env NODE_ENV=production stencil build --docs && rm docs/index.html",
     "docs": "stencil build --docs",
     "start": "cross-env NODE_ENV=develop stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
