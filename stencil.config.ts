@@ -15,8 +15,16 @@ let config: Config = {
       serviceWorker: null // disable service workers
     }
   ],
+  copy: [
+    {
+      src: 'index.md'
+    },
+    {
+      src: '_config.yml'
+    }
+  ],
   // enableCache: false,
-  globalStyle: 'src/global/main.styl',
+  // globalStyle: 'src/global/main.styl',
   // globalScript: 'src/global/main.ts',
   plugins: [
     stylus({

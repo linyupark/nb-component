@@ -13,7 +13,6 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production stencil build --docs",
     "docs": "stencil build --docs",
-    "build-demo": "cross-env NODE_ENV=production DEMO=yes stencil build --docs",
     "start": "cross-env NODE_ENV=develop stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll"

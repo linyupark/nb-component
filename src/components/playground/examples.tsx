@@ -26,10 +26,14 @@ export default {
   'nb-roll-picker': [
     <div class="wrapper">
       <nb-roll-picker ref={ev => (refTarget.rollPicker = ev)} defaultKey={2} />
-      <button onClick={async (ev: any) => {
-        const selectItem = await refTarget.rollPicker.getCurrentItem();
-        ev.target.innerHTML = `确定(${selectItem.label})`;
-      }}>确定</button>
+      <button
+        onClick={async (ev: any) => {
+          const selectItem = await refTarget.rollPicker.getCurrentItem();
+          ev.target.innerHTML = `确定(${selectItem.label})`;
+        }}
+      >
+        确定
+      </button>
     </div>,
     <div class="lang">React</div>,
     <nb-code-highlight
@@ -289,40 +293,43 @@ export default {
    * 下拉刷新上拉加载
    */
   'nb-pull-to-do': [
-    <nb-pull-to-do
-      wrapperSelector=".wrapper"
-      contentSelector=".wrapper > div"
-      onRefresh={(ev: any) => {
-        console.log('刷新开始');
-        setTimeout(() => {
-          let newItem = document.createElement('div');
-          newItem.innerHTML = String(Date.now());
-          document
-            .querySelector('.wrapper > div')
-            .insertAdjacentElement('afterbegin', newItem);
-          ev.target.done();
-        }, 1000);
-      }}
-      onMore={(ev: any) => {
-        console.log('加载更多');
-        setTimeout(() => {
-          let newItem = document.createElement('div');
-          newItem.innerHTML = String(Date.now());
-          document.querySelector('.wrapper > div').appendChild(newItem);
-          ev.target.done();
-        }, 1000);
+    <div
+      class="wrapper"
+      style={{
+        padding: '0px',
+        height: '30vh',
+        overflow: 'auto',
+        background: '#f5f5f5'
       }}
     >
-      <div
-        class="wrapper"
-        style={{
-          padding: '0px',
-          height: '30vh',
-          overflow: 'auto',
-          background: '#f5f5f5'
+      <nb-pull-to-do
+        wrapperSelector=".wrapper"
+        contentSelector=".main"
+        onRefresh={(ev: any) => {
+          console.log('刷新开始');
+          setTimeout(() => {
+            let newItem = document.createElement('div');
+            newItem.innerHTML = String(Date.now());
+            document
+              .querySelector('.main')
+              .insertAdjacentElement('afterbegin', newItem);
+            ev.target.done();
+          }, 1000);
+        }}
+        onMore={(ev: any) => {
+          console.log('加载更多');
+          setTimeout(() => {
+            let newItem = document.createElement('div');
+            newItem.innerHTML = String(Date.now());
+            document.querySelector('.main').appendChild(newItem);
+            ev.target.done();
+          }, 1000);
         }}
       >
+        <div slot="refresh-loading">加载中</div>
+        <div slot="refresh">下拉刷新</div>
         <div
+          class="main"
           slot="main"
           style={{
             overflowX: 'hidden',
@@ -333,56 +340,52 @@ export default {
           下拉试试刷新, 上拉到底试试加载更多（touch模式）
           <br />
           {'...........................'.split('').map(w => [w, <br />])}
-          <div
-            slot="more"
-          >上拉加载更多</div>
-          <div
-            slot="more-loading"
-          >
-            加载中
-          </div>
-          <div
-            slot="refresh-loading"
-          >
-            加载中
-          </div>
-          <div
-            slot="refresh"
-          >
-            下拉刷新
-          </div>
         </div>
-      </div>
-    </nb-pull-to-do>,
+        <div slot="more">上拉加载更多</div>
+        <div slot="more-loading">加载中</div>
+      </nb-pull-to-do>
+    </div>,
     <div class="lang">React</div>,
     <nb-code-highlight
       code={`
-    <nb-pull-to-do
-      wrapperSelector=".wrapper"
-      contentSelector=".wrapper > div"
-      onRefresh={(ev: any) => {
-        console.log('刷新开始');
-        setTimeout(() => {
-          ev.target.done();
-        }, 1000);
-      }}
-      onMore={(ev: any) => {
-        console.log('加载更多');
-        setTimeout(() => {
-          ev.target.done();
-        }, 1000);
+    <div
+      class="wrapper"
+      style={{
+        padding: '0px',
+        height: '30vh',
+        overflow: 'auto',
+        background: '#f5f5f5'
       }}
     >
-      <div
-        class="wrapper"
-        style={{
-          padding: '0px',
-          height: '30vh',
-          overflow: 'auto',
-          background: '#f5f5f5'
+      <nb-pull-to-do
+        wrapperSelector=".wrapper"
+        contentSelector=".main"
+        onRefresh={(ev: any) => {
+          console.log('刷新开始');
+          setTimeout(() => {
+            let newItem = document.createElement('div');
+            newItem.innerHTML = String(Date.now());
+            document
+              .querySelector('.main')
+              .insertAdjacentElement('afterbegin', newItem);
+            ev.target.done();
+          }, 1000);
+        }}
+        onMore={(ev: any) => {
+          console.log('加载更多');
+          setTimeout(() => {
+            let newItem = document.createElement('div');
+            newItem.innerHTML = String(Date.now());
+            document.querySelector('.main').appendChild(newItem);
+            ev.target.done();
+          }, 1000);
         }}
       >
+        <div slot="refresh-loading">加载中</div>
+        <div slot="refresh">下拉刷新</div>
         <div
+          class="main"
+          slot="main"
           style={{
             overflowX: 'hidden',
             background: '#fff',
@@ -391,12 +394,12 @@ export default {
         >
           下拉试试刷新, 上拉到底试试加载更多（touch模式）
           <br />
-          {'...........................'
-            .split('')
-            .map(w => [w, <br />])}
+          {'...........................'.split('').map(w => [w, <br />])}
         </div>
-      </div>
-    </nb-pull-to-do>
+        <div slot="more">上拉加载更多</div>
+        <div slot="more-loading">加载中</div>
+      </nb-pull-to-do>
+    </div>
       `}
     />
   ],
