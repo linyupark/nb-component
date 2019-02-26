@@ -44,6 +44,10 @@ export namespace Components {
   interface NbAffix {
     'getStartFixedScrollTop': () => Promise<number>;
     /**
+    * 直接返回是否处于固定状态
+    */
+    'isFixed': () => Promise<boolean>;
+    /**
     * 距离偏移量后触发（正数举例上沿，负数下沿）
     */
     'offset': number;

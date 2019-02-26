@@ -149,7 +149,7 @@ export class PullToRefresh {
    * 触摸开始操作
    * @param ev
    */
-  protected handleTouchStart(ev) {
+  protected handleTouchStart = (ev) => {
     this.startPageY = ev.touches[0].pageY;
   }
 
@@ -157,7 +157,7 @@ export class PullToRefresh {
    * 触摸滑动操作
    * @param ev
    */
-  protected handleTouchMove(ev) {
+  protected handleTouchMove = (ev) => {
     this.movePageY = ev.touches[0].pageY;
 
     // 临时禁用
@@ -195,7 +195,7 @@ export class PullToRefresh {
     }
   }
 
-  protected handleTouchEnd() {
+  protected handleTouchEnd = () => {
     this.startDampLen = null;
     if (Math.abs(this.dampingLen) > 3) {
       // 进入 loading 状态
@@ -214,32 +214,49 @@ export class PullToRefresh {
    * @param {Boolean} bind 绑定还是解绑？
    */
   protected bindTouchScroll(bind: boolean = true) {
+    try {
+      this.$wrapper = document.querySelector(this.wrapperSelector);
+      this.$content = document.querySelector(this.contentSelector);
+    } catch (e) {
+      console.log(e);
+      throw new TypeError(
+        '"wrapperSelector" or "contentSelector" props maybe not a valid scroll dom selector.'
+      );
+    }
     // 绑定
     if (bind) {
-      try {
-        this.$wrapper = document.querySelector(this.wrapperSelector);
-        this.$content = document.querySelector(this.contentSelector);
-        this.$wrapper.addEventListener(
-          'touchstart',
-          this.handleTouchStart.bind(this),
-          false
-        );
-        this.$wrapper.addEventListener(
-          'touchmove',
-          this.handleTouchMove.bind(this),
-          false
-        );
-        this.$wrapper.addEventListener(
-          'touchend',
-          this.handleTouchEnd.bind(this),
-          false
-        );
-      } catch (e) {
-        console.log(e);
-        throw new TypeError(
-          '"wrapperSelector" or "contentSelector" props maybe not a valid scroll dom selector.'
-        );
-      }
+      this.$wrapper.addEventListener(
+        'touchstart',
+        this.handleTouchStart,
+        false
+      );
+      this.$wrapper.addEventListener(
+        'touchmove',
+        this.handleTouchMove,
+        false
+      );
+      this.$wrapper.addEventListener(
+        'touchend',
+        this.handleTouchEnd,
+        false
+      );
+    }
+    else {
+      this.$wrapper.removeEventListener(
+        'touchstart',
+        this.handleTouchStart,
+        false
+      );
+      this.$wrapper.removeEventListener(
+        'touchmove',
+        this.handleTouchMove,
+        false
+      );
+      this.$wrapper.removeEventListener(
+        'touchend',
+        this.handleTouchEnd,
+        false
+      );
     }
   }
 
@@ -247,8 +264,13 @@ export class PullToRefresh {
     this.bindTouchScroll();
     if (this.positionSave) {
       // console.log('回到位置', _scrollTopPosition);
-      this.$wrapper.scrollTo(0, _scrollTopPosition);
+      this.$wrapper.scrollTop = _scrollTopPosition;
     }
+  }
+
+  componentDidUnload() {
+    console.log('unbind pull-to-do touch event.', this.$wrapper);
+    this.bindTouchScroll(false);
   }
 
   render() {

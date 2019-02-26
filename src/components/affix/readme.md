@@ -33,6 +33,16 @@ Type: `Promise<number>`
 
 
 
+### `isFixed() => Promise<boolean>`
+
+直接返回是否处于固定状态
+
+#### Returns
+
+Type: `Promise<boolean>`
+
+
+
 
 ----------------------------------------------
 

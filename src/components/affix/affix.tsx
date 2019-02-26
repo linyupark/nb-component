@@ -75,6 +75,13 @@ export class Affix {
    * 是否处于固定状态
    */
   @State() fixed: boolean;
+  
+  /**
+   * 直接返回是否处于固定状态
+   */
+  @Method() async isFixed() {
+    return this.fixed;
+  }
 
   /**
    * 根据设置来切换固定状态
@@ -84,12 +91,13 @@ export class Affix {
     const parentTop = this.target.getBoundingClientRect().top;
     if (this.offset >= 0) {
       // 已经固定住的时候判断滚动位置能不能释放固定
-      if (this.fixed) {
-        this.fixed = this.target.scrollTop > this.startFixedScrollTop;
-      }
-      else {
-        this.fixed = (rectTop - parentTop) <= this.offset;
-      }
+      // if (this.fixed) {
+      //   this.fixed = this.target.scrollTop > this.startFixedScrollTop;
+      // }
+      // else {
+      //   this.fixed = (rectTop - parentTop) <= this.offset;
+      // }
+      this.fixed = (rectTop - parentTop) <= this.offset;
     }
   }
   
