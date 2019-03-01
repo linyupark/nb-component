@@ -86,7 +86,7 @@ export class Affix {
   /**
    * 根据设置来切换固定状态
    */
-  handleFix() {
+  handleFix = () => {
     const rectTop = this.el.getBoundingClientRect().top;
     const parentTop = this.target.getBoundingClientRect().top;
     if (this.offset >= 0) {
@@ -117,7 +117,7 @@ export class Affix {
         this.target = this.relativeSelector ? document.querySelector(this.relativeSelector) : document.body;
         this.target.addEventListener(
           'scroll',
-          this.handleFix.bind(this),
+          this.handleFix,
           false
         );
       }, 10);
@@ -129,7 +129,7 @@ export class Affix {
   componentDidUnload() {
     this.target && this.target.removeEventListener(
       'scroll',
-      this.handleFix.bind(this),
+      this.handleFix,
       false
     );
   }

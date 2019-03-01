@@ -269,7 +269,7 @@ export class PullToRefresh {
   }
 
   componentDidUnload() {
-    console.log('unbind pull-to-do touch event.', this.$wrapper);
+    // console.log('unbind pull-to-do touch event.', this.$wrapper);
     this.bindTouchScroll(false);
   }
 
