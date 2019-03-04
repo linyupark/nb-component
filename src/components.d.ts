@@ -248,6 +248,43 @@ export namespace Components {
     'topSpace'?: 's' | 'm' | 'l' | 'none';
   }
 
+  interface NbMarquee {
+    /**
+    * 跑动内容列表
+    */
+    'items'?: {
+      key: number,
+      html: string,
+      link: string
+    }[];
+    /**
+    * 多少间隔动一次
+    */
+    'speed': number;
+    /**
+    * 跑马灯预设样式
+    */
+    'styleId': 'tow-row-66h';
+  }
+  interface NbMarqueeAttributes extends StencilHTMLAttributes {
+    /**
+    * 跑动内容列表
+    */
+    'items'?: {
+      key: number,
+      html: string,
+      link: string
+    }[];
+    /**
+    * 多少间隔动一次
+    */
+    'speed'?: number;
+    /**
+    * 跑马灯预设样式
+    */
+    'styleId'?: 'tow-row-66h';
+  }
+
   interface NbPagination {
     /**
     * 当只有一页的时候自动隐藏
@@ -470,6 +507,7 @@ declare global {
     'NbCodeHighlight': Components.NbCodeHighlight;
     'NbListItem': Components.NbListItem;
     'NbList': Components.NbList;
+    'NbMarquee': Components.NbMarquee;
     'NbPagination': Components.NbPagination;
     'NbPlayground': Components.NbPlayground;
     'NbPullToDo': Components.NbPullToDo;
@@ -486,6 +524,7 @@ declare global {
     'nb-code-highlight': Components.NbCodeHighlightAttributes;
     'nb-list-item': Components.NbListItemAttributes;
     'nb-list': Components.NbListAttributes;
+    'nb-marquee': Components.NbMarqueeAttributes;
     'nb-pagination': Components.NbPaginationAttributes;
     'nb-playground': Components.NbPlaygroundAttributes;
     'nb-pull-to-do': Components.NbPullToDoAttributes;
@@ -537,6 +576,12 @@ declare global {
     new (): HTMLNbListElement;
   };
 
+  interface HTMLNbMarqueeElement extends Components.NbMarquee, HTMLStencilElement {}
+  var HTMLNbMarqueeElement: {
+    prototype: HTMLNbMarqueeElement;
+    new (): HTMLNbMarqueeElement;
+  };
+
   interface HTMLNbPaginationElement extends Components.NbPagination, HTMLStencilElement {}
   var HTMLNbPaginationElement: {
     prototype: HTMLNbPaginationElement;
@@ -581,6 +626,7 @@ declare global {
     'nb-code-highlight': HTMLNbCodeHighlightElement
     'nb-list-item': HTMLNbListItemElement
     'nb-list': HTMLNbListElement
+    'nb-marquee': HTMLNbMarqueeElement
     'nb-pagination': HTMLNbPaginationElement
     'nb-playground': HTMLNbPlaygroundElement
     'nb-pull-to-do': HTMLNbPullToDoElement
@@ -597,6 +643,7 @@ declare global {
     'nb-code-highlight': HTMLNbCodeHighlightElement;
     'nb-list-item': HTMLNbListItemElement;
     'nb-list': HTMLNbListElement;
+    'nb-marquee': HTMLNbMarqueeElement;
     'nb-pagination': HTMLNbPaginationElement;
     'nb-playground': HTMLNbPlaygroundElement;
     'nb-pull-to-do': HTMLNbPullToDoElement;

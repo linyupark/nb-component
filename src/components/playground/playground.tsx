@@ -82,6 +82,12 @@ export class Playground {
       text: '滚动选择器.H5',
       mobile: true,
       tag: 'nb-roll-picker'
+    },
+    {
+      key: 'marquee',
+      text: '跑马灯.H5',
+      mobile: true,
+      tag: 'nb-marquee'
     }
   ];
 

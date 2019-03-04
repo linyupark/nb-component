@@ -1,0 +1,48 @@
+.marquee {
+	// 同时显示两行总高度66
+	&.tow-row-66h {
+		height: rem(66px);
+		overflow: hidden;
+		font-size: rem(24px);
+		line-height: 1;
+		.item {
+			display: flex;
+			height: rem(32px);
+			margin-bottom: rem(8px);
+			align-items: center;
+			justify-content: space-between;
+			transition: .2s all;
+			text-decoration: none;
+			overflow: hidden;
+			.text {
+				width: rem(460px);
+				height: rem(24px);
+				color: #595959;
+				display: -webkit-box;
+			  -webkit-box-orient: vertical;
+			  -webkit-line-clamp: 1;
+			  line-height: 1;
+			  overflow: hidden;
+			}
+			.time {
+				color: #8c8c8c;
+			}
+			&.fadeOut {
+				animation: fadeout .2s;
+			}
+		}
+	}
+}
+
+@keyframes fadeout {
+	from {
+		height: rem(32px);
+		opacity: 1;
+		margin-bottom: rem(8px);
+	}
+	to {
+		height: 0;
+		margin-bottom: 0;
+		opacity: 0;
+	}
+}
