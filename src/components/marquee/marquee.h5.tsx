@@ -67,7 +67,7 @@ export class Marquee {
 		this.timer = setInterval(this.rollup, this.speed);
 	}
 
-	componentDidUnLoad() {
+	componentDidUnload() {
 		clearInterval(this.timer);
 	}
 }

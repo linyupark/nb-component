@@ -2,87 +2,87 @@
   "namespace": "NbComponent",
   "fsNamespace": "nb-component",
   "loader": "../nb-component.js",
-  "core": "nb-component.suwcs6rb.js",
-  "corePolyfilled": "nb-component.ncrz9re1.js",
+  "core": "nb-component.ceomxcpx.js",
+  "corePolyfilled": "nb-component.qllsedis.js",
   "components": {
     "nb-actionsheet": {
       "bundleIds": {
-        "$": "p3dv0oq2"
+        "$": "a1hhx0dh"
       },
       "encapsulation": "shadow"
     },
     "nb-affix": {
       "bundleIds": {
-        "$": "p3dv0oq2"
+        "$": "a1hhx0dh"
       },
       "encapsulation": "shadow"
     },
     "nb-badge": {
       "bundleIds": {
-        "$": "p3dv0oq2"
+        "$": "a1hhx0dh"
       },
       "encapsulation": "shadow"
     },
     "nb-canvas-radar": {
       "bundleIds": {
-        "$": "p3dv0oq2"
+        "$": "a1hhx0dh"
       }
     },
     "nb-code-highlight": {
       "bundleIds": {
-        "$": "p3dv0oq2"
+        "$": "a1hhx0dh"
       }
     },
     "nb-list": {
       "bundleIds": {
-        "$": "p3dv0oq2"
+        "$": "a1hhx0dh"
       },
       "encapsulation": "shadow"
     },
     "nb-list-item": {
       "bundleIds": {
-        "$": "p3dv0oq2"
+        "$": "a1hhx0dh"
       },
       "encapsulation": "shadow"
     },
     "nb-marquee": {
       "bundleIds": {
-        "$": "p3dv0oq2"
+        "$": "a1hhx0dh"
       },
       "encapsulation": "shadow"
     },
     "nb-pagination": {
       "bundleIds": {
-        "$": "p3dv0oq2"
+        "$": "a1hhx0dh"
       },
       "encapsulation": "shadow"
     },
     "nb-playground": {
       "bundleIds": {
-        "$": "p3dv0oq2"
+        "$": "a1hhx0dh"
       }
     },
     "nb-pull-to-do": {
       "bundleIds": {
-        "$": "p3dv0oq2"
+        "$": "a1hhx0dh"
       },
       "encapsulation": "shadow"
     },
     "nb-roll-picker": {
       "bundleIds": {
-        "$": "p3dv0oq2"
+        "$": "a1hhx0dh"
       },
       "encapsulation": "shadow"
     },
     "nb-svg-icon": {
       "bundleIds": {
-        "$": "p3dv0oq2"
+        "$": "a1hhx0dh"
       },
       "encapsulation": "shadow"
     },
     "nb-switch": {
       "bundleIds": {
-        "$": "p3dv0oq2"
+        "$": "a1hhx0dh"
       },
       "encapsulation": "shadow"
     }
