@@ -254,7 +254,8 @@ export namespace Components {
     */
     'items'?: {
       key: number,
-      html: string,
+      text: string,
+      time?: string,
       link: string
     }[];
     /**
@@ -272,7 +273,8 @@ export namespace Components {
     */
     'items'?: {
       key: number,
-      html: string,
+      text: string,
+      time?: string,
       link: string
     }[];
     /**
@@ -355,9 +357,13 @@ export namespace Components {
     */
     'done': () => void;
     /**
-    * 启用功能
+    * 加载状态
     */
-    'enable': boolean;
+    'loading': boolean;
+    /**
+    * 没有更多数据了
+    */
+    'noMore': boolean;
     /**
     * 当浏览器是返回状态是否尝试回到上一次的位置
     */
@@ -381,9 +387,13 @@ export namespace Components {
     */
     'disable'?: 'refresh' | 'more';
     /**
-    * 启用功能
+    * 加载状态
     */
-    'enable'?: boolean;
+    'loading'?: boolean;
+    /**
+    * 没有更多数据了
+    */
+    'noMore'?: boolean;
     /**
     * 当上拉触发加载更多
     */

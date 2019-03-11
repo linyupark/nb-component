@@ -1,13 +1,14 @@
 .pull-to-do {
   position: relative;
+  padding-bottom: rem(48px);
 
   .show, .hide {
     position: absolute;
     width: 100%;
-    top: 0;
     opacity: 1;
-    z-index: 2;
     transition: opacity 0.3s;
+    min-height: rem(48px);
+    z-index: 1;
   }
 
   .hide {

@@ -26,22 +26,25 @@ export default {
   'nb-marquee': [
     <div class="wrapper">
       <nb-marquee items={[
-        {
-          key: 1,
-          html: '<div class="text">首批或不欢迎红筹架构，种子选手明年。</div><div class="time">45分钟前</div>',
-          link: 'javascript:;'
-        },
-        {
-          key: 2,
-          html: '<div class="text">金融法院赴上交所专题调研，科创板定时金融法院赴上交所专题调研，科创板定 </div><div class="time">48分钟前</div>',
-          link: 'javascript:;'
-        },
-        {
-          key: 3,
-          html: '<div class="text">公司债-一般公司债业务完成</div><div class="time">56分钟前</div>',
-          link: 'javascript:;'
-        }
-      ]}>
+    {
+      key: 1,
+      text: '首批或不欢迎红筹架构，种子选手明年。',
+      time: '45分钟前',
+      link: 'javascript:;'
+    },
+    {
+      key: 2,
+      text: '金融法院赴上交所专题调研，科创板定时金融法院赴上交所专题调研，科创板定',
+      time: '48分钟前',
+      link: 'javascript:;'
+    },
+    {
+      key: 3,
+      text: '一般公司债业务完成',
+      time: '56分钟前',
+      link: 'javascript:;'
+    }
+  ]}>
       </nb-marquee>
     </div>,
     <div class="lang">React</div>,
@@ -50,17 +53,20 @@ export default {
   <nb-marquee items={[
     {
       key: 1,
-      html: '<div class="text">首批或不欢迎红筹架构，种子选手明年。</div><div class="time">45分钟前</div>',
+      text: '首批或不欢迎红筹架构，种子选手明年。',
+      time: '45分钟前',
       link: 'javascript:;'
     },
     {
       key: 2,
-      html: '<div class="text">金融法院赴上交所专题调研，科创板定时金融法院赴上交所专题调研，科创板定 </div><div class="time">48分钟前</div>',
+      text: '金融法院赴上交所专题调研，科创板定时金融法院赴上交所专题调研，科创板定',
+      time: '48分钟前',
       link: 'javascript:;'
     },
     {
       key: 3,
-      html: '<div class="text">公司债-一般公司债业务完成</div><div class="time">56分钟前</div>',
+      text: '一般公司债业务完成',
+      time: '56分钟前',
       link: 'javascript:;'
     }
   ]}>

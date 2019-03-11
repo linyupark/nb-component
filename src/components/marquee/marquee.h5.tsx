@@ -26,7 +26,8 @@ export class Marquee {
 	 */
 	@Prop({ mutable: true }) items?: {
 		key: number,
-		html: string,
+		text: string,
+		time?: string,
 		link: string
 	}[] = [];
 
@@ -58,7 +59,11 @@ export class Marquee {
 	render() {
 		return <div class={`marquee ${this.styleId}`}>
 			{this.items.map((item, i) => {
-				return <a href={item.link} class={`item ${i === 0 ? this.rollupClassName : ''}`} innerHTML={item.html}></a>
+				return <a href={item.link} class={`item ${i === 0 ? this.rollupClassName : ''}`}>
+					{this.styleId === 'tow-row-66h' && [<div class="text">
+						{item.text}
+					</div>, <div class="time">{item.time}</div>]}
+				</a>
 			})}
 		</div>
 	}

@@ -40,9 +40,9 @@ export class PullToRefresh {
   @Prop() disable ? : 'refresh' | 'more';
 
   /**
-   * 启用功能
+   * 没有更多数据了
    */
-  @Prop() enable: boolean = true;
+  @Prop() noMore: boolean = false;
 
   /**
    * 实际滚动显示区块选择器
@@ -72,7 +72,7 @@ export class PullToRefresh {
   /**
    * 加载状态
    */
-  @State() loading: boolean = false;
+  @Prop({ mutable: true }) loading: boolean = false;
 
   /**
    * 加载完毕
@@ -161,7 +161,7 @@ export class PullToRefresh {
     this.movePageY = ev.touches[0].pageY;
 
     // 临时禁用
-    if (!this.enable) return;
+    if (this.noMore) return;
 
     // 还在loading
     if (this.loading) return;
@@ -197,12 +197,15 @@ export class PullToRefresh {
 
   protected handleTouchEnd = () => {
     this.startDampLen = null;
+    if (this.noMore) {
+      return;
+    }
     if (Math.abs(this.dampingLen) > 3) {
       // 进入 loading 状态
       this.loading = true;
     }
-    this.dampingLen > 3 && this.refresh.emit();
-    this.dampingLen < -3 && this.more.emit();
+    this.dampingLen > 3 && this.disable !== 'refresh' && this.refresh.emit();
+    this.dampingLen < -3 && this.disable !== 'more' && this.more.emit();
     // 记录当前位置
     if (this.positionSave) {
       _scrollTopPosition = this.getScrollTop();
@@ -222,6 +225,10 @@ export class PullToRefresh {
       throw new TypeError(
         '"wrapperSelector" or "contentSelector" props maybe not a valid scroll dom selector.'
       );
+    }
+    // 不存在 wrapper 则不绑定
+    if (!this.$wrapper) {
+      return console.log('$wrapper undefined');
     }
     // 绑定
     if (bind) {
@@ -275,9 +282,9 @@ export class PullToRefresh {
 
   render() {
     return (
-      <div class="pull-to-do">
+      <div class={`pull-to-do`}>
         <div
-          class={`${(this.dampingLen > this.dampHeight * 0.8 && this.enable) ? 'show' : 'hide'}`}
+          class={`${(this.dampingLen > this.dampHeight * 0.8 && !this.noMore) ? 'show' : 'hide'}`}
         >
           <div class={this.loading ? 'show' : 'hide'}>
             <slot name="refresh-loading" />
@@ -287,17 +294,14 @@ export class PullToRefresh {
           </div>
         </div>
         <slot name="main" />
-        <div
-          class={`bottom ${
-            (this.dampingLen < -this.dampHeight * 0.8 && this.enable) ? 'show' : 'hide'
-          }`}
-        >
-          <div class={this.loading ? 'show' : 'hide'}>
-            <slot name="more-loading" />
-          </div>
-          <div class={this.loading ? 'hide' : 'show'}>
-            <slot name="more" />
-          </div>
+        <div class={`bottom ${this.noMore && !this.loading ? 'show' : 'hide'}`}>
+          <slot name="no-more" />
+        </div>
+        <div class={`bottom ${this.loading ? 'show' : 'hide'}`}>
+          <slot name="more-loading" />
+        </div>
+        <div class={`bottom ${!this.loading && !this.noMore ? 'show' : 'hide'}`}>
+          <slot name="more" />
         </div>
       </div>
     );
