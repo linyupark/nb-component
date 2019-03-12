@@ -2,87 +2,87 @@
   "namespace": "NbComponent",
   "fsNamespace": "nb-component",
   "loader": "../nb-component.js",
-  "corePolyfilled": "es5-build-disabled.js",
-  "core": "nb-component.core.js",
+  "core": "nb-component.h642vqol.js",
+  "corePolyfilled": "nb-component.2u0xicap.js",
   "components": {
     "nb-actionsheet": {
       "bundleIds": {
-        "$": "nb-actionsheet"
+        "$": "2esnn6jt"
       },
       "encapsulation": "shadow"
     },
     "nb-affix": {
       "bundleIds": {
-        "$": "nb-actionsheet"
+        "$": "2esnn6jt"
       },
       "encapsulation": "shadow"
     },
     "nb-badge": {
       "bundleIds": {
-        "$": "nb-actionsheet"
+        "$": "2esnn6jt"
       },
       "encapsulation": "shadow"
     },
     "nb-canvas-radar": {
       "bundleIds": {
-        "$": "nb-actionsheet"
+        "$": "2esnn6jt"
       }
     },
     "nb-code-highlight": {
       "bundleIds": {
-        "$": "nb-actionsheet"
+        "$": "2esnn6jt"
       }
     },
     "nb-list": {
       "bundleIds": {
-        "$": "nb-actionsheet"
+        "$": "2esnn6jt"
       },
       "encapsulation": "shadow"
     },
     "nb-list-item": {
       "bundleIds": {
-        "$": "nb-actionsheet"
+        "$": "2esnn6jt"
       },
       "encapsulation": "shadow"
     },
     "nb-marquee": {
       "bundleIds": {
-        "$": "nb-actionsheet"
+        "$": "2esnn6jt"
       },
       "encapsulation": "shadow"
     },
     "nb-pagination": {
       "bundleIds": {
-        "$": "nb-actionsheet"
+        "$": "2esnn6jt"
       },
       "encapsulation": "shadow"
     },
     "nb-playground": {
       "bundleIds": {
-        "$": "nb-actionsheet"
+        "$": "2esnn6jt"
       }
     },
     "nb-pull-to-do": {
       "bundleIds": {
-        "$": "nb-actionsheet"
+        "$": "2esnn6jt"
       },
       "encapsulation": "shadow"
     },
     "nb-roll-picker": {
       "bundleIds": {
-        "$": "nb-actionsheet"
+        "$": "2esnn6jt"
       },
       "encapsulation": "shadow"
     },
     "nb-svg-icon": {
       "bundleIds": {
-        "$": "nb-actionsheet"
+        "$": "2esnn6jt"
       },
       "encapsulation": "shadow"
     },
     "nb-switch": {
       "bundleIds": {
-        "$": "nb-actionsheet"
+        "$": "2esnn6jt"
       },
       "encapsulation": "shadow"
     }

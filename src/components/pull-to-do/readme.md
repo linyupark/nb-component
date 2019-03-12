@@ -12,7 +12,8 @@
 | `contentSelector` | `content-selector` | 展示内容选择器                            | `string`              | `undefined` |
 | `dampHeight`      | `damp-height`      | 拉动限制高度                             | `number`              | `30`        |
 | `disable`         | `disable`          | 禁用哪项功能 refresh: 下拉刷新 \| more: 加载更多 | `"more" \| "refresh"` | `undefined` |
-| `enable`          | `enable`           | 启用功能                               | `boolean`             | `true`      |
+| `loading`         | `loading`          | 加载状态                               | `boolean`             | `false`     |
+| `noMore`          | `no-more`          | 没有更多数据了                            | `boolean`             | `false`     |
 | `positionSave`    | `position-save`    | 当浏览器是返回状态是否尝试回到上一次的位置              | `boolean`             | `true`      |
 | `wrapperSelector` | `wrapper-selector` | 实际滚动显示区块选择器                        | `string`              | `undefined` |
 
