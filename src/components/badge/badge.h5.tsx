@@ -64,7 +64,8 @@ export class Badge {
    */
   get displayCount() {
     if (this.dot) return '';
-    if (this.showZero || this.count <= this.maxCount) return this.count;
+    if (this.count === 0 && this.showZero) return 0;
+    if (this.count <= this.maxCount) return this.count;
     if (this.count > this.maxCount) return `${this.maxCount}+`;
   }
 
