@@ -8,7 +8,7 @@ import {
   Method
 } from '@stencil/core';
 
-let _scrollTopPosition = 0;
+let _positionSaver = {};
 
 /**
  * 下滑刷新
@@ -19,6 +19,7 @@ let _scrollTopPosition = 0;
   shadow: true,
 })
 export class PullToRefresh {
+
   /**
    * 当下拉成立触发事件
    */
@@ -60,9 +61,9 @@ export class PullToRefresh {
   @Prop() dampHeight: number = 30;
 
   /**
-   * 当浏览器是返回状态是否尝试回到上一次的位置
+   * 当浏览器是返回状态是否尝试回到上一次的位置 ID
    */
-  @Prop() positionSave: boolean = true;
+  @Prop() positionSaveId?: string = null;
 
   /**
    * 已经拉动的限制高度(正数为顶部，负数为底部)
@@ -81,6 +82,16 @@ export class PullToRefresh {
     this.$content.style.transform = `translateY(0px)`;
     this.dampingLen = 0;
     this.loading = false;
+  }
+
+  /**
+   * 获取上次位置
+   */
+  @Method() restoreLastPosition() {
+    if (this.positionSaveId && _positionSaver[this.positionSaveId]) {
+      this.$wrapper.scrollTop = _positionSaver[this.positionSaveId];
+    }
+    return _positionSaver[this.positionSaveId] || 0;
   }
 
   /**
@@ -207,8 +218,10 @@ export class PullToRefresh {
     this.dampingLen > 3 && this.disable !== 'refresh' && this.refresh.emit();
     this.dampingLen < -3 && this.disable !== 'more' && this.more.emit();
     // 记录当前位置
-    if (this.positionSave) {
-      _scrollTopPosition = this.getScrollTop();
+    if (this.positionSaveId) {
+      setTimeout(() => {
+        _positionSaver[this.positionSaveId] = this.getScrollTop();
+      }, 1000);
     }
   }
 
@@ -269,9 +282,11 @@ export class PullToRefresh {
 
   componentDidLoad() {
     this.bindTouchScroll();
-    if (this.positionSave) {
-      // console.log('回到位置', _scrollTopPosition);
-      this.$wrapper.scrollTop = _scrollTopPosition;
+    if (this.positionSaveId && _positionSaver[this.positionSaveId]) {
+      console.log('上次位置', _positionSaver[this.positionSaveId]);
+      // setTimeout(() => {
+      //   this.$wrapper.scrollTop = _positionSaver[this.positionSaveId];
+      // }, 100);
     }
   }
 

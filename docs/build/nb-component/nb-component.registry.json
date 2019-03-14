@@ -2,87 +2,87 @@
   "namespace": "NbComponent",
   "fsNamespace": "nb-component",
   "loader": "../nb-component.js",
-  "core": "nb-component.nntmm4no.js",
-  "corePolyfilled": "nb-component.lshajv34.js",
+  "core": "nb-component.fzrlyz5h.js",
+  "corePolyfilled": "nb-component.u0kdegzi.js",
   "components": {
     "nb-actionsheet": {
       "bundleIds": {
-        "$": "w55xvl14"
+        "$": "5knvst82"
       },
       "encapsulation": "shadow"
     },
     "nb-affix": {
       "bundleIds": {
-        "$": "w55xvl14"
+        "$": "5knvst82"
       },
       "encapsulation": "shadow"
     },
     "nb-badge": {
       "bundleIds": {
-        "$": "w55xvl14"
+        "$": "5knvst82"
       },
       "encapsulation": "shadow"
     },
     "nb-canvas-radar": {
       "bundleIds": {
-        "$": "w55xvl14"
+        "$": "5knvst82"
       }
     },
     "nb-code-highlight": {
       "bundleIds": {
-        "$": "w55xvl14"
+        "$": "5knvst82"
       }
     },
     "nb-list": {
       "bundleIds": {
-        "$": "w55xvl14"
+        "$": "5knvst82"
       },
       "encapsulation": "shadow"
     },
     "nb-list-item": {
       "bundleIds": {
-        "$": "w55xvl14"
+        "$": "5knvst82"
       },
       "encapsulation": "shadow"
     },
     "nb-marquee": {
       "bundleIds": {
-        "$": "w55xvl14"
+        "$": "5knvst82"
       },
       "encapsulation": "shadow"
     },
     "nb-pagination": {
       "bundleIds": {
-        "$": "w55xvl14"
+        "$": "5knvst82"
       },
       "encapsulation": "shadow"
     },
     "nb-playground": {
       "bundleIds": {
-        "$": "w55xvl14"
+        "$": "5knvst82"
       }
     },
     "nb-pull-to-do": {
       "bundleIds": {
-        "$": "w55xvl14"
+        "$": "5knvst82"
       },
       "encapsulation": "shadow"
     },
     "nb-roll-picker": {
       "bundleIds": {
-        "$": "w55xvl14"
+        "$": "5knvst82"
       },
       "encapsulation": "shadow"
     },
     "nb-svg-icon": {
       "bundleIds": {
-        "$": "w55xvl14"
+        "$": "5knvst82"
       },
       "encapsulation": "shadow"
     },
     "nb-switch": {
       "bundleIds": {
-        "$": "w55xvl14"
+        "$": "5knvst82"
       },
       "encapsulation": "shadow"
     }

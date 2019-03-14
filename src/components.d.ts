@@ -365,9 +365,13 @@ export namespace Components {
     */
     'noMore': boolean;
     /**
-    * 当浏览器是返回状态是否尝试回到上一次的位置
+    * 当浏览器是返回状态是否尝试回到上一次的位置 ID
     */
-    'positionSave': boolean;
+    'positionSaveId'?: string;
+    /**
+    * 获取上次位置
+    */
+    'restoreLastPosition': () => any;
     /**
     * 实际滚动显示区块选择器
     */
@@ -403,9 +407,9 @@ export namespace Components {
     */
     'onRefresh'?: (event: CustomEvent) => void;
     /**
-    * 当浏览器是返回状态是否尝试回到上一次的位置
+    * 当浏览器是返回状态是否尝试回到上一次的位置 ID
     */
-    'positionSave'?: boolean;
+    'positionSaveId'?: string;
     /**
     * 实际滚动显示区块选择器
     */
