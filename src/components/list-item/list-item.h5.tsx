@@ -25,10 +25,15 @@ export class ListItem {
    * 短线条方向
    */
   @Prop() short?: 'left' | 'right' | 'both';
+  
+  /**
+   * 设置单元高度
+   */
+  @Prop() height?: 88 | 120;
 
   render() {
     return (
-      <div class={`item ${this.short || ''}`} style={{
+      <div class={`item ${this.short || ''} ${this.height ? 'h' + this.height : ''}`} style={{
         borderBottom: `${this.border > 0 ? `${this.border}px` : '0'} solid ${this.color}`
       }}>
         <slot />

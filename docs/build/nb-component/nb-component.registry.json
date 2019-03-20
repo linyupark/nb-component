@@ -2,87 +2,87 @@
   "namespace": "NbComponent",
   "fsNamespace": "nb-component",
   "loader": "../nb-component.js",
-  "core": "nb-component.fzrlyz5h.js",
-  "corePolyfilled": "nb-component.u0kdegzi.js",
+  "core": "nb-component.chpawuri.js",
+  "corePolyfilled": "nb-component.p9e0keup.js",
   "components": {
     "nb-actionsheet": {
       "bundleIds": {
-        "$": "5knvst82"
+        "$": "9vrqi7qd"
       },
       "encapsulation": "shadow"
     },
     "nb-affix": {
       "bundleIds": {
-        "$": "5knvst82"
+        "$": "9vrqi7qd"
       },
       "encapsulation": "shadow"
     },
     "nb-badge": {
       "bundleIds": {
-        "$": "5knvst82"
+        "$": "9vrqi7qd"
       },
       "encapsulation": "shadow"
     },
     "nb-canvas-radar": {
       "bundleIds": {
-        "$": "5knvst82"
+        "$": "9vrqi7qd"
       }
     },
     "nb-code-highlight": {
       "bundleIds": {
-        "$": "5knvst82"
+        "$": "9vrqi7qd"
       }
     },
     "nb-list": {
       "bundleIds": {
-        "$": "5knvst82"
+        "$": "9vrqi7qd"
       },
       "encapsulation": "shadow"
     },
     "nb-list-item": {
       "bundleIds": {
-        "$": "5knvst82"
+        "$": "9vrqi7qd"
       },
       "encapsulation": "shadow"
     },
     "nb-marquee": {
       "bundleIds": {
-        "$": "5knvst82"
+        "$": "9vrqi7qd"
       },
       "encapsulation": "shadow"
     },
     "nb-pagination": {
       "bundleIds": {
-        "$": "5knvst82"
+        "$": "9vrqi7qd"
       },
       "encapsulation": "shadow"
     },
     "nb-playground": {
       "bundleIds": {
-        "$": "5knvst82"
+        "$": "9vrqi7qd"
       }
     },
     "nb-pull-to-do": {
       "bundleIds": {
-        "$": "5knvst82"
+        "$": "9vrqi7qd"
       },
       "encapsulation": "shadow"
     },
     "nb-roll-picker": {
       "bundleIds": {
-        "$": "5knvst82"
+        "$": "9vrqi7qd"
       },
       "encapsulation": "shadow"
     },
     "nb-svg-icon": {
       "bundleIds": {
-        "$": "5knvst82"
+        "$": "9vrqi7qd"
       },
       "encapsulation": "shadow"
     },
     "nb-switch": {
       "bundleIds": {
-        "$": "5knvst82"
+        "$": "9vrqi7qd"
       },
       "encapsulation": "shadow"
     }

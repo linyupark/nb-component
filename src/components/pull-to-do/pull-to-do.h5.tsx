@@ -146,9 +146,10 @@ export class PullToRefresh {
    */
   protected recordStartDampLen() {
     if (this.startDampLen) return;
+    // console.log('startDampLen', this.getScrollTop(), this.pullLength, this.getWrapperScrollTop());
     if (
       (this.getScrollTop() === 0 && this.pullLength > 0) ||
-      (this.getScrollTop() === this.getWrapperScrollTop() &&
+      (Math.abs(this.getScrollTop() - this.getWrapperScrollTop()) < 2 &&
         this.pullLength < 0)
     ) {
       this.startDampLen = this.pullLength;
@@ -189,7 +190,7 @@ export class PullToRefresh {
         this.dampingLen = 0;
       }
     }
-
+    console.log('more', this.getScrollTop(), this.getWrapperScrollTop(), this.startDampLen, this.pullLength, this.startDampLen);
     if (this.startDampLen < 0 && this.disable !== 'more') {
       if (this.pullLength < this.startDampLen) {
         this.dampingLen = this.pullLength + this.startDampLen;
@@ -211,6 +212,7 @@ export class PullToRefresh {
     if (this.noMore) {
       return;
     }
+    console.log(this.dampingLen);
     if (Math.abs(this.dampingLen) > 3) {
       // 进入 loading 状态
       this.loading = true;
@@ -219,9 +221,7 @@ export class PullToRefresh {
     this.dampingLen < -3 && this.disable !== 'more' && this.more.emit();
     // 记录当前位置
     if (this.positionSaveId) {
-      setTimeout(() => {
-        _positionSaver[this.positionSaveId] = this.getScrollTop();
-      }, 1000);
+      _positionSaver[this.positionSaveId] = this.getScrollTop();
     }
   }
 

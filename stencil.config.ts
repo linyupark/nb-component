@@ -6,7 +6,10 @@ import cssnext from 'postcss-preset-env';
 let config: Config = {
   namespace: 'nb-component',
   outputTargets: [
-    { type: 'dist' },
+    { 
+      type: 'dist',
+      dir: process.env.CLIENT || 'dist'
+    },
     { type: 'docs' },
     {
       type: 'www',
@@ -24,7 +27,7 @@ let config: Config = {
     }
   ],
   // enableCache: false,
-  globalStyle: 'src/global/main.styl',
+  globalStyle: process.env.NODE_ENV === 'production' ? null : 'src/global/main.styl',
   // globalScript: 'src/global/main.ts',
   plugins: [
     stylus({
@@ -43,8 +46,14 @@ let config: Config = {
   ]
 };
 
-if (process.env.NODE_ENV === 'production' && process.env.DEMO !== 'yes') {
-  config.excludeSrc = ['/test/', '**/.spec.', '**/playground/**', '**/code/**'];
+if (process.env.NODE_ENV === 'production') {
+  config.excludeSrc = [];
+  if (process.env.DEMO !== 'yes') {
+    config.excludeSrc = ['/test/', '**/.spec.', '**/playground/**', '**/code/**'];
+  }
+  if (process.env.CLIENT === 'zyb') {
+    config.excludeSrc = config.excludeSrc.concat(['**/roll-picker/**', '**/switch/**', '**/roll-picker/**', '**/svg-icon/**', '**/pagination/**', '**/actionsheet/**', '**/canvas-radar/**']);
+  }
 }
 
 export { config };

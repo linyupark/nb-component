@@ -620,7 +620,11 @@ export default {
       </div>
     </nb-actionsheet>,
     <div class="wrapper">
-      <button onClick={() => refTarget.actionsheet.show()}>打开面板</button>
+      <button onClick={() => {
+        refTarget.actionsheet.show();
+        document.querySelector('#testInner').innerHTML = '<nb-pagination current="1" pagesize="5" total="50" />';
+      }}>打开面板</button>
+      <span id="testInner"></span>
     </div>,
     <div class="lang">React</div>,
     <nb-code-highlight

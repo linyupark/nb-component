@@ -216,6 +216,10 @@ export namespace Components {
     */
     'color': string;
     /**
+    * 设置单元高度
+    */
+    'height'?: 88 | 120;
+    /**
     * 短线条方向
     */
     'short'?: 'left' | 'right' | 'both';
@@ -229,6 +233,10 @@ export namespace Components {
     * 线条颜色
     */
     'color'?: string;
+    /**
+    * 设置单元高度
+    */
+    'height'?: 88 | 120;
     /**
     * 短线条方向
     */
