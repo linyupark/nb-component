@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property   | Attribute   | Description | Type                          | Default |
-| ---------- | ----------- | ----------- | ----------------------------- | ------- |
-| `topSpace` | `top-space` | List之间的间距   | `"l" \| "m" \| "none" \| "s"` | `'m'`   |
+| Property   | Attribute   | Description | Type     | Default |
+| ---------- | ----------- | ----------- | -------- | ------- |
+| `topSpace` | `top-space` | List之间的间距   | `number` | `20`    |
 
 
 ----------------------------------------------

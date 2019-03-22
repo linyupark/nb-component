@@ -14,11 +14,25 @@ export class List {
   /**
    * List之间的间距
    */
-  @Prop() topSpace: 's' | 'm' | 'l' | 'none' = 'm';
+  @Prop() topSpace?: number = 20;
+
+  /**
+   * 像素转为rem
+   */
+  px2rem(px) {
+    return (px / 75);
+  }
 
   render() {
     return [
-      this.topSpace !== 'none' && <div class={`space ${this.topSpace}`}></div>,
+      this.topSpace !== 0 && <div 
+        class={`space`}
+        style={{
+          height: `${this.px2rem(this.topSpace)}rem`,
+        }}
+      >
+        <slot name="space" />
+      </div>,
       <div class="list">
         <slot />
       </div>

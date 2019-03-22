@@ -218,11 +218,15 @@ export namespace Components {
     /**
     * 设置单元高度
     */
-    'height'?: 88 | 120;
+    'height'?: number;
     /**
     * 短线条方向
     */
     'short'?: 'left' | 'right' | 'both';
+    /**
+    * 设置横线左右间距
+    */
+    'sideSpace'?: number;
   }
   interface NbListItemAttributes extends StencilHTMLAttributes {
     /**
@@ -236,24 +240,28 @@ export namespace Components {
     /**
     * 设置单元高度
     */
-    'height'?: 88 | 120;
+    'height'?: number;
     /**
     * 短线条方向
     */
     'short'?: 'left' | 'right' | 'both';
+    /**
+    * 设置横线左右间距
+    */
+    'sideSpace'?: number;
   }
 
   interface NbList {
     /**
     * List之间的间距
     */
-    'topSpace': 's' | 'm' | 'l' | 'none';
+    'topSpace'?: number;
   }
   interface NbListAttributes extends StencilHTMLAttributes {
     /**
     * List之间的间距
     */
-    'topSpace'?: 's' | 'm' | 'l' | 'none';
+    'topSpace'?: number;
   }
 
   interface NbMarquee {
