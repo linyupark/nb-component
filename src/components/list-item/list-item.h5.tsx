@@ -40,7 +40,7 @@ export class ListItem {
    * 像素转为rem
    */
   px2rem(px) {
-    return (px / 75);
+    return px == 0 ? 'auto' : (px / 75);
   }
 
   /**
@@ -54,8 +54,8 @@ export class ListItem {
   render() {
     return (
       <div class={`item`} style={{
-        paddingLeft: `${!this.isShort('left') ? `${this.px2rem(this.sideSpace)}rem` : '0'}`,
-        paddingRight: `${!this.isShort('right') ? `0 ${this.px2rem(this.sideSpace)}rem` : '0'}`,
+        paddingLeft: `${this.isShort('left') === false ? `${this.px2rem(this.sideSpace)}rem` : '0'}`,
+        paddingRight: `${this.isShort('right') === false ? `${this.px2rem(this.sideSpace)}rem` : '0'}`,
         height: `${this.px2rem(this.height)}rem`,
         borderBottom: `${this.border > 0 ? `${this.border}px` : '0'} solid ${this.color}`,
         marginLeft: `${this.isShort('left') ? this.px2rem(this.sideSpace) + 'rem' : '0'}`,

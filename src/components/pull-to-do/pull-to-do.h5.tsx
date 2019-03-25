@@ -190,7 +190,7 @@ export class PullToRefresh {
         this.dampingLen = 0;
       }
     }
-    console.log('more', this.getScrollTop(), this.getWrapperScrollTop(), this.startDampLen, this.pullLength, this.startDampLen);
+    // console.log('more', this.getScrollTop(), this.getWrapperScrollTop(), this.startDampLen, this.pullLength, this.startDampLen);
     if (this.startDampLen < 0 && this.disable !== 'more') {
       if (this.pullLength < this.startDampLen) {
         this.dampingLen = this.pullLength + this.startDampLen;
