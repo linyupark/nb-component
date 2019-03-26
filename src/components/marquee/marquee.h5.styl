@@ -7,21 +7,24 @@
 		line-height: 1;
 		.item {
 			display: flex;
-			height: rem(32px);
-			margin-bottom: rem(8px);
+			height: rem(33px);
+			// margin-bottom: rem(8px);
 			align-items: center;
 			justify-content: space-between;
 			transition: .2s all;
 			text-decoration: none;
 			overflow: hidden;
+			&.l-1 {
+				margin-top: rem(18px);
+			}
 			.text {
 				width: rem(420px);
-				height: rem(24px);
+				height: rem(33px);
 				color: #595959;
 				display: -webkit-box;
 			  -webkit-box-orient: vertical;
 			  -webkit-line-clamp: 1;
-			  line-height: 1;
+			  line-height: rem(33px);
 			  overflow: hidden;
 			}
 			.time {
