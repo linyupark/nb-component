@@ -206,6 +206,111 @@ export namespace Components {
     'lang'?: string;
   }
 
+  interface HtEmoji {
+    /**
+    * 表情分组
+    */
+    'group': string;
+    /**
+    * 表情名称
+    */
+    'type': string;
+  }
+  interface HtEmojiAttributes extends StencilHTMLAttributes {
+    /**
+    * 表情分组
+    */
+    'group'?: string;
+    /**
+    * 表情名称
+    */
+    'type'?: string;
+  }
+
+  interface HtRichtextParser {
+    /**
+    * 调试模式
+    */
+    'debug'?: false;
+  }
+  interface HtRichtextParserAttributes extends StencilHTMLAttributes {
+    /**
+    * 调试模式
+    */
+    'debug'?: false;
+  }
+
+  interface HtStock {
+    /**
+    * 详情对应id
+    */
+    'detailId': string;
+    /**
+    * 头部标题
+    */
+    'headTitle': string;
+  }
+  interface HtStockAttributes extends StencilHTMLAttributes {
+    /**
+    * 详情对应id
+    */
+    'detailId'?: string;
+    /**
+    * 头部标题
+    */
+    'headTitle'?: string;
+  }
+
+  interface HtSubject {
+    /**
+    * 详情对应id
+    */
+    'detailId': string;
+    /**
+    * 头部标题
+    */
+    'headTitle': string;
+    /**
+    * 摘要
+    */
+    'summary': string;
+  }
+  interface HtSubjectAttributes extends StencilHTMLAttributes {
+    /**
+    * 详情对应id
+    */
+    'detailId'?: string;
+    /**
+    * 头部标题
+    */
+    'headTitle'?: string;
+    /**
+    * 摘要
+    */
+    'summary'?: string;
+  }
+
+  interface HtTopic {
+    /**
+    * 详情对应id
+    */
+    'detailId': string;
+    /**
+    * 头部标题
+    */
+    'headTitle': string;
+  }
+  interface HtTopicAttributes extends StencilHTMLAttributes {
+    /**
+    * 详情对应id
+    */
+    'detailId'?: string;
+    /**
+    * 头部标题
+    */
+    'headTitle'?: string;
+  }
+
   interface NbListItem {
     /**
     * 下边框, 0则不显示
@@ -535,6 +640,11 @@ declare global {
     'NbBadge': Components.NbBadge;
     'NbCanvasRadar': Components.NbCanvasRadar;
     'NbCodeHighlight': Components.NbCodeHighlight;
+    'HtEmoji': Components.HtEmoji;
+    'HtRichtextParser': Components.HtRichtextParser;
+    'HtStock': Components.HtStock;
+    'HtSubject': Components.HtSubject;
+    'HtTopic': Components.HtTopic;
     'NbListItem': Components.NbListItem;
     'NbList': Components.NbList;
     'NbMarquee': Components.NbMarquee;
@@ -552,6 +662,11 @@ declare global {
     'nb-badge': Components.NbBadgeAttributes;
     'nb-canvas-radar': Components.NbCanvasRadarAttributes;
     'nb-code-highlight': Components.NbCodeHighlightAttributes;
+    'ht-emoji': Components.HtEmojiAttributes;
+    'ht-richtext-parser': Components.HtRichtextParserAttributes;
+    'ht-stock': Components.HtStockAttributes;
+    'ht-subject': Components.HtSubjectAttributes;
+    'ht-topic': Components.HtTopicAttributes;
     'nb-list-item': Components.NbListItemAttributes;
     'nb-list': Components.NbListAttributes;
     'nb-marquee': Components.NbMarqueeAttributes;
@@ -592,6 +707,36 @@ declare global {
   var HTMLNbCodeHighlightElement: {
     prototype: HTMLNbCodeHighlightElement;
     new (): HTMLNbCodeHighlightElement;
+  };
+
+  interface HTMLHtEmojiElement extends Components.HtEmoji, HTMLStencilElement {}
+  var HTMLHtEmojiElement: {
+    prototype: HTMLHtEmojiElement;
+    new (): HTMLHtEmojiElement;
+  };
+
+  interface HTMLHtRichtextParserElement extends Components.HtRichtextParser, HTMLStencilElement {}
+  var HTMLHtRichtextParserElement: {
+    prototype: HTMLHtRichtextParserElement;
+    new (): HTMLHtRichtextParserElement;
+  };
+
+  interface HTMLHtStockElement extends Components.HtStock, HTMLStencilElement {}
+  var HTMLHtStockElement: {
+    prototype: HTMLHtStockElement;
+    new (): HTMLHtStockElement;
+  };
+
+  interface HTMLHtSubjectElement extends Components.HtSubject, HTMLStencilElement {}
+  var HTMLHtSubjectElement: {
+    prototype: HTMLHtSubjectElement;
+    new (): HTMLHtSubjectElement;
+  };
+
+  interface HTMLHtTopicElement extends Components.HtTopic, HTMLStencilElement {}
+  var HTMLHtTopicElement: {
+    prototype: HTMLHtTopicElement;
+    new (): HTMLHtTopicElement;
   };
 
   interface HTMLNbListItemElement extends Components.NbListItem, HTMLStencilElement {}
@@ -654,6 +799,11 @@ declare global {
     'nb-badge': HTMLNbBadgeElement
     'nb-canvas-radar': HTMLNbCanvasRadarElement
     'nb-code-highlight': HTMLNbCodeHighlightElement
+    'ht-emoji': HTMLHtEmojiElement
+    'ht-richtext-parser': HTMLHtRichtextParserElement
+    'ht-stock': HTMLHtStockElement
+    'ht-subject': HTMLHtSubjectElement
+    'ht-topic': HTMLHtTopicElement
     'nb-list-item': HTMLNbListItemElement
     'nb-list': HTMLNbListElement
     'nb-marquee': HTMLNbMarqueeElement
@@ -671,6 +821,11 @@ declare global {
     'nb-badge': HTMLNbBadgeElement;
     'nb-canvas-radar': HTMLNbCanvasRadarElement;
     'nb-code-highlight': HTMLNbCodeHighlightElement;
+    'ht-emoji': HTMLHtEmojiElement;
+    'ht-richtext-parser': HTMLHtRichtextParserElement;
+    'ht-stock': HTMLHtStockElement;
+    'ht-subject': HTMLHtSubjectElement;
+    'ht-topic': HTMLHtTopicElement;
     'nb-list-item': HTMLNbListItemElement;
     'nb-list': HTMLNbListElement;
     'nb-marquee': HTMLNbMarqueeElement;

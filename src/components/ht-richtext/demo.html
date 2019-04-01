@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>海通社区富文本交互演示</title>
+  <link rel="stylesheet" type="text/css" href="http://127.0.0.1:3333/nb-component/build/nb-component.css">
+  <script src="http://127.0.0.1:3333/nb-component/build/nb-component.js"></script>
+  <style type="text/css">
+  html {
+    font-size: 37.5px;
+    width: 10rem;
+  }
+  body {
+    width: 10rem;
+    min-height: 100vh;
+  }
+  .demo {
+    font-size: .46rem;
+    width: 8rem;
+    margin: 1rem;
+  }
+  h5 {
+    font-size: .64rem;
+    margin: .5rem 0;
+  }
+  .demo p {
+    font-size: 0.426666666666667rem;
+    line-height: 0.666666666666667rem;
+    color: #000;
+    margin: 0;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="demo">
+
+
+    <h5>表情包</h5>
+    <ht-richtext-parser>
+      <p>你好啊，{[emoji|default|大笑]} !!!!你在干嘛？{[emoji|default|惊慌]}</p>
+    </ht-richtext-parser>
+
+
+    <h5>专题</h5>
+    <ht-richtext-parser>
+      <p>{[subject|1000|华为CFO孟晚舟被逮捕，美方究竟意欲何为？|加拿大应美要求逮捕华为CEO，任正非女儿孟晚舟，中国驻加使馆孟晚舟，中国驻加使馆孟晚舟，中国的的的d...]}</p>
+    </ht-richtext-parser>
+
+
+    <h5>评论专题</h5>
+    <ht-richtext-parser>
+      <p>这里评论内容，加拿大应美方要逮捕华为CFO，任正非女儿孟晚舟，中国中国驻加使馆强烈抗议抗议抗议抗议抗议抗议抗议...
+      {[subject|1000|华为CFO孟晚舟被逮捕，美方究竟意欲何为？]}</p>
+    </ht-richtext-parser>
+
+    <h5>话题</h5>
+    <ht-richtext-parser>
+      <p>{[topic|1000|这里是话题名称]} 海通加油加油！</p>
+    </ht-richtext-parser>
+
+    <h5>股票</h5>
+    <ht-richtext-parser>
+      <p>{[stock|600837|海通证券600837.SH]} 痛心！</p>
+    </ht-richtext-parser>
+
+
+  </div>
+</body>
+
+</html>
