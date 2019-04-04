@@ -14,6 +14,7 @@
     "build": "cross-env NODE_ENV=production stencil build --docs && rm docs/index.html",
     "build-demo": "cross-env NODE_ENV=production DEMO=yes stencil build --docs",
     "build-zyb": "cross-env NODE_ENV=production CLIENT=zyb stencil build --docs",
+    "build-ht": "cross-env NODE_ENV=production CLIENT=ht stencil build --docs",
     "docs": "stencil build --docs",
     "start": "cross-env NODE_ENV=develop stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",

@@ -1,0 +1,200 @@
+{
+  "components": [
+    {
+      "tag": "ht-emoji",
+      "dependencies": [],
+      "componentClass": "Emoji",
+      "componentPath": "components/ht-richtext/emoji/ht-parser.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/ht-richtext/emoji/ht-emoji.styl"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "group",
+          "type": "String",
+          "attr": "group"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "attr": "type"
+        }
+      ],
+      "shadow": true
+    },
+    {
+      "tag": "ht-richtext-parser",
+      "dependencies": [],
+      "componentClass": "RichtextParser",
+      "componentPath": "components/ht-richtext/parser/ht-parser.js",
+      "styles": {},
+      "props": [
+        {
+          "name": "debug",
+          "type": "Boolean",
+          "attr": "debug"
+        }
+      ],
+      "hostElement": {
+        "name": "$el"
+      },
+      "shadow": true
+    },
+    {
+      "tag": "ht-stock",
+      "dependencies": [],
+      "componentClass": "Stock",
+      "componentPath": "components/ht-richtext/stock/ht-stock.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/ht-richtext/stock/ht-stock.styl"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "detailId",
+          "type": "String",
+          "attr": "detail-id"
+        },
+        {
+          "name": "headTitle",
+          "type": "String",
+          "attr": "head-title"
+        }
+      ],
+      "shadow": true
+    },
+    {
+      "tag": "ht-subject",
+      "dependencies": [],
+      "componentClass": "Subject",
+      "componentPath": "components/ht-richtext/subject/ht-subject.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/ht-richtext/subject/ht-subject.styl"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "detailId",
+          "type": "String",
+          "attr": "detail-id"
+        },
+        {
+          "name": "headTitle",
+          "type": "String",
+          "attr": "head-title"
+        },
+        {
+          "name": "summary",
+          "type": "String",
+          "attr": "summary"
+        }
+      ],
+      "shadow": true
+    },
+    {
+      "tag": "ht-topic",
+      "dependencies": [],
+      "componentClass": "Topic",
+      "componentPath": "components/ht-richtext/topic/ht-topic.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/ht-richtext/topic/ht-topic.styl"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "detailId",
+          "type": "String",
+          "attr": "detail-id"
+        },
+        {
+          "name": "headTitle",
+          "type": "String",
+          "attr": "head-title"
+        }
+      ],
+      "shadow": true
+    },
+    {
+      "tag": "nb-list",
+      "dependencies": [],
+      "componentClass": "List",
+      "componentPath": "components/list/list.h5.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/list/list-item.h5.styl"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "topSpace",
+          "type": "Number",
+          "attr": "top-space"
+        }
+      ],
+      "shadow": true
+    },
+    {
+      "tag": "nb-list-item",
+      "dependencies": [],
+      "componentClass": "ListItem",
+      "componentPath": "components/list-item/list-item.h5.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/list-item/list-item.h5.styl"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "border",
+          "type": "Number",
+          "attr": "border"
+        },
+        {
+          "name": "color",
+          "type": "String",
+          "attr": "color"
+        },
+        {
+          "name": "height",
+          "type": "Number",
+          "attr": "height"
+        },
+        {
+          "name": "short",
+          "type": "String",
+          "attr": "short"
+        },
+        {
+          "name": "sideSpace",
+          "type": "Number",
+          "attr": "side-space"
+        }
+      ],
+      "shadow": true
+    }
+  ],
+  "collections": [],
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "0.18.1",
+    "typescriptVersion": "3.3.3"
+  },
+  "bundles": []
+}

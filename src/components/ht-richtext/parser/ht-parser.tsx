@@ -33,7 +33,7 @@ export class RichtextParser {
     let tags = str.match(/\{\[([^\]])+\]\}/g);
     let outputHTML = str;
     this.debug && console.log(tags);
-    tags.map(tag => {
+    (tags || []).map(tag => {
     	// 根据第一个参数类型来决定后面参数的key值
     	let params = tag.match(/{\[([^\]]+)\]}/)[1].split('|');
     	// 表情包

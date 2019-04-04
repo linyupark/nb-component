@@ -1,0 +1,126 @@
+{
+  "tags": [
+    {
+      "label": "ht-emoji",
+      "description": "",
+      "attributes": [
+        {
+          "label": "group",
+          "description": "表情分组",
+          "required": false
+        },
+        {
+          "label": "type",
+          "description": "表情名称",
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ht-richtext-parser",
+      "description": "",
+      "attributes": [
+        {
+          "label": "debug",
+          "description": "调试模式",
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ht-stock",
+      "description": "",
+      "attributes": [
+        {
+          "label": "detail-id",
+          "description": "详情对应id",
+          "required": false
+        },
+        {
+          "label": "head-title",
+          "description": "头部标题",
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ht-subject",
+      "description": "",
+      "attributes": [
+        {
+          "label": "detail-id",
+          "description": "详情对应id",
+          "required": false
+        },
+        {
+          "label": "head-title",
+          "description": "头部标题",
+          "required": false
+        },
+        {
+          "label": "summary",
+          "description": "摘要",
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ht-topic",
+      "description": "",
+      "attributes": [
+        {
+          "label": "detail-id",
+          "description": "详情对应id",
+          "required": false
+        },
+        {
+          "label": "head-title",
+          "description": "头部标题",
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "nb-list-item",
+      "description": "区块项目",
+      "attributes": [
+        {
+          "label": "border",
+          "description": "下边框, 0则不显示",
+          "required": false
+        },
+        {
+          "label": "color",
+          "description": "线条颜色",
+          "required": false
+        },
+        {
+          "label": "height",
+          "description": "设置单元高度",
+          "required": false
+        },
+        {
+          "label": "short",
+          "description": "短线条方向",
+          "required": false
+        },
+        {
+          "label": "side-space",
+          "description": "设置横线左右间距",
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "nb-list",
+      "description": "列表区块",
+      "attributes": [
+        {
+          "label": "top-space",
+          "description": "List之间的间距",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

@@ -52,7 +52,22 @@ if (process.env.NODE_ENV === 'production') {
     config.excludeSrc = ['/test/', '**/.spec.', '**/playground/**', '**/code/**'];
   }
   if (process.env.CLIENT === 'zyb') {
-    config.excludeSrc = config.excludeSrc.concat(['**/roll-picker/**', '**/switch/**', '**/roll-picker/**', '**/svg-icon/**', '**/pagination/**', '**/actionsheet/**', '**/canvas-radar/**']);
+    config.excludeSrc = config.excludeSrc.concat(['**/ht-richtext/**', '**/roll-picker/**', '**/switch/**', '**/roll-picker/**', '**/svg-icon/**', '**/pagination/**', '**/actionsheet/**', '**/canvas-radar/**']);
+  }
+  if (process.env.CLIENT === 'ht') {
+    config.excludeSrc = config.excludeSrc.concat([
+      '**/pull-to-do/**', 
+      '**/marquee/**', 
+      '**/affix/**', 
+      '**/badge/**', 
+      '**/roll-picker/**', 
+      '**/switch/**', 
+      '**/roll-picker/**', 
+      '**/svg-icon/**', 
+      '**/pagination/**', 
+      '**/actionsheet/**', 
+      '**/canvas-radar/**'
+    ]);
   }
 }
 
