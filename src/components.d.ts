@@ -647,6 +647,55 @@ export namespace Components {
     */
     'w'?: number;
   }
+
+  interface NbToast {
+    /**
+    * 消失延时时间 0 -> 不自动消失
+    */
+    'duration': number;
+    /**
+    * 最大显示宽度
+    */
+    'maxLength': number;
+    /**
+    * 显示位置
+    */
+    'position': 'center';
+    /**
+    * 显示
+    */
+    'show': (message?: string) => Promise<any>;
+    /**
+    * 样式定义
+    */
+    'theme': string;
+    /**
+    * 可见开关
+    */
+    'visible': boolean;
+  }
+  interface NbToastAttributes extends StencilHTMLAttributes {
+    /**
+    * 消失延时时间 0 -> 不自动消失
+    */
+    'duration'?: number;
+    /**
+    * 最大显示宽度
+    */
+    'maxLength'?: number;
+    /**
+    * 显示位置
+    */
+    'position'?: 'center';
+    /**
+    * 样式定义
+    */
+    'theme'?: string;
+    /**
+    * 可见开关
+    */
+    'visible'?: boolean;
+  }
 }
 
 declare global {
@@ -670,6 +719,7 @@ declare global {
     'NbRollPicker': Components.NbRollPicker;
     'NbSvgIcon': Components.NbSvgIcon;
     'NbSwitch': Components.NbSwitch;
+    'NbToast': Components.NbToast;
   }
 
   interface StencilIntrinsicElements {
@@ -692,6 +742,7 @@ declare global {
     'nb-roll-picker': Components.NbRollPickerAttributes;
     'nb-svg-icon': Components.NbSvgIconAttributes;
     'nb-switch': Components.NbSwitchAttributes;
+    'nb-toast': Components.NbToastAttributes;
   }
 
 
@@ -809,6 +860,12 @@ declare global {
     new (): HTMLNbSwitchElement;
   };
 
+  interface HTMLNbToastElement extends Components.NbToast, HTMLStencilElement {}
+  var HTMLNbToastElement: {
+    prototype: HTMLNbToastElement;
+    new (): HTMLNbToastElement;
+  };
+
   interface HTMLElementTagNameMap {
     'nb-actionsheet': HTMLNbActionsheetElement
     'nb-affix': HTMLNbAffixElement
@@ -829,6 +886,7 @@ declare global {
     'nb-roll-picker': HTMLNbRollPickerElement
     'nb-svg-icon': HTMLNbSvgIconElement
     'nb-switch': HTMLNbSwitchElement
+    'nb-toast': HTMLNbToastElement
   }
 
   interface ElementTagNameMap {
@@ -851,6 +909,7 @@ declare global {
     'nb-roll-picker': HTMLNbRollPickerElement;
     'nb-svg-icon': HTMLNbSvgIconElement;
     'nb-switch': HTMLNbSwitchElement;
+    'nb-toast': HTMLNbToastElement;
   }
 
 

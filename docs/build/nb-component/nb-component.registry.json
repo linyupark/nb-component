@@ -2,8 +2,8 @@
   "namespace": "NbComponent",
   "fsNamespace": "nb-component",
   "loader": "../nb-component.js",
-  "core": "nb-component.dfin6inb.js",
-  "corePolyfilled": "nb-component.ttpzm3ii.js",
+  "core": "nb-component.rbeh0lar.js",
+  "corePolyfilled": "nb-component.tk1rpdlf.js",
   "components": {
     "ht-emoji": {
       "bundleIds": {
@@ -113,6 +113,12 @@
     "nb-switch": {
       "bundleIds": {
         "$": "uwylqxp3"
+      },
+      "encapsulation": "shadow"
+    },
+    "nb-toast": {
+      "bundleIds": {
+        "$": "goxcgxpo"
       },
       "encapsulation": "shadow"
     }
