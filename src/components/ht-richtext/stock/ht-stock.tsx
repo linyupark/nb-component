@@ -31,7 +31,7 @@ export class Stock {
    * 对应跳转地址
    */
   get link() {
-    return `http://baidu.com?wd=${encodeURIComponent(this.detailId)}`;
+    return `ht_square_function_${this.headTitle}_@stk=${encodeURIComponent(this.detailId)}`;
   }
 
 

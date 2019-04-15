@@ -1,6 +1,6 @@
 export class Subject {
     get link() {
-        return `http://baidu.com?wd=${encodeURIComponent(this.detailId)}`;
+        return `#/article-detail/${encodeURIComponent(this.detailId)}/article`;
     }
     render() {
         return [

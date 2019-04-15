@@ -28,23 +28,23 @@
 
 ## Methods
 
-### `done() => void`
+### `done() => Promise<boolean>`
 
 加载完毕
 
 #### Returns
 
-Type: `void`
+Type: `Promise<boolean>`
 
 
 
-### `restoreLastPosition() => any`
+### `restoreLastPosition() => Promise<any>`
 
 获取上次位置
 
 #### Returns
 
-Type: `any`
+Type: `Promise<any>`
 
 
 

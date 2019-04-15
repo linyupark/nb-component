@@ -16,6 +16,11 @@ export class Actionsheet {
    * @type {Number}
    */
   private scrollTop: number = 0;
+  
+  /**
+   * body 原有样式寄存
+   */
+  private originStyles: string = '';
 
   /**
    * 获取当前滚动位置
@@ -33,13 +38,14 @@ export class Actionsheet {
    */
   scrollHandler(visible) {
     if (visible) {
+      this.originStyles = document.body.getAttribute('style') || '';
       this.scrollTop = this.getScrollTop();
       document.body.style.position = 'fixed';
       document.body.style.width = '100%';
       document.body.style.top = -this.scrollTop + 'px';
+      document.body.style.bottom = '0px';
     } else {
-      document.body.style.position = 'inherit';
-      document.body.style.width = 'inherit';
+      document.body.setAttribute('style', this.originStyles);
       document.body.scrollTop = document.documentElement.scrollTop = this.scrollTop || 0;
     }
   }
@@ -52,12 +58,12 @@ export class Actionsheet {
   /**
    * 展示标题内容 （不用title避免跟原生属性冲突）
    */
-  @Prop() headTitle: string = '标题';
+  @Prop() headTitle?: string = '标题';
 
   /**
-   * 是否需要遮罩
+   * 是否需要遮罩 0 不需要，其他数字代表透明度
    */
-  @Prop() mask: boolean = true;
+  @Prop() mask: number = 0.1;
 
   private get visibleClassName() {
     return this.visible ? 'actionsheet visible' : 'actionsheet';
@@ -88,7 +94,7 @@ export class Actionsheet {
     return [
       <div class={this.visibleClassName}>
         <div class="container">
-          {this.headTitle && (
+          {this.headTitle !== '' && (
             <div class="header">
               <div class="title">{this.headTitle}</div>
               <svg onClick={this.onClose} class="icon-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -99,7 +105,9 @@ export class Actionsheet {
           <slot name="container" />
         </div>
       </div>,
-      this.mask && <div class={`mask ${this.visible ? 'visible' : ''}`} onClick={this.onClose} />
+      this.mask > 0 && <div style={{
+        background: `rgba(0,0,0, ${String(this.mask)})`
+      }} class={`mask ${this.visible ? 'visible' : ''}`} onClick={this.onClose} />
     ];
   }
 }

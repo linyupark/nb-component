@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property    | Attribute    | Description               | Type      | Default |
-| ----------- | ------------ | ------------------------- | --------- | ------- |
-| `headTitle` | `head-title` | 展示标题内容 （不用title避免跟原生属性冲突） | `string`  | `'标题'`  |
-| `mask`      | `mask`       | 是否需要遮罩                    | `boolean` | `true`  |
+| Property    | Attribute    | Description               | Type     | Default |
+| ----------- | ------------ | ------------------------- | -------- | ------- |
+| `headTitle` | `head-title` | 展示标题内容 （不用title避免跟原生属性冲突） | `string` | `'标题'`  |
+| `mask`      | `mask`       | 是否需要遮罩 0 不需要，其他数字代表透明度    | `number` | `0.1`   |
 
 
 ## Methods

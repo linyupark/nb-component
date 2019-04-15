@@ -2,8 +2,8 @@
   "namespace": "NbComponent",
   "fsNamespace": "nb-component",
   "loader": "../nb-component.js",
-  "core": "nb-component.c8ahcecu.js",
-  "corePolyfilled": "nb-component.l8sousmc.js",
+  "core": "nb-component.dfin6inb.js",
+  "corePolyfilled": "nb-component.ttpzm3ii.js",
   "components": {
     "ht-emoji": {
       "bundleIds": {
@@ -19,100 +19,100 @@
     },
     "ht-stock": {
       "bundleIds": {
-        "$": "frj1ld90"
+        "$": "av78nkwh"
       },
       "encapsulation": "shadow"
     },
     "ht-subject": {
       "bundleIds": {
-        "$": "lpfxcszr"
+        "$": "3rqzeiyi"
       },
       "encapsulation": "shadow"
     },
     "ht-topic": {
       "bundleIds": {
-        "$": "kipso9tg"
+        "$": "xaajfcrb"
       },
       "encapsulation": "shadow"
     },
     "nb-actionsheet": {
       "bundleIds": {
-        "$": "smb9qidw"
+        "$": "uwylqxp3"
       },
       "encapsulation": "shadow"
     },
     "nb-affix": {
       "bundleIds": {
-        "$": "smb9qidw"
+        "$": "uwylqxp3"
       },
       "encapsulation": "shadow"
     },
     "nb-badge": {
       "bundleIds": {
-        "$": "smb9qidw"
+        "$": "uwylqxp3"
       },
       "encapsulation": "shadow"
     },
     "nb-canvas-radar": {
       "bundleIds": {
-        "$": "smb9qidw"
+        "$": "uwylqxp3"
       }
     },
     "nb-code-highlight": {
       "bundleIds": {
-        "$": "smb9qidw"
+        "$": "uwylqxp3"
       }
     },
     "nb-list": {
       "bundleIds": {
-        "$": "smb9qidw"
+        "$": "uwylqxp3"
       },
       "encapsulation": "shadow"
     },
     "nb-list-item": {
       "bundleIds": {
-        "$": "smb9qidw"
+        "$": "uwylqxp3"
       },
       "encapsulation": "shadow"
     },
     "nb-marquee": {
       "bundleIds": {
-        "$": "smb9qidw"
+        "$": "uwylqxp3"
       },
       "encapsulation": "shadow"
     },
     "nb-pagination": {
       "bundleIds": {
-        "$": "smb9qidw"
+        "$": "uwylqxp3"
       },
       "encapsulation": "shadow"
     },
     "nb-playground": {
       "bundleIds": {
-        "$": "smb9qidw"
+        "$": "uwylqxp3"
       }
     },
     "nb-pull-to-do": {
       "bundleIds": {
-        "$": "smb9qidw"
+        "$": "uwylqxp3"
       },
       "encapsulation": "shadow"
     },
     "nb-roll-picker": {
       "bundleIds": {
-        "$": "smb9qidw"
+        "$": "uwylqxp3"
       },
       "encapsulation": "shadow"
     },
     "nb-svg-icon": {
       "bundleIds": {
-        "$": "smb9qidw"
+        "$": "uwylqxp3"
       },
       "encapsulation": "shadow"
     },
     "nb-switch": {
       "bundleIds": {
-        "$": "smb9qidw"
+        "$": "uwylqxp3"
       },
       "encapsulation": "shadow"
     }

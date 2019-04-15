@@ -1,6 +1,6 @@
 export class Stock {
     get link() {
-        return `http://baidu.com?wd=${encodeURIComponent(this.detailId)}`;
+        return `ht_square_function_${this.headTitle}_@stk=${encodeURIComponent(this.detailId)}`;
     }
     render() {
         return [

@@ -20,11 +20,11 @@ export namespace Components {
     /**
     * 展示标题内容 （不用title避免跟原生属性冲突）
     */
-    'headTitle': string;
+    'headTitle'?: string;
     /**
-    * 是否需要遮罩
+    * 是否需要遮罩 0 不需要，其他数字代表透明度
     */
-    'mask': boolean;
+    'mask': number;
     /**
     * 显示
     */
@@ -36,9 +36,9 @@ export namespace Components {
     */
     'headTitle'?: string;
     /**
-    * 是否需要遮罩
+    * 是否需要遮罩 0 不需要，其他数字代表透明度
     */
-    'mask'?: boolean;
+    'mask'?: number;
   }
 
   interface NbAffix {
@@ -476,7 +476,7 @@ export namespace Components {
     /**
     * 加载完毕
     */
-    'done': () => void;
+    'done': () => Promise<boolean>;
     /**
     * 加载状态
     */
@@ -492,7 +492,7 @@ export namespace Components {
     /**
     * 获取上次位置
     */
-    'restoreLastPosition': () => any;
+    'restoreLastPosition': () => Promise<any>;
     /**
     * 实际滚动显示区块选择器
     */
@@ -612,6 +612,14 @@ export namespace Components {
     * 是否不可修改
     */
     'disabled': boolean;
+    /**
+    * 高度
+    */
+    'h': number;
+    /**
+    * 宽度
+    */
+    'w': number;
   }
   interface NbSwitchAttributes extends StencilHTMLAttributes {
     /**
@@ -627,9 +635,17 @@ export namespace Components {
     */
     'disabled'?: boolean;
     /**
+    * 高度
+    */
+    'h'?: number;
+    /**
     * 当状态发生改变
     */
     'onChange'?: (event: CustomEvent) => void;
+    /**
+    * 宽度
+    */
+    'w'?: number;
   }
 }
 

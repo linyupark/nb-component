@@ -78,16 +78,19 @@ export class PullToRefresh {
   /**
    * 加载完毕
    */
-  @Method() done() {
+  @Method() 
+  async done() {
     this.$content.style.transform = `translateY(0px)`;
     this.dampingLen = 0;
     this.loading = false;
+    return true;
   }
 
   /**
    * 获取上次位置
    */
-  @Method() restoreLastPosition() {
+  @Method()
+  async restoreLastPosition() {
     if (this.positionSaveId && _positionSaver[this.positionSaveId]) {
       this.$wrapper.scrollTop = _positionSaver[this.positionSaveId];
     }

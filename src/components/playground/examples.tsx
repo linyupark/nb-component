@@ -147,6 +147,8 @@ export default {
     <div class="wrapper">
       点击切换：
       <nb-switch
+        w={67}
+        h={40}
         onChange={ev => {
           console.log(ev.detail.checked);
         }}
@@ -626,7 +628,7 @@ export default {
   'nb-actionsheet': [
     <nb-actionsheet
       headTitle="面板标题"
-      mask={true}
+      mask={0.6}
       ref={ev => (refTarget.actionsheet = ev)}
     >
       <div slot="container">

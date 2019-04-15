@@ -37,7 +37,7 @@ export class Subject {
    * 对应跳转地址
    */
   get link() {
-    return `http://baidu.com?wd=${encodeURIComponent(this.detailId)}`;
+    return `#/article-detail/${encodeURIComponent(this.detailId)}/article`;
   }
 
 

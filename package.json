@@ -8,7 +8,8 @@
   "types": "dist/types/components.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "files": [
-    "dist/"
+    "dist/",
+    "zyb/"
   ],
   "scripts": {
     "build": "cross-env NODE_ENV=production stencil build --docs && rm docs/index.html",
