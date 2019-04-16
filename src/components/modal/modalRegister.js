@@ -1,5 +1,5 @@
 /**
- * 直接js调用唤起toast的函数
+ * 直接js调用唤起modal的函数
  */
 export default async function(type, opts = {}) {
   // 获取实际配置
