@@ -332,6 +332,10 @@ export namespace Components {
     * 设置横线左右间距
     */
     'sideSpace'?: number;
+    /**
+    * 是否启用横滑操作开关
+    */
+    'slide': boolean;
   }
   interface NbListItemAttributes extends StencilHTMLAttributes {
     /**
@@ -354,6 +358,10 @@ export namespace Components {
     * 设置横线左右间距
     */
     'sideSpace'?: number;
+    /**
+    * 是否启用横滑操作开关
+    */
+    'slide'?: boolean;
   }
 
   interface NbList {

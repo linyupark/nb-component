@@ -1,4 +1,9 @@
 
+.item-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
 .item {
   display: flex;
   align-items: center;
@@ -7,11 +12,21 @@
   &.left {
     padding-left: 0;
   }
+
   &.right {
     padding-right: 0;
   }
+
   &.both {
     margin: 0 $sideSpace;
     padding: 0;
+  }
+
+  .slide {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transform: translateX(100%);
   }
 }
