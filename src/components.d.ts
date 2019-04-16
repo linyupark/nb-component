@@ -408,6 +408,87 @@ export namespace Components {
     'styleId'?: 'tow-row-66h';
   }
 
+  interface NbModal {
+    /**
+    * 标题（不填则去掉头部区域）
+    */
+    'headTitle'?: string;
+    /**
+    * 当弹窗类型是 confirm 时取消按钮文案
+    */
+    'noText': string;
+    /**
+    * 当弹窗类型是 alert, confirm 时确认按钮文案
+    */
+    'okText': string;
+    /**
+    * 点击取消按钮对应的操作
+    */
+    'onNo': Function;
+    /**
+    * 点击确认按钮对应的操作
+    */
+    'onOk': Function;
+    /**
+    * 显示位置
+    */
+    'position': 'center';
+    /**
+    * 显示
+    */
+    'show': (type: any, opts?: {}) => Promise<any>;
+    /**
+    * 样式定义
+    */
+    'theme': string;
+    /**
+    * 弹窗类型
+    */
+    'type': 'alert' | 'confirm';
+    /**
+    * 可见开关
+    */
+    'visible': boolean;
+  }
+  interface NbModalAttributes extends StencilHTMLAttributes {
+    /**
+    * 标题（不填则去掉头部区域）
+    */
+    'headTitle'?: string;
+    /**
+    * 当弹窗类型是 confirm 时取消按钮文案
+    */
+    'noText'?: string;
+    /**
+    * 当弹窗类型是 alert, confirm 时确认按钮文案
+    */
+    'okText'?: string;
+    /**
+    * 点击取消按钮对应的操作
+    */
+    'onNo'?: Function;
+    /**
+    * 点击确认按钮对应的操作
+    */
+    'onOk'?: Function;
+    /**
+    * 显示位置
+    */
+    'position'?: 'center';
+    /**
+    * 样式定义
+    */
+    'theme'?: string;
+    /**
+    * 弹窗类型
+    */
+    'type'?: 'alert' | 'confirm';
+    /**
+    * 可见开关
+    */
+    'visible'?: boolean;
+  }
+
   interface NbPagination {
     /**
     * 当只有一页的时候自动隐藏
@@ -713,6 +794,7 @@ declare global {
     'NbListItem': Components.NbListItem;
     'NbList': Components.NbList;
     'NbMarquee': Components.NbMarquee;
+    'NbModal': Components.NbModal;
     'NbPagination': Components.NbPagination;
     'NbPlayground': Components.NbPlayground;
     'NbPullToDo': Components.NbPullToDo;
@@ -736,6 +818,7 @@ declare global {
     'nb-list-item': Components.NbListItemAttributes;
     'nb-list': Components.NbListAttributes;
     'nb-marquee': Components.NbMarqueeAttributes;
+    'nb-modal': Components.NbModalAttributes;
     'nb-pagination': Components.NbPaginationAttributes;
     'nb-playground': Components.NbPlaygroundAttributes;
     'nb-pull-to-do': Components.NbPullToDoAttributes;
@@ -824,6 +907,12 @@ declare global {
     new (): HTMLNbMarqueeElement;
   };
 
+  interface HTMLNbModalElement extends Components.NbModal, HTMLStencilElement {}
+  var HTMLNbModalElement: {
+    prototype: HTMLNbModalElement;
+    new (): HTMLNbModalElement;
+  };
+
   interface HTMLNbPaginationElement extends Components.NbPagination, HTMLStencilElement {}
   var HTMLNbPaginationElement: {
     prototype: HTMLNbPaginationElement;
@@ -880,6 +969,7 @@ declare global {
     'nb-list-item': HTMLNbListItemElement
     'nb-list': HTMLNbListElement
     'nb-marquee': HTMLNbMarqueeElement
+    'nb-modal': HTMLNbModalElement
     'nb-pagination': HTMLNbPaginationElement
     'nb-playground': HTMLNbPlaygroundElement
     'nb-pull-to-do': HTMLNbPullToDoElement
@@ -903,6 +993,7 @@ declare global {
     'nb-list-item': HTMLNbListItemElement;
     'nb-list': HTMLNbListElement;
     'nb-marquee': HTMLNbMarqueeElement;
+    'nb-modal': HTMLNbModalElement;
     'nb-pagination': HTMLNbPaginationElement;
     'nb-playground': HTMLNbPlaygroundElement;
     'nb-pull-to-do': HTMLNbPullToDoElement;

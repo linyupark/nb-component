@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>弹窗Modal演示</title>
+  <link rel="stylesheet" type="text/css" href="http://127.0.0.1:3333/nb-component/build/nb-component.css">
+  <script src="http://127.0.0.1:3333/nb-component/build/nb-component.js"></script>
+  <style type="text/css">
+    html {
+      font-size: 37.5px;
+    }
+
+    body {
+      width: 10rem;
+      min-height: 100vh;
+    }
+
+    .demo {
+      font-size: .46rem;
+      height: 200vh;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="demo">
+    <button onclick="提示()">alert</button>
+    <button onclick="确认()">confirm</button>
+  </div>
+
+  <script>
+    const Modal = async function (type, opts = {}) {
+      // 获取实际配置
+      const options = {
+        el: 'nb-modal',
+        type,
+        headTitle: '',
+        content: '',
+        position: 'center',
+        theme: 'default',
+        ...opts
+      };
+      // 组件 dom
+      let el = document.querySelector(options.el);
+      // 检查是否已经有组件存在页面上
+      if (!el) {
+        let newEl = document.createElement(options.el);
+        document.body.appendChild(newEl);
+        el = await new Promise(resolve => setTimeout(resolve, 100, newEl));
+      }
+      el.setAttribute('type', options.type);
+      el.setAttribute('theme', options.theme);
+      return await el.show(options.type, options);
+    };
+
+    function 提示() {
+      Modal('alert', {
+        title: '提示',
+        content: '你的信息已经保存成功',
+        okText: '好的',
+        onOk() {
+          this.close();
+        }
+      });
+    }
+
+    function 确认() {
+      Modal('confirm', {
+        title: '现在离开无法获得奖励',
+        content: '依然要离开吗？',
+        okText: '确认离开',
+        onOk() {
+          alert('拜拜');
+          this.close();
+        },
+        noText: '留下'
+      });
+    }
+  </script>
+</body>
+
+</html>
