@@ -28,6 +28,7 @@
     "@types/jest": "^23.3.14",
     "@types/node": "^10.12.27",
     "cross-env": "^5.2.0",
+    "minirefresh": "^2.0.2",
     "postcss-preset-env": "^6.5.0",
     "prismjs": "^1.15.0"
   },

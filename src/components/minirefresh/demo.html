@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>下拉刷新+上拉加载更多</title>
+  <link rel="stylesheet" type="text/css" href="http://127.0.0.1:3333/nb-component/build/nb-component.css">
+  <script src="http://127.0.0.1:3333/nb-component/build/nb-component.js"></script>
+  <style type="text/css">
+    html {
+      font-size: 37.5px;
+    }
+
+    body {
+      width: 10rem;
+      min-height: 100vh;
+    }
+
+    .demo {
+      font-size: .46rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="demo">
+    <nb-refresh>
+      <ul id="demoList">
+        <li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li>
+        <li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li>
+      </ul>
+    </nb-refresh>
+  </div>
+
+  <script>
+    const el = document.querySelector('nb-refresh');
+    const list = document.querySelector('#demoList');
+    function newItem() {
+      let item = document.createElement('li');
+      item.innerHTML = `createAt: ${Date.now()}`;
+      return item;
+    }
+    el.addEventListener('scrollLoad', function({detail}) {
+      setTimeout(() => {
+        list.appendChild(newItem());
+        list.appendChild(newItem());
+        list.appendChild(newItem());
+        list.appendChild(newItem());
+        // true表示没有更多了
+        detail.noMore(false);
+      }, 1000);
+    });
+    el.addEventListener('refresh', function({detail}) {
+      setTimeout(() => {
+        list.insertBefore(newItem(), list.firstChild);
+        detail.finish(true);
+      }, 1000);
+    });
+  </script>
+</body>
+
+</html>
