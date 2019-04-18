@@ -1,0 +1,58 @@
+const h = window.NbComponent.h;
+
+/**
+ * 解析器 模板语法 -> html标准组件标签
+ */
+class RichtextParser {
+    componentDidLoad() {
+        this.parseReg(this.$el.innerHTML);
+    }
+    /**
+     * 将标签内的内容进行正则筛选出符合模板规则的内容
+     * @return {String} 过滤后的html
+     */
+    parseReg(str) {
+        let tags = str.match(/\{\[([^\]])+\]\}/g);
+        let outputHTML = str;
+        this.debug && console.log(tags);
+        (tags || []).map(tag => {
+            // 根据第一个参数类型来决定后面参数的key值
+            let params = tag.match(/{\[([^\]]+)\]}/)[1].split('|');
+            // 表情包
+            if (params[0] === 'emoji') {
+                outputHTML = outputHTML.replace(tag, `<ht-emoji group="${params[1]}" type="${params[2]}"></ht-emoji>`);
+            }
+            // 专题、资讯
+            if (params[0] === 'subject1' || params[0] === 'subject2') {
+                outputHTML = outputHTML.replace(tag, `<ht-subject type="${params[0]}" detail-id="${params[1]}" head-title="${params[2]}" summary="${params[3] || ''}"></ht-subject>`);
+            }
+            // 话题
+            if (params[0] === 'topic') {
+                outputHTML = outputHTML.replace(tag, `<ht-topic detail-id="${params[1]}" head-title="${params[2]}"></ht-topic>`);
+            }
+            // 股票
+            if (params[0] === 'stock') {
+                outputHTML = outputHTML.replace(tag, `<ht-stock detail-id="${params[1]}" head-title="${params[2]}"></ht-stock>`);
+            }
+        });
+        this.$el.innerHTML = outputHTML;
+        this.debug && console.log(outputHTML);
+    }
+    render() {
+        return (h("div", { class: "richtext-parser" },
+            h("slot", null)));
+    }
+    static get is() { return "ht-richtext-parser"; }
+    static get encapsulation() { return "shadow"; }
+    static get properties() { return {
+        "$el": {
+            "elementRef": true
+        },
+        "debug": {
+            "type": Boolean,
+            "attr": "debug"
+        }
+    }; }
+}
+
+export { RichtextParser as HtRichtextParser };
