@@ -18,10 +18,11 @@
 
 ## Events
 
-| Event    | Description | Type                |
-| -------- | ----------- | ------------------- |
-| `search` | 当输入框发生变动时   | `CustomEvent<void>` |
-| `submit` | 当发生提交操作时    | `CustomEvent<void>` |
+| Event         | Description | Type                |
+| ------------- | ----------- | ------------------- |
+| `focusChange` | 当输入框发生变动时   | `CustomEvent<void>` |
+| `search`      | 当输入框发生变动时   | `CustomEvent<void>` |
+| `submit`      | 当发生提交操作时    | `CustomEvent<void>` |
 
 
 ## Methods

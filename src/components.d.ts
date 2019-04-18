@@ -778,6 +778,10 @@ export namespace Components {
     /**
     * 当输入框发生变动时
     */
+    'onFocusChange'?: (event: CustomEvent) => void;
+    /**
+    * 当输入框发生变动时
+    */
     'onSearch'?: (event: CustomEvent) => void;
     /**
     * 当发生提交操作时

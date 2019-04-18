@@ -4,7 +4,8 @@ import {
   State,
   Event,
   EventEmitter,
-  Method
+  Method,
+  Watch
 } from '@stencil/core';
 
 /**
@@ -49,10 +50,22 @@ export class SearchBar {
    */
   @Prop() searchDelay: number = 500;
 
+  @Watch('isInputFocus')
+  onInputFocusChange(isInputFocus) {
+    this.focusChange.emit({
+      isInputFocus
+    });
+  }
+
   /**
    * 控制输入框是否聚焦的状态
    */
   @State() isInputFocus: boolean = false;
+
+  /**
+   * 当输入框发生变动时
+   */
+  @Event() focusChange: EventEmitter;
 
   /**
    * 当输入框发生变动时
@@ -116,7 +129,7 @@ export class SearchBar {
    * 当输入框有内容变化时
    */
   private onInput(ev) {
-    const value = ev.target.value;
+    const value = ev.target.value.trim();
     if (this.delayTimer) {
       clearTimeout(this.delayTimer);
     }
@@ -177,7 +190,13 @@ export class SearchBar {
     );
   }
 
-  componentDidLoad() {}
+  componentDidLoad() {
+    if (this.value !== '') {
+      this.search.emit({
+        value: this.value
+      });
+    }
+  }
 
   render() {
     return (
