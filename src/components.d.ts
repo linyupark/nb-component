@@ -724,8 +724,70 @@ export namespace Components {
     'items'?: any[];
   }
 
-  interface NbSearchBar {}
-  interface NbSearchBarAttributes extends StencilHTMLAttributes {}
+  interface NbSearchBar {
+    /**
+    * 取消搜索操作
+    */
+    'cancelSearch': () => Promise<boolean>;
+    /**
+    * 取消操作文案
+    */
+    'cancelText': string;
+    /**
+    * 输入框最大长度限制
+    */
+    'maxLength': number;
+    /**
+    * 搜索框内的提示文案
+    */
+    'placeholder': string;
+    /**
+    * 清除搜索框内容
+    */
+    'removeValue': () => Promise<boolean>;
+    /**
+    * 搜索触发延迟
+    */
+    'searchDelay': number;
+    /**
+    * 提交搜索框内容
+    */
+    'submitForm': (ev: any) => Promise<this>;
+    /**
+    * 输入框内的值（可变化反射）
+    */
+    'value': string;
+  }
+  interface NbSearchBarAttributes extends StencilHTMLAttributes {
+    /**
+    * 取消操作文案
+    */
+    'cancelText'?: string;
+    /**
+    * 输入框最大长度限制
+    */
+    'maxLength'?: number;
+    /**
+    * 当输入框发生变动时
+    */
+    'onSearch'?: (event: CustomEvent) => void;
+    /**
+    * 当发生提交操作时
+    */
+    'onSubmit'?: (event: CustomEvent) => void;
+    /**
+    * 搜索框内的提示文案
+    */
+    'placeholder'?: string;
+    /**
+    * 搜索触发延迟
+    */
+    'searchDelay'?: number;
+    /**
+    * 输入框内的值（可变化反射）
+    */
+    'value'?: string;
+  }
 
   interface NbSvgIcon {
     /**

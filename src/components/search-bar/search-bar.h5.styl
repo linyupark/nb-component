@@ -1,0 +1,82 @@
+
+.search-bar {
+  width: rem(750px);
+  height: rem(88px);
+  display: flex;
+  align-items: center;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+
+  .input {
+    padding: 0;
+    height: rem(64px);
+    width: rem(690px);
+    background: #f5f5f5;
+    font-size: rem(30px);
+    border: 1px solid #f5f5f5;
+    border-radius: rem(32px);
+    margin: 0 auto 0 rem(30px);
+    transition: width 0.2s;
+    outline: none;
+    color: #444;
+    text-indent: rem(65px);
+
+    &::placeholder {
+      color: #999;
+    }
+
+    &.focus {
+      width: rem(580px);
+      border-color: #eee;
+    }
+  }
+
+  .placeholder {
+    position: absolute;
+    height: rem(88px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10rem;
+    font-size: rem(28px);
+    pointer-events: none;
+    color: #999;
+
+    .icon-sousuo {
+      width: rem(40px);
+    }
+
+    &.focus {
+      justify-content: left;
+      left: rem(50px);
+      color: #444;
+    }
+  }
+
+  .icon {
+    fill: currentColor;
+    overflow: hidden;
+    vertical-align: -0.15em;
+    display: inline-block;
+  }
+
+  .icon-qingchu {
+    position: absolute;
+    right: rem(150px);
+    top: rem(20px);
+    color: #ccc;
+    width: rem(48px);
+  }
+
+  .cancelSearch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: rem(32px);
+    color: #3B98FC;
+    text-decoration: none;
+    width: rem(130px);
+    height: rem(64px);
+  }
+}
