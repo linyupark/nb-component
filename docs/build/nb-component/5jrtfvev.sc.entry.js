@@ -1,0 +1,1 @@
+class t{static get is(){return"nb-search-bar"}static get encapsulation(){return"shadow"}static get style(){return""}}export{t as NbSearchBar};

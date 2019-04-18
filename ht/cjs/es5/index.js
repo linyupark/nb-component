@@ -1,1 +1,0 @@
-// NbComponent: ES Module

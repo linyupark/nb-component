@@ -2,8 +2,8 @@
   "namespace": "NbComponent",
   "fsNamespace": "nb-component",
   "loader": "../nb-component.js",
-  "core": "nb-component.azqsm96l.js",
-  "corePolyfilled": "nb-component.gnhzupbq.js",
+  "core": "nb-component.x7jbv1ab.js",
+  "corePolyfilled": "nb-component.ypens2kz.js",
   "components": {
     "ht-emoji": {
       "bundleIds": {
@@ -25,7 +25,7 @@
     },
     "ht-subject": {
       "bundleIds": {
-        "$": "3rqzeiyi"
+        "$": "cug04tye"
       },
       "encapsulation": "shadow"
     },
@@ -113,6 +113,12 @@
     "nb-roll-picker": {
       "bundleIds": {
         "$": "5w4whldg"
+      },
+      "encapsulation": "shadow"
+    },
+    "nb-search-bar": {
+      "bundleIds": {
+        "$": "5jrtfvev"
       },
       "encapsulation": "shadow"
     },

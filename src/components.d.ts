@@ -724,6 +724,9 @@ export namespace Components {
     'items'?: any[];
   }
 
+  interface NbSearchBar {}
+  interface NbSearchBarAttributes extends StencilHTMLAttributes {}
+
   interface NbSvgIcon {
     /**
     * 加入动画名称
@@ -873,6 +876,7 @@ declare global {
     'NbPlayground': Components.NbPlayground;
     'NbPullToDo': Components.NbPullToDo;
     'NbRollPicker': Components.NbRollPicker;
+    'NbSearchBar': Components.NbSearchBar;
     'NbSvgIcon': Components.NbSvgIcon;
     'NbSwitch': Components.NbSwitch;
     'NbToast': Components.NbToast;
@@ -898,6 +902,7 @@ declare global {
     'nb-playground': Components.NbPlaygroundAttributes;
     'nb-pull-to-do': Components.NbPullToDoAttributes;
     'nb-roll-picker': Components.NbRollPickerAttributes;
+    'nb-search-bar': Components.NbSearchBarAttributes;
     'nb-svg-icon': Components.NbSvgIconAttributes;
     'nb-switch': Components.NbSwitchAttributes;
     'nb-toast': Components.NbToastAttributes;
@@ -1018,6 +1023,12 @@ declare global {
     new (): HTMLNbRollPickerElement;
   };
 
+  interface HTMLNbSearchBarElement extends Components.NbSearchBar, HTMLStencilElement {}
+  var HTMLNbSearchBarElement: {
+    prototype: HTMLNbSearchBarElement;
+    new (): HTMLNbSearchBarElement;
+  };
+
   interface HTMLNbSvgIconElement extends Components.NbSvgIcon, HTMLStencilElement {}
   var HTMLNbSvgIconElement: {
     prototype: HTMLNbSvgIconElement;
@@ -1056,6 +1067,7 @@ declare global {
     'nb-playground': HTMLNbPlaygroundElement
     'nb-pull-to-do': HTMLNbPullToDoElement
     'nb-roll-picker': HTMLNbRollPickerElement
+    'nb-search-bar': HTMLNbSearchBarElement
     'nb-svg-icon': HTMLNbSvgIconElement
     'nb-switch': HTMLNbSwitchElement
     'nb-toast': HTMLNbToastElement
@@ -1081,6 +1093,7 @@ declare global {
     'nb-playground': HTMLNbPlaygroundElement;
     'nb-pull-to-do': HTMLNbPullToDoElement;
     'nb-roll-picker': HTMLNbRollPickerElement;
+    'nb-search-bar': HTMLNbSearchBarElement;
     'nb-svg-icon': HTMLNbSvgIconElement;
     'nb-switch': HTMLNbSwitchElement;
     'nb-toast': HTMLNbToastElement;
