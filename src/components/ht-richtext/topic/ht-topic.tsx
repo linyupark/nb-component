@@ -40,7 +40,7 @@ export class Topic {
       <div class="topic">
         <a href={this.link}>
           #{this.headTitle}#
-        </a>
+        </a>&nbsp;
       </div>
     ]
   }

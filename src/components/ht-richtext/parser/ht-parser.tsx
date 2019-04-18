@@ -40,9 +40,9 @@ export class RichtextParser {
     	if (params[0] === 'emoji') {
     		outputHTML = outputHTML.replace(tag, `<ht-emoji group="${params[1]}" type="${params[2]}"></ht-emoji>`);
     	}
-      // 专题
-      if (params[0] === 'subject') {
-        outputHTML = outputHTML.replace(tag, `<ht-subject detail-id="${params[1]}" head-title="${params[2]}" summary="${params[3]||''}"></ht-subject>`);
+      // 专题、资讯
+      if (params[0] === 'subject1' || params[0] === 'subject2') {
+        outputHTML = outputHTML.replace(tag, `<ht-subject type="${params[0]}" detail-id="${params[1]}" head-title="${params[2]}" summary="${params[3]||''}"></ht-subject>`);
       }
       // 话题
       if (params[0] === 'topic') {

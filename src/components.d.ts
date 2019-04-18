@@ -274,6 +274,10 @@ export namespace Components {
     * 摘要
     */
     'summary': string;
+    /**
+    * 类型：subject1:专题/subject2:资讯
+    */
+    'type': string;
   }
   interface HtSubjectAttributes extends StencilHTMLAttributes {
     /**
@@ -288,6 +292,10 @@ export namespace Components {
     * 摘要
     */
     'summary'?: string;
+    /**
+    * 类型：subject1:专题/subject2:资讯
+    */
+    'type'?: string;
   }
 
   interface HtTopic {
