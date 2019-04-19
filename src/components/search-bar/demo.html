@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>搜索框</title>
+  <link rel="stylesheet" type="text/css" href="http://127.0.0.1:3333/nb-component/build/nb-component.css">
+  <script src="http://127.0.0.1:3333/nb-component/build/nb-component.js"></script>
+  <style type="text/css">
+    html {
+      font-size: 37.5px;
+    }
+
+    body {
+      width: 10rem;
+      min-height: 100vh;
+    }
+
+    .demo {
+      font-size: .46rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="demo">
+    <nb-search-bar max-length="10" placeholder="股票代码/公司名称" value="哈哈"></nb-search-bar>
+  </div>
+
+  <script>
+    const searchBar = document.querySelector('nb-search-bar');
+    searchBar.addEventListener('submit', ({ detail }) => {
+      console.log('提交搜索关键字', detail.value);
+    });
+    searchBar.addEventListener('search', (data) => {
+      console.log('输入关键字', data.detail.value);
+    });
+    searchBar.addEventListener('focusChange', ({ detail }) => {
+      console.log('输入框激活状态', detail.isInputFocus);
+    });
+  </script>
+</body>
+
+</html>
