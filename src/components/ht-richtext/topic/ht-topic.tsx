@@ -1,6 +1,7 @@
 import {
   Component,
-  Prop
+  Prop,
+  Method
 } from '@stencil/core';
 
 
@@ -34,11 +35,18 @@ export class Topic {
     return `#/article-detail/${encodeURIComponent(this.detailId)}/topic`;
   }
 
+  /**
+   * 跳转链接时阻止冒泡
+   */
+  @Method()
+  goLink(event) {
+    event.stopPropagation();
+  }
 
   render() {
     return [
       <div class="topic">
-        <a href={this.link}>
+        <a href={this.link} onClick={this.goLink}>
           #{this.headTitle}#
         </a>&nbsp;
       </div>

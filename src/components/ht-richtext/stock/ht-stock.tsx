@@ -1,6 +1,7 @@
 import {
   Component,
-  Prop
+  Prop,
+  Method
 } from '@stencil/core';
 
 
@@ -34,11 +35,18 @@ export class Stock {
     return `ht_square_function_${this.headTitle}_@stk=${encodeURIComponent(this.detailId)}`;
   }
 
+  /**
+   * 跳转链接时阻止冒泡
+   */
+  @Method()
+  goLink(event) {
+    event.stopPropagation();
+  }
 
   render() {
     return [
       <div class="stock">
-        <a href={this.link}>
+        <a href={this.link} onClick={this.goLink}>
           ${this.headTitle}
         </a>
       </div>

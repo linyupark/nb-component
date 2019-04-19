@@ -2,8 +2,8 @@
   "namespace": "NbComponent",
   "fsNamespace": "nb-component",
   "loader": "../nb-component.js",
-  "core": "nb-component.pqa3avoi.js",
-  "corePolyfilled": "nb-component.nszreefz.js",
+  "core": "nb-component.xvawsnv3.js",
+  "corePolyfilled": "nb-component.qqwhpo4q.js",
   "components": {
     "ht-emoji": {
       "bundleIds": {
@@ -19,19 +19,19 @@
     },
     "ht-stock": {
       "bundleIds": {
-        "$": "av78nkwh"
+        "$": "vzljrsch"
       },
       "encapsulation": "shadow"
     },
     "ht-subject": {
       "bundleIds": {
-        "$": "cnvfe7el"
+        "$": "msgpfhke"
       },
       "encapsulation": "shadow"
     },
     "ht-topic": {
       "bundleIds": {
-        "$": "lr3v2cri"
+        "$": "x3ag1mjl"
       },
       "encapsulation": "shadow"
     },

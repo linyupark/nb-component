@@ -246,6 +246,10 @@ export namespace Components {
     */
     'detailId': string;
     /**
+    * 跳转链接时阻止冒泡
+    */
+    'goLink': (event: any) => void;
+    /**
     * 头部标题
     */
     'headTitle': string;
@@ -266,6 +270,10 @@ export namespace Components {
     * 详情对应id
     */
     'detailId': string;
+    /**
+    * 跳转链接时阻止冒泡
+    */
+    'goLink': (event: any) => void;
     /**
     * 头部标题
     */
@@ -303,6 +311,10 @@ export namespace Components {
     * 详情对应id
     */
     'detailId': string;
+    /**
+    * 跳转链接时阻止冒泡
+    */
+    'goLink': (event: any) => void;
     /**
     * 头部标题
     */

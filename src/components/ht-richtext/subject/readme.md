@@ -15,6 +15,25 @@
 | `type`      | `type`       | 类型：subject1:专题/subject2:资讯 | `string` | `undefined` |
 
 
+## Methods
+
+### `goLink(event: any) => void`
+
+跳转链接时阻止冒泡
+
+#### Parameters
+
+| Name    | Type  | Description |
+| ------- | ----- | ----------- |
+| `event` | `any` |             |
+
+#### Returns
+
+Type: `void`
+
+
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

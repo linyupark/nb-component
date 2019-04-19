@@ -1,6 +1,7 @@
 import {
   Component,
-  Prop
+  Prop,
+  Method
 } from '@stencil/core';
 
 
@@ -46,11 +47,18 @@ export class Subject {
     return `#/article-detail/${encodeURIComponent(this.detailId)}/article`;
   }
 
+  /**
+   * 跳转链接时阻止冒泡
+   */
+  @Method()
+  goLink(event) {
+    event.stopPropagation();
+  }
 
   render() {
     return [
       <div class="subject">
-        <a href={this.link}>
+        <a href={this.link} onClick={this.goLink}>
           {this.type==='subject1'?<svg class="icon" viewBox="0 0 1024 1024">
             <path d="M174.327172 88.275862v847.448276h688.551725v-847.448276h-688.551725z m0-70.62069h688.551725a70.62069 70.62069 0 0 1 70.620689 70.62069v847.448276a70.62069 70.62069 0 0 1-70.620689 70.62069h-688.551725a70.62069 70.62069 0 0 1-70.620689-70.62069v-847.448276a70.62069 70.62069 0 0 1 70.620689-70.62069z"  ></path>
             <path d="M333.223724 335.448276a35.310345 35.310345 0 1 1 0-70.62069h391.662345a35.310345 35.310345 0 1 1 0 70.62069H333.223724zM333.223724 512a35.310345 35.310345 0 0 1 0-70.62069h391.662345a35.310345 35.310345 0 1 1 0 70.62069H333.223724z"></path>
@@ -64,7 +72,7 @@ export class Subject {
           display: this.summary === '' ? 'inline-block' : 'block'
         }}>
           {this.summary}&nbsp;&nbsp;&nbsp;
-          <a href={this.link}>点击阅读&gt;&gt;</a>
+          <a href={this.link} onClick={this.goLink}>点击阅读&gt;&gt;</a>
         </p>
       </div>
     ]
