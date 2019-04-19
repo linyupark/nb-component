@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>日期选择器</title>
+  <link rel="stylesheet" type="text/css" href="http://127.0.0.1:3333/nb-component/build/nb-component.css">
+  <script src="http://127.0.0.1:3333/nb-component/build/nb-component.js"></script>
+  <style type="text/css">
+    html {
+      font-size: 37.5px;
+    }
+
+    body {
+      width: 10rem;
+      min-height: 100vh;
+    }
+
+    .demo {
+      font-size: .46rem;
+      height: 200vh;
+    }
+    .datetime {
+      border: 1px solid #eee;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="demo">
+    <nb-datetime-picker headers for=".datetime" format="YYYY-MM-DD">
+      <input type="text" class="datetime" value="2019-04-19">
+    </nb-datetime-picker>
+  </div>
+
+  <script>
+    const el = document.querySelector('nb-datetime-picker');
+    el.addEventListener('ready', ({ detail }) => {
+      console.log(detail.picker);
+      // detail.picker.update();
+      // detail.picker.setDate(new Date(2048, 9, 24, 5, 12));
+    });
+  </script>
+</body>
+
+</html>

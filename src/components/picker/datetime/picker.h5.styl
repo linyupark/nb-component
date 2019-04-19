@@ -1,0 +1,299 @@
+.picker {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #333;
+  direction: ltr;
+  display: none;
+  // font-size: 16px;
+  line-height: 1.5;
+  overflow: hidden;
+  -ms-touch-action: none;
+  touch-action: none;
+  -webkit-transition: opacity 0.15s;
+  transition: opacity 0.15s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.picker-fixed {
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1986;
+}
+
+.picker-fixed > .picker-dialog {
+  bottom: -100%;
+  left: 0;
+  max-height: 100%;
+  position: absolute;
+  right: 0;
+  -webkit-transition: bottom 0.3s;
+  transition: bottom 0.3s;
+}
+
+.picker-fixed .picker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.picker-fixed .picker-footer {
+  display: table;
+}
+
+.picker-open {
+  display: block;
+  opacity: 0;
+}
+
+.picker-opened {
+  opacity: 1;
+}
+
+.picker-opened > .picker-dialog {
+  bottom: 0;
+}
+
+.picker-dialog {
+  background-color: #fff;
+  border: 1px solid #eee;
+}
+
+.picker-header {
+  border-bottom: 1px solid #eee;
+  display: none;
+  // padding: 14px 20px;
+  height: rem(80px);
+  position: relative;
+}
+
+.picker-title {
+  // font-size: 18px;
+  font-size: rem(32px);
+  font-weight: 500;
+  // line-height: 20px;
+  color: #272727;
+  margin: 0;
+}
+
+// .picker-close {
+//   background-color: transparent;
+//   border-width: 0;
+//   color: #999;
+//   cursor: pointer;
+//   font-size: 28px;
+//   height: 48px;
+//   opacity: 0.75;
+//   padding: 0;
+//   position: absolute;
+//   right: 0;
+//   top: 0;
+//   width: 48px;
+// }
+
+.picker-close:focus, .picker-close:hover {
+  opacity: 1;
+  outline: none;
+}
+
+.picker-body {
+  overflow: hidden;
+  position: relative;
+
+  .picker-picked-line {
+    position: absolute;
+    height: rem(70px);
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #eee;
+    pointer-events: none;
+  }
+}
+
+.picker-grid {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.picker-cell {
+  display: table-cell;
+  position: relative;
+}
+
+.picker-cell::before, .picker-cell::after {
+  content: '';
+  display: block;
+  left: 0;
+  position: absolute;
+  right: 0;
+  z-index: 3;
+}
+
+// .picker-cell::before {
+// background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.05)));
+// background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.05));
+// bottom: 50%;
+// margin-bottom: 16px;
+// top: 0;
+// }
+
+// .picker-cell::after {
+// background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.05)));
+// background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.05));
+// bottom: 0;
+// margin-top: 16px;
+// top: 50%;
+// }
+.picker-cell + .picker-cell {
+  // border-left: 1px solid #eee;
+}
+
+.picker-headers .picker-cell::before {
+  margin-bottom: 0;
+}
+
+.picker-headers .picker-cell::after {
+  margin-top: 32px;
+}
+
+.picker-single:not(.picker-controls):not(.picker-headers) .picker-cell::before, .picker-single:not(.picker-controls):not(.picker-headers) .picker-cell::after {
+  display: none;
+}
+
+.picker-cell__header {
+  display: none;
+  // color: #999;
+  // font-size: 14px;
+  // font-weight: 500;
+  // line-height: 24px;
+  // margin: 0;
+  // overflow: hidden;
+  // padding: 4px 8px;
+  // text-align: center;
+  // text-overflow: ellipsis;
+  // white-space: nowrap;
+}
+
+.picker-cell__control {
+  cursor: pointer;
+  height: 32px;
+  padding: 4px 8px;
+  position: relative;
+  z-index: 4;
+}
+
+.picker-cell__control::before {
+  border: 0 solid #ccc;
+  content: '';
+  display: block;
+  height: 8px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  width: 8px;
+}
+
+.picker-cell__control:hover::before {
+  border-color: #ccc;
+}
+
+.picker-cell__control--prev::before {
+  border-right-width: 1px;
+  border-top-width: 1px;
+  margin-top: 2px;
+}
+
+.picker-cell__control--next::before {
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  margin-bottom: 2px;
+}
+
+.picker-cell__body {
+  overflow: hidden;
+  position: relative;
+  // top: rem(-5px);
+}
+
+.picker-cell__body::before, .picker-cell__body::after {
+  content: '';
+  height: rem(140px);
+  left: 0;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+}
+
+.picker-cell__body::before {
+  background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, 1)));
+  background-image: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+  top: 0;
+}
+
+.picker-cell__body::after {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, 1)));
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+  bottom: 0;
+}
+
+.picker-single .picker-cell__body::before, .picker-single .picker-cell__body::after {
+  display: none;
+}
+
+.picker-list {
+  list-style: none;
+  margin: -32px 0;
+  padding: 0;
+  position: relative;
+}
+
+.picker-item {
+  color: #999;
+  // padding: 4px 8px;
+  // padding: rem(8px);
+  height: rem(70px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  white-space: nowrap;
+  font-size: rem(32px);
+}
+
+.picker-picked {
+  color: #272727;
+  // font-size: 1.125em;
+  // line-height: 24px;
+  font-size: rem(38px);
+}
+
+// .picker-footer {
+// border-top: 1px solid #eee;
+// display: none;
+// width: 100%;
+// }
+.picker-cancel, .picker-confirm {
+  background-color: transparent;
+  border-width: 0;
+  cursor: pointer;
+  display: table-cell;
+  // font-size: 16px;
+  font-size: rem(28px);
+  // padding: 12px 16px;
+  // width: 50%;
+  width: rem(120px);
+  color: #3E86F7;
+}
+
+.picker-cancel:focus, .picker-cancel:hover, .picker-confirm:focus, .picker-confirm:hover {
+  background-color: #fcfcfc;
+  outline: none;
+}

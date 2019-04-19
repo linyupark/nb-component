@@ -2,13 +2,8 @@
   "namespace": "NbComponent",
   "fsNamespace": "nb-component",
   "loader": "../nb-component.js",
-<<<<<<< HEAD
-  "core": "nb-component.xvawsnv3.js",
-  "corePolyfilled": "nb-component.qqwhpo4q.js",
-=======
-  "core": "nb-component.oxtwli6v.js",
-  "corePolyfilled": "nb-component.uzcd53wy.js",
->>>>>>> 50796273b0371ddf4d8faee179bbcfb36b02a56a
+  "core": "nb-component.bbv3cipw.js",
+  "corePolyfilled": "nb-component.ryatwyqj.js",
   "components": {
     "ht-emoji": {
       "bundleIds": {
@@ -67,6 +62,12 @@
       "bundleIds": {
         "$": "5w4whldg"
       }
+    },
+    "nb-datetime-picker": {
+      "bundleIds": {
+        "$": "ml1vbcfy"
+      },
+      "encapsulation": "shadow"
     },
     "nb-list": {
       "bundleIds": {
