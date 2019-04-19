@@ -2,11 +2,27 @@ import { Config } from '@stencil/core';
 import { postcss } from '@stencil/postcss';
 import { stylus } from '@stencil/stylus';
 import cssnext from 'postcss-preset-env';
+import fs from 'fs';
+import path from 'path';
+
+/**
+ * 包含哪些组件
+ * @param names 组件目录名数组
+ */
+const excludeSrcExcept = (names: string[]) => {
+  const dirs = fs.readdirSync(path.resolve('src/components'));
+  const excludeDirs = dirs.filter(dir => {
+    return !~names.indexOf(dir);
+  });
+  return excludeDirs.map(dir => {
+    return `**/${dir}/**`;
+  });
+};
 
 let config: Config = {
   namespace: 'nb-component',
   outputTargets: [
-    { 
+    {
       type: 'dist',
       dir: process.env.CLIENT || 'dist'
     },
@@ -27,7 +43,8 @@ let config: Config = {
     }
   ],
   // enableCache: false,
-  globalStyle: process.env.NODE_ENV === 'production' ? null : 'src/global/main.styl',
+  globalStyle:
+    process.env.NODE_ENV === 'production' ? null : 'src/global/main.styl',
   // globalScript: 'src/global/main.ts',
   plugins: [
     stylus({
@@ -49,32 +66,26 @@ let config: Config = {
 if (process.env.NODE_ENV === 'production') {
   config.excludeSrc = [];
   if (process.env.DEMO !== 'yes') {
-    config.excludeSrc = ['/test/', '**/.spec.', '**/playground/**', '**/code/**'];
+    config.excludeSrc = [
+      '/test/',
+      '**/.spec.',
+      '**/playground/**',
+      '**/code/**'
+    ];
   }
   if (process.env.CLIENT === 'zyb') {
-    config.excludeSrc = config.excludeSrc.concat([
-      '**/ht-richtext/**', 
-      '**/roll-picker/**', 
-      '**/roll-picker/**', 
-      '**/svg-icon/**',
-      '**/pagination/**', 
-      '**/canvas-radar/**'
+    config.excludeSrc = excludeSrcExcept([
+      'actionsheet',
+      'affix',
+      'badge',
+      'list',
+      'list-item',
+      'marquee',
+      'switch'
     ]);
   }
   if (process.env.CLIENT === 'ht') {
-    config.excludeSrc = config.excludeSrc.concat([
-      '**/pull-to-do/**', 
-      '**/marquee/**', 
-      '**/affix/**', 
-      '**/badge/**', 
-      '**/roll-picker/**', 
-      '**/switch/**', 
-      '**/roll-picker/**', 
-      '**/svg-icon/**', 
-      '**/pagination/**', 
-      '**/actionsheet/**', 
-      '**/canvas-radar/**'
-    ]);
+    config.excludeSrc = excludeSrcExcept(['ht-richtext', 'list', 'list-item']);
   }
 }
 
