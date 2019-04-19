@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>限制文本长度</title>
+  <link rel="stylesheet" type="text/css" href="http://127.0.0.1:3333/nb-component/build/nb-component.css">
+  <script src="http://127.0.0.1:3333/nb-component/build/nb-component.js"></script>
+  <style type="text/css">
+    html {
+      font-size: 37.5px;
+    }
+
+    body {
+      width: 10rem;
+      min-height: 100vh;
+    }
+
+    .demo {
+      font-size: .46rem;
+      height: 200vh;
+    }
+    .datetime {
+      border: 1px solid #eee;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="demo">
+    <nb-limit-textarea height="180" limit="300">
+    </nb-limit-textarea>
+    <button onclick="getContent()">提交</button>
+  </div>
+
+  <script>
+    const el = document.querySelector('nb-limit-textarea');
+    el.addEventListener('ready', ({ detail }) => {
+      console.log(detail.textarea);
+    });
+    async function getContent() {
+      const content = await el.getContent();
+      console.log('content', content);
+    }
+  </script>
+</body>
+
+</html>

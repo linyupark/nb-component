@@ -957,6 +957,40 @@ export namespace Components {
     'w'?: number;
   }
 
+  interface NbLimitTextarea {
+    /**
+    * 获取内容
+    */
+    'getContent': () => Promise<any>;
+    /**
+    * 输入框高度
+    */
+    'height': number;
+    /**
+    * 最大长度
+    */
+    'limit': number;
+    /**
+    * placeholder 提示信息
+    */
+    'placeholder': string;
+  }
+  interface NbLimitTextareaAttributes extends StencilHTMLAttributes {
+    /**
+    * 输入框高度
+    */
+    'height'?: number;
+    /**
+    * 最大长度
+    */
+    'limit'?: number;
+    'onReady'?: (event: CustomEvent) => void;
+    /**
+    * placeholder 提示信息
+    */
+    'placeholder'?: string;
+  }
+
   interface NbToast {
     /**
     * 消失延时时间 0 -> 不自动消失
@@ -1032,6 +1066,7 @@ declare global {
     'NbSearchBar': Components.NbSearchBar;
     'NbSvgIcon': Components.NbSvgIcon;
     'NbSwitch': Components.NbSwitch;
+    'NbLimitTextarea': Components.NbLimitTextarea;
     'NbToast': Components.NbToast;
   }
 
@@ -1059,6 +1094,7 @@ declare global {
     'nb-search-bar': Components.NbSearchBarAttributes;
     'nb-svg-icon': Components.NbSvgIconAttributes;
     'nb-switch': Components.NbSwitchAttributes;
+    'nb-limit-textarea': Components.NbLimitTextareaAttributes;
     'nb-toast': Components.NbToastAttributes;
   }
 
@@ -1201,6 +1237,12 @@ declare global {
     new (): HTMLNbSwitchElement;
   };
 
+  interface HTMLNbLimitTextareaElement extends Components.NbLimitTextarea, HTMLStencilElement {}
+  var HTMLNbLimitTextareaElement: {
+    prototype: HTMLNbLimitTextareaElement;
+    new (): HTMLNbLimitTextareaElement;
+  };
+
   interface HTMLNbToastElement extends Components.NbToast, HTMLStencilElement {}
   var HTMLNbToastElement: {
     prototype: HTMLNbToastElement;
@@ -1231,6 +1273,7 @@ declare global {
     'nb-search-bar': HTMLNbSearchBarElement
     'nb-svg-icon': HTMLNbSvgIconElement
     'nb-switch': HTMLNbSwitchElement
+    'nb-limit-textarea': HTMLNbLimitTextareaElement
     'nb-toast': HTMLNbToastElement
   }
 
@@ -1258,6 +1301,7 @@ declare global {
     'nb-search-bar': HTMLNbSearchBarElement;
     'nb-svg-icon': HTMLNbSvgIconElement;
     'nb-switch': HTMLNbSwitchElement;
+    'nb-limit-textarea': HTMLNbLimitTextareaElement;
     'nb-toast': HTMLNbToastElement;
   }
 

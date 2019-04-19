@@ -1,4 +1,11 @@
-import { Component, Prop, Method, Element, Event, EventEmitter } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  Method,
+  Element,
+  Event,
+  EventEmitter
+} from '@stencil/core';
 
 import Picker from './picker.esm';
 
@@ -12,7 +19,6 @@ import Picker from './picker.esm';
   shadow: true
 })
 export class DatetimePicker {
-
   @Element() el: HTMLElement;
 
   @Event() ready: EventEmitter;
@@ -125,10 +131,10 @@ export class DatetimePicker {
           month: '月',
           day: '日',
           hour: '时',
-          minute: '分',
+          minute: '分'
         };
         return Number(text) + suffixes[type];
-      },
+      }
     });
     // 发送准备完毕
     this.ready.emit({
@@ -140,7 +146,7 @@ export class DatetimePicker {
     return (
       <div class="datetime-picker">
         <slot />
-        <div class="picker-container"></div>
+        <div class="picker-container" />
       </div>
     );
   }

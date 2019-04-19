@@ -1,0 +1,26 @@
+.textarea {
+  width: rem(750px);
+  padding-bottom: rem(40px);
+  position: relative;
+
+  textarea {
+    border: none;
+    resize: none;
+    padding: rem(24px) rem(30px);
+    width: 10rem - rem(60px);
+    font-size: rem(32px);
+    outline: none;
+
+    &::placeholder {
+      color: #bfbfbf;
+    }
+  }
+
+  .counter {
+    position: absolute;
+    right: rem(30px);
+    bottom: rem(24px);
+    font-size: rem(24px);
+    color: #8c8c8c;
+  }
+}
