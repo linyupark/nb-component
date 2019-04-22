@@ -6,6 +6,9 @@ import MiniRefreshTools from 'minirefresh';
  * http://www.minirefresh.com/minirefresh-doc/api/api_minirefresh.html
  */
 
+/**
+ * @slot 滚动框的具体内容 
+ */
 @Component({
   tag: 'nb-refresh',
   styleUrl: 'refresh.h5.styl',
