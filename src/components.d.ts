@@ -959,39 +959,43 @@ export namespace Components {
 
   interface NbTabSlide {
     /**
-    * tab 内容控制数据列表
+    * tab 高度
     */
-    'items': {key: number, text: string}[];
+    'height': number;
     /**
-    * 当前选中的 key
+    * 当前选中的 index
     */
-    'key': number;
+    'index': number;
     /**
     * 滑动块的位置，默认：底部
     */
     'position': 'bottom' | 'top';
     /**
-    * 控制显示的内容选择器
+    * tab 的宽度
     */
-    'target': string;
+    'width': number;
   }
   interface NbTabSlideAttributes extends StencilHTMLAttributes {
     /**
-    * tab 内容控制数据列表
+    * tab 高度
     */
-    'items'?: {key: number, text: string}[];
+    'height'?: number;
     /**
-    * 当前选中的 key
+    * 当前选中的 index
     */
-    'key'?: number;
+    'index'?: number;
+    /**
+    * 当 tab 切换发生变化
+    */
+    'onChange'?: (event: CustomEvent) => void;
     /**
     * 滑动块的位置，默认：底部
     */
     'position'?: 'bottom' | 'top';
     /**
-    * 控制显示的内容选择器
+    * tab 的宽度
     */
-    'target'?: string;
+    'width'?: number;
   }
 
   interface NbLimitTextarea {

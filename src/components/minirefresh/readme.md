@@ -38,6 +38,13 @@ Type: `Promise<any>`
 
 
 
+## Slots
+
+| Slot         | Description |
+| ------------ | ----------- |
+| `"滚动框的具体内容"` |             |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
