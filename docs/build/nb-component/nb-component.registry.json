@@ -2,8 +2,8 @@
   "namespace": "NbComponent",
   "fsNamespace": "nb-component",
   "loader": "../nb-component.js",
-  "core": "nb-component.pn4kbukz.js",
-  "corePolyfilled": "nb-component.ljb0dclq.js",
+  "core": "nb-component.1ackz1lr.js",
+  "corePolyfilled": "nb-component.usat2kf9.js",
   "components": {
     "ht-emoji": {
       "bundleIds": {
@@ -31,36 +31,36 @@
     },
     "ht-topic": {
       "bundleIds": {
-        "$": "x3ag1mjl"
+        "$": "3myulxkg"
       },
       "encapsulation": "shadow"
     },
     "nb-actionsheet": {
       "bundleIds": {
-        "$": "5w4whldg"
+        "$": "l5h09gs2"
       },
       "encapsulation": "shadow"
     },
     "nb-affix": {
       "bundleIds": {
-        "$": "5w4whldg"
+        "$": "l5h09gs2"
       },
       "encapsulation": "shadow"
     },
     "nb-badge": {
       "bundleIds": {
-        "$": "5w4whldg"
+        "$": "l5h09gs2"
       },
       "encapsulation": "shadow"
     },
     "nb-canvas-radar": {
       "bundleIds": {
-        "$": "5w4whldg"
+        "$": "l5h09gs2"
       }
     },
     "nb-code-highlight": {
       "bundleIds": {
-        "$": "5w4whldg"
+        "$": "l5h09gs2"
       }
     },
     "nb-datetime-picker": {
@@ -77,19 +77,19 @@
     },
     "nb-list": {
       "bundleIds": {
-        "$": "5w4whldg"
+        "$": "l5h09gs2"
       },
       "encapsulation": "shadow"
     },
     "nb-list-item": {
       "bundleIds": {
-        "$": "5w4whldg"
+        "$": "l5h09gs2"
       },
       "encapsulation": "shadow"
     },
     "nb-marquee": {
       "bundleIds": {
-        "$": "5w4whldg"
+        "$": "l5h09gs2"
       },
       "encapsulation": "shadow"
     },
@@ -101,18 +101,18 @@
     },
     "nb-pagination": {
       "bundleIds": {
-        "$": "5w4whldg"
+        "$": "l5h09gs2"
       },
       "encapsulation": "shadow"
     },
     "nb-playground": {
       "bundleIds": {
-        "$": "5w4whldg"
+        "$": "l5h09gs2"
       }
     },
     "nb-pull-to-do": {
       "bundleIds": {
-        "$": "5w4whldg"
+        "$": "l5h09gs2"
       },
       "encapsulation": "shadow"
     },
@@ -124,7 +124,7 @@
     },
     "nb-roll-picker": {
       "bundleIds": {
-        "$": "5w4whldg"
+        "$": "l5h09gs2"
       },
       "encapsulation": "shadow"
     },
@@ -136,13 +136,13 @@
     },
     "nb-svg-icon": {
       "bundleIds": {
-        "$": "5w4whldg"
+        "$": "l5h09gs2"
       },
       "encapsulation": "shadow"
     },
     "nb-switch": {
       "bundleIds": {
-        "$": "5w4whldg"
+        "$": "l5h09gs2"
       },
       "encapsulation": "shadow"
     },
