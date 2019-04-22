@@ -957,6 +957,43 @@ export namespace Components {
     'w'?: number;
   }
 
+  interface NbTabSlide {
+    /**
+    * tab 内容控制数据列表
+    */
+    'items': {key: number, text: string}[];
+    /**
+    * 当前选中的 key
+    */
+    'key': number;
+    /**
+    * 滑动块的位置，默认：底部
+    */
+    'position': 'bottom' | 'top';
+    /**
+    * 控制显示的内容选择器
+    */
+    'target': string;
+  }
+  interface NbTabSlideAttributes extends StencilHTMLAttributes {
+    /**
+    * tab 内容控制数据列表
+    */
+    'items'?: {key: number, text: string}[];
+    /**
+    * 当前选中的 key
+    */
+    'key'?: number;
+    /**
+    * 滑动块的位置，默认：底部
+    */
+    'position'?: 'bottom' | 'top';
+    /**
+    * 控制显示的内容选择器
+    */
+    'target'?: string;
+  }
+
   interface NbLimitTextarea {
     /**
     * 获取内容
@@ -1066,6 +1103,7 @@ declare global {
     'NbSearchBar': Components.NbSearchBar;
     'NbSvgIcon': Components.NbSvgIcon;
     'NbSwitch': Components.NbSwitch;
+    'NbTabSlide': Components.NbTabSlide;
     'NbLimitTextarea': Components.NbLimitTextarea;
     'NbToast': Components.NbToast;
   }
@@ -1094,6 +1132,7 @@ declare global {
     'nb-search-bar': Components.NbSearchBarAttributes;
     'nb-svg-icon': Components.NbSvgIconAttributes;
     'nb-switch': Components.NbSwitchAttributes;
+    'nb-tab-slide': Components.NbTabSlideAttributes;
     'nb-limit-textarea': Components.NbLimitTextareaAttributes;
     'nb-toast': Components.NbToastAttributes;
   }
@@ -1237,6 +1276,12 @@ declare global {
     new (): HTMLNbSwitchElement;
   };
 
+  interface HTMLNbTabSlideElement extends Components.NbTabSlide, HTMLStencilElement {}
+  var HTMLNbTabSlideElement: {
+    prototype: HTMLNbTabSlideElement;
+    new (): HTMLNbTabSlideElement;
+  };
+
   interface HTMLNbLimitTextareaElement extends Components.NbLimitTextarea, HTMLStencilElement {}
   var HTMLNbLimitTextareaElement: {
     prototype: HTMLNbLimitTextareaElement;
@@ -1273,6 +1318,7 @@ declare global {
     'nb-search-bar': HTMLNbSearchBarElement
     'nb-svg-icon': HTMLNbSvgIconElement
     'nb-switch': HTMLNbSwitchElement
+    'nb-tab-slide': HTMLNbTabSlideElement
     'nb-limit-textarea': HTMLNbLimitTextareaElement
     'nb-toast': HTMLNbToastElement
   }
@@ -1301,6 +1347,7 @@ declare global {
     'nb-search-bar': HTMLNbSearchBarElement;
     'nb-svg-icon': HTMLNbSvgIconElement;
     'nb-switch': HTMLNbSwitchElement;
+    'nb-tab-slide': HTMLNbTabSlideElement;
     'nb-limit-textarea': HTMLNbLimitTextareaElement;
     'nb-toast': HTMLNbToastElement;
   }
