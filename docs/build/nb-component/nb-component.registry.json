@@ -2,8 +2,8 @@
   "namespace": "NbComponent",
   "fsNamespace": "nb-component",
   "loader": "../nb-component.js",
-  "core": "nb-component.1ackz1lr.js",
-  "corePolyfilled": "nb-component.usat2kf9.js",
+  "core": "nb-component.9q3mpy9w.js",
+  "corePolyfilled": "nb-component.pfp5gj1g.js",
   "components": {
     "ht-emoji": {
       "bundleIds": {
@@ -25,7 +25,7 @@
     },
     "ht-subject": {
       "bundleIds": {
-        "$": "msgpfhke"
+        "$": "dvs0pno4"
       },
       "encapsulation": "shadow"
     },
