@@ -1130,6 +1130,10 @@ export namespace Components {
     */
     'keywords'?: string[];
     /**
+    * 触发滚动
+    */
+    'onScrollTo'?: (event: CustomEvent) => void;
+    /**
     * 包裹可滚动的容器，不填写的话默认为window级别滚动
     */
     'scroller'?: string;

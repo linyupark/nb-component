@@ -1,4 +1,4 @@
-import { Component, Prop, Element, Method } from '@stencil/core';
+import { Component, Prop, Element, Method, Event, EventEmitter } from '@stencil/core';
 
 
 /**
@@ -13,6 +13,11 @@ import { Component, Prop, Element, Method } from '@stencil/core';
 export class VscrollNav {
 
   @Element() el: HTMLElement;
+
+  /**
+   * 触发滚动
+   */
+  @Event() scrollTo: EventEmitter;
 
   /**
    * 可用于导航滑动的关键字数组
@@ -49,6 +54,9 @@ export class VscrollNav {
       if (!scroller) return false;
       scroller.scrollTop = offsetY;
     }
+    this.scrollTo.emit({
+      y: offsetY
+    });
     return offsetY;
   }
 
