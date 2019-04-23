@@ -1,0 +1,37 @@
+.tag-input-set {
+  padding: rem(10px) rem(30px);
+  background: #fff;
+  position: relative;
+  .tag {
+    font-size: rem(26px);
+    color: #fff;
+    background: #3985FC;
+    padding: rem(12px) rem(20px);
+    border-radius: rem(29px);
+    display: inline-block;
+    margin: rem(10px) rem(20px) rem(10px) 0;
+  }
+  .input {
+    font-size: rem(32px);
+    outline: none;
+    display: inline;
+    border: 1px dashed #fff;
+    min-width: rem(160px);
+    padding: rem(6px) rem(10px);
+    &::placeholder {
+      color: #bfbfbf;
+    }
+    &.active {
+      border-color: #eee;
+    }
+  }
+  .shadow {
+    visibility: hidden;
+    z-index: -1;
+    position: absolute;
+    max-width: rem(690px);
+    overflow: hidden;
+    left: 0;
+    top: 0;
+  }
+}

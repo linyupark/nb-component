@@ -1019,6 +1019,35 @@ export namespace Components {
     'width'?: number;
   }
 
+  interface NbTagInputSet {
+    /**
+    * 手动添加标签
+    */
+    'addTag': (tagString: string) => Promise<void>;
+    /**
+    * 获取当前标签
+    */
+    'getTags': () => Promise<any>;
+    /**
+    * 输入框提示信息
+    */
+    'placeholder': string;
+    /**
+    * 当前选中的tag标签数组
+    */
+    'tags': any;
+  }
+  interface NbTagInputSetAttributes extends StencilHTMLAttributes {
+    /**
+    * 输入框提示信息
+    */
+    'placeholder'?: string;
+    /**
+    * 当前选中的tag标签数组
+    */
+    'tags'?: any;
+  }
+
   interface NbLimitTextarea {
     /**
     * 获取内容
@@ -1167,6 +1196,7 @@ declare global {
     'NbSvgIcon': Components.NbSvgIcon;
     'NbSwitch': Components.NbSwitch;
     'NbTabSlide': Components.NbTabSlide;
+    'NbTagInputSet': Components.NbTagInputSet;
     'NbLimitTextarea': Components.NbLimitTextarea;
     'NbToast': Components.NbToast;
     'NbVscrollNav': Components.NbVscrollNav;
@@ -1198,6 +1228,7 @@ declare global {
     'nb-svg-icon': Components.NbSvgIconAttributes;
     'nb-switch': Components.NbSwitchAttributes;
     'nb-tab-slide': Components.NbTabSlideAttributes;
+    'nb-tag-input-set': Components.NbTagInputSetAttributes;
     'nb-limit-textarea': Components.NbLimitTextareaAttributes;
     'nb-toast': Components.NbToastAttributes;
     'nb-vscroll-nav': Components.NbVscrollNavAttributes;
@@ -1354,6 +1385,12 @@ declare global {
     new (): HTMLNbTabSlideElement;
   };
 
+  interface HTMLNbTagInputSetElement extends Components.NbTagInputSet, HTMLStencilElement {}
+  var HTMLNbTagInputSetElement: {
+    prototype: HTMLNbTagInputSetElement;
+    new (): HTMLNbTagInputSetElement;
+  };
+
   interface HTMLNbLimitTextareaElement extends Components.NbLimitTextarea, HTMLStencilElement {}
   var HTMLNbLimitTextareaElement: {
     prototype: HTMLNbLimitTextareaElement;
@@ -1398,6 +1435,7 @@ declare global {
     'nb-svg-icon': HTMLNbSvgIconElement
     'nb-switch': HTMLNbSwitchElement
     'nb-tab-slide': HTMLNbTabSlideElement
+    'nb-tag-input-set': HTMLNbTagInputSetElement
     'nb-limit-textarea': HTMLNbLimitTextareaElement
     'nb-toast': HTMLNbToastElement
     'nb-vscroll-nav': HTMLNbVscrollNavElement
@@ -1429,6 +1467,7 @@ declare global {
     'nb-svg-icon': HTMLNbSvgIconElement;
     'nb-switch': HTMLNbSwitchElement;
     'nb-tab-slide': HTMLNbTabSlideElement;
+    'nb-tag-input-set': HTMLNbTagInputSetElement;
     'nb-limit-textarea': HTMLNbLimitTextareaElement;
     'nb-toast': HTMLNbToastElement;
     'nb-vscroll-nav': HTMLNbVscrollNavElement;

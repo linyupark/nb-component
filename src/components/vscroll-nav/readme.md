@@ -14,6 +14,13 @@
 | `scroller` | `scroller`  | 包裹可滚动的容器，不填写的话默认为window级别滚动                                              | `string`   | `null`       |
 
 
+## Events
+
+| Event      | Description | Type                |
+| ---------- | ----------- | ------------------- |
+| `scrollTo` | 触发滚动        | `CustomEvent<void>` |
+
+
 ## Methods
 
 ### `scrollToId(id: string) => Promise<any>`

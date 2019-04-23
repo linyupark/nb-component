@@ -34,14 +34,14 @@ let config: Config = {
       serviceWorker: null // disable service workers
     }
   ],
-  copy: [
-    {
-      src: 'index.md'
-    },
-    {
-      src: '_config.yml'
-    }
-  ],
+  // copy: [
+  //   {
+  //     src: 'index.md'
+  //   },
+  //   {
+  //     src: '_config.yml'
+  //   }
+  // ],
   // enableCache: false,
   globalStyle:
     process.env.NODE_ENV === 'production' ? null : 'src/global/main.styl',
