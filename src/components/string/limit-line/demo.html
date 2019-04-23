@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>文案字数限制</title>
+  <link rel="stylesheet" type="text/css" href="http://127.0.0.1:3333/nb-component/build/nb-component.css">
+  <script src="http://127.0.0.1:3333/nb-component/build/nb-component.js"></script>
+  <style type="text/css">
+    html {
+      font-size: 37.5px;
+    }
+
+    body {
+      width: 10rem;
+      min-height: 100vh;
+    }
+
+    .demo {
+      font-size: .46rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="demo">
+    <nb-string-limit number="2">
+      <div style="width: 7rem">
+        思考的静安寺减肥鞍山科技大学暗示asdasfasdasdjasfjalsdj a啊是大沙发介绍的
+        思考的静安寺减肥鞍山科技大学暗示asdasfasdasdjasfjalsdj a啊是大沙发介绍的
+      </div>
+    </nb-string-limit>
+    <hr>
+    <nb-string-limit mode="length" number="10">
+        思考的静安寺减肥鞍山科技大学暗示asdasfasdasdjasfjalsdj a啊是大沙发介绍的
+      </nb-string-limit>
+  </div>
+
+  <script>
+  </script>
+</body>
+
+</html>

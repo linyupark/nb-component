@@ -2,8 +2,8 @@
   "namespace": "NbComponent",
   "fsNamespace": "nb-component",
   "loader": "../nb-component.js",
-  "core": "nb-component.dqs8zbku.js",
-  "corePolyfilled": "nb-component.ipyyg3va.js",
+  "core": "nb-component.yfmsyyrf.js",
+  "corePolyfilled": "nb-component.qvxvrgtc.js",
   "components": {
     "ht-emoji": {
       "bundleIds": {
@@ -131,6 +131,12 @@
     "nb-search-bar": {
       "bundleIds": {
         "$": "2x0f0tk6"
+      },
+      "encapsulation": "shadow"
+    },
+    "nb-string-limit": {
+      "bundleIds": {
+        "$": "g7pobt3q"
       },
       "encapsulation": "shadow"
     },

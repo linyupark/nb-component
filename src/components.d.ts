@@ -879,6 +879,27 @@ export namespace Components {
     'value'?: string;
   }
 
+  interface NbStringLimit {
+    /**
+    * 选择限制长度的模式
+    */
+    'mode': 'line' | 'length';
+    /**
+    * 针对模式设置数值 line 代表行数， length 代表长度
+    */
+    'number': number;
+  }
+  interface NbStringLimitAttributes extends StencilHTMLAttributes {
+    /**
+    * 选择限制长度的模式
+    */
+    'mode'?: 'line' | 'length';
+    /**
+    * 针对模式设置数值 line 代表行数， length 代表长度
+    */
+    'number'?: number;
+  }
+
   interface NbSvgIcon {
     /**
     * 加入动画名称
@@ -1105,6 +1126,7 @@ declare global {
     'NbPullToDo': Components.NbPullToDo;
     'NbRollPicker': Components.NbRollPicker;
     'NbSearchBar': Components.NbSearchBar;
+    'NbStringLimit': Components.NbStringLimit;
     'NbSvgIcon': Components.NbSvgIcon;
     'NbSwitch': Components.NbSwitch;
     'NbTabSlide': Components.NbTabSlide;
@@ -1134,6 +1156,7 @@ declare global {
     'nb-pull-to-do': Components.NbPullToDoAttributes;
     'nb-roll-picker': Components.NbRollPickerAttributes;
     'nb-search-bar': Components.NbSearchBarAttributes;
+    'nb-string-limit': Components.NbStringLimitAttributes;
     'nb-svg-icon': Components.NbSvgIconAttributes;
     'nb-switch': Components.NbSwitchAttributes;
     'nb-tab-slide': Components.NbTabSlideAttributes;
@@ -1268,6 +1291,12 @@ declare global {
     new (): HTMLNbSearchBarElement;
   };
 
+  interface HTMLNbStringLimitElement extends Components.NbStringLimit, HTMLStencilElement {}
+  var HTMLNbStringLimitElement: {
+    prototype: HTMLNbStringLimitElement;
+    new (): HTMLNbStringLimitElement;
+  };
+
   interface HTMLNbSvgIconElement extends Components.NbSvgIcon, HTMLStencilElement {}
   var HTMLNbSvgIconElement: {
     prototype: HTMLNbSvgIconElement;
@@ -1320,6 +1349,7 @@ declare global {
     'nb-pull-to-do': HTMLNbPullToDoElement
     'nb-roll-picker': HTMLNbRollPickerElement
     'nb-search-bar': HTMLNbSearchBarElement
+    'nb-string-limit': HTMLNbStringLimitElement
     'nb-svg-icon': HTMLNbSvgIconElement
     'nb-switch': HTMLNbSwitchElement
     'nb-tab-slide': HTMLNbTabSlideElement
@@ -1349,6 +1379,7 @@ declare global {
     'nb-pull-to-do': HTMLNbPullToDoElement;
     'nb-roll-picker': HTMLNbRollPickerElement;
     'nb-search-bar': HTMLNbSearchBarElement;
+    'nb-string-limit': HTMLNbStringLimitElement;
     'nb-svg-icon': HTMLNbSvgIconElement;
     'nb-switch': HTMLNbSwitchElement;
     'nb-tab-slide': HTMLNbTabSlideElement;
