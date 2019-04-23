@@ -85,7 +85,7 @@ if (process.env.NODE_ENV === 'production') {
     ]);
   }
   if (process.env.CLIENT === 'ht') {
-    config.excludeSrc = excludeSrcExcept(['ht-richtext', 'list', 'list-item']);
+    config.excludeSrc = excludeSrcExcept(['affix', 'ht-richtext', 'list', 'list-item']);
   }
 }
 

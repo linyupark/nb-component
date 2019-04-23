@@ -1101,6 +1101,39 @@ export namespace Components {
     */
     'visible'?: boolean;
   }
+
+  interface NbVscrollNav {
+    /**
+    * 定义滚动元素 id 的前置与选中的keyword 合并成完整的 id eg：'vscroll-' + 'A' -> id='vscroll-A'
+    */
+    'idPrefix': string;
+    /**
+    * 可用于导航滑动的关键字数组
+    */
+    'keywords': string[];
+    /**
+    * 滚动列表到指定id位置
+    */
+    'scrollToId': (id: string) => Promise<any>;
+    /**
+    * 包裹可滚动的容器，不填写的话默认为window级别滚动
+    */
+    'scroller'?: string;
+  }
+  interface NbVscrollNavAttributes extends StencilHTMLAttributes {
+    /**
+    * 定义滚动元素 id 的前置与选中的keyword 合并成完整的 id eg：'vscroll-' + 'A' -> id='vscroll-A'
+    */
+    'idPrefix'?: string;
+    /**
+    * 可用于导航滑动的关键字数组
+    */
+    'keywords'?: string[];
+    /**
+    * 包裹可滚动的容器，不填写的话默认为window级别滚动
+    */
+    'scroller'?: string;
+  }
 }
 
 declare global {
@@ -1132,6 +1165,7 @@ declare global {
     'NbTabSlide': Components.NbTabSlide;
     'NbLimitTextarea': Components.NbLimitTextarea;
     'NbToast': Components.NbToast;
+    'NbVscrollNav': Components.NbVscrollNav;
   }
 
   interface StencilIntrinsicElements {
@@ -1162,6 +1196,7 @@ declare global {
     'nb-tab-slide': Components.NbTabSlideAttributes;
     'nb-limit-textarea': Components.NbLimitTextareaAttributes;
     'nb-toast': Components.NbToastAttributes;
+    'nb-vscroll-nav': Components.NbVscrollNavAttributes;
   }
 
 
@@ -1327,6 +1362,12 @@ declare global {
     new (): HTMLNbToastElement;
   };
 
+  interface HTMLNbVscrollNavElement extends Components.NbVscrollNav, HTMLStencilElement {}
+  var HTMLNbVscrollNavElement: {
+    prototype: HTMLNbVscrollNavElement;
+    new (): HTMLNbVscrollNavElement;
+  };
+
   interface HTMLElementTagNameMap {
     'nb-actionsheet': HTMLNbActionsheetElement
     'nb-affix': HTMLNbAffixElement
@@ -1355,6 +1396,7 @@ declare global {
     'nb-tab-slide': HTMLNbTabSlideElement
     'nb-limit-textarea': HTMLNbLimitTextareaElement
     'nb-toast': HTMLNbToastElement
+    'nb-vscroll-nav': HTMLNbVscrollNavElement
   }
 
   interface ElementTagNameMap {
@@ -1385,6 +1427,7 @@ declare global {
     'nb-tab-slide': HTMLNbTabSlideElement;
     'nb-limit-textarea': HTMLNbLimitTextareaElement;
     'nb-toast': HTMLNbToastElement;
+    'nb-vscroll-nav': HTMLNbVscrollNavElement;
   }
 
 
