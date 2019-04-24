@@ -1153,6 +1153,10 @@ export namespace Components {
     */
     'previewSize': number;
     /**
+    * 将原图缩放至750宽度*多少倍
+    */
+    'rate': number;
+    /**
     * 提示上传按钮的文案
     */
     'uploadText': string;
@@ -1178,6 +1182,10 @@ export namespace Components {
     * 预览图的尺寸
     */
     'previewSize'?: number;
+    /**
+    * 将原图缩放至750宽度*多少倍
+    */
+    'rate'?: number;
     /**
     * 提示上传按钮的文案
     */

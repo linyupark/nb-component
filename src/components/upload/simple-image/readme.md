@@ -7,12 +7,13 @@
 
 ## Properties
 
-| Property      | Attribute      | Description  | Type     | Default  |
-| ------------- | -------------- | ------------ | -------- | -------- |
-| `imageSize`   | `image-size`   | 图片最大尺寸单位（KB） | `number` | `10240`  |
-| `maxLength`   | `max-length`   | 最多能上传几张      | `number` | `4`      |
-| `previewSize` | `preview-size` | 预览图的尺寸       | `number` | `175`    |
-| `uploadText`  | `upload-text`  | 提示上传按钮的文案    | `string` | `'上传截图'` |
+| Property      | Attribute      | Description     | Type     | Default    |
+| ------------- | -------------- | --------------- | -------- | ---------- |
+| `imageSize`   | `image-size`   | 图片最大尺寸单位（KB）    | `number` | `1024 * 4` |
+| `maxLength`   | `max-length`   | 最多能上传几张         | `number` | `4`        |
+| `previewSize` | `preview-size` | 预览图的尺寸          | `number` | `175`      |
+| `rate`        | `rate`         | 将原图缩放至750宽度*多少倍 | `number` | `2`        |
+| `uploadText`  | `upload-text`  | 提示上传按钮的文案       | `string` | `'上传截图'`   |
 
 
 ## Events
