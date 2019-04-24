@@ -302,7 +302,7 @@ export class UploadSimpleImage {
         this.previewImages = [...this.previewImages];
       }
     }
-
+    // 恢复初试
     this.uploader.value = '';
     this.loading = false;
   }
