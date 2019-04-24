@@ -13,6 +13,13 @@
 | `tags`        | `tags`        | 当前选中的tag标签数组 | `any`    | `[]`      |
 
 
+## Events
+
+| Event    | Description | Type                |
+| -------- | ----------- | ------------------- |
+| `change` | 标签数据发生变化    | `CustomEvent<void>` |
+
+
 ## Methods
 
 ### `addTag(tagString: string) => Promise<void>`

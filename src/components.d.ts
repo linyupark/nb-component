@@ -1039,6 +1039,10 @@ export namespace Components {
   }
   interface NbTagInputSetAttributes extends StencilHTMLAttributes {
     /**
+    * 标签数据发生变化
+    */
+    'onChange'?: (event: CustomEvent) => void;
+    /**
     * 输入框提示信息
     */
     'placeholder'?: string;
@@ -1131,6 +1135,55 @@ export namespace Components {
     'visible'?: boolean;
   }
 
+  interface NbUploadSimpleImage {
+    /**
+    * 获取预览图片合集
+    */
+    'getImages': () => Promise<any[]>;
+    /**
+    * 图片最大尺寸单位（KB）
+    */
+    'imageSize': number;
+    /**
+    * 最多能上传几张
+    */
+    'maxLength': number;
+    /**
+    * 预览图的尺寸
+    */
+    'previewSize': number;
+    /**
+    * 提示上传按钮的文案
+    */
+    'uploadText': string;
+  }
+  interface NbUploadSimpleImageAttributes extends StencilHTMLAttributes {
+    /**
+    * 图片最大尺寸单位（KB）
+    */
+    'imageSize'?: number;
+    /**
+    * 最多能上传几张
+    */
+    'maxLength'?: number;
+    /**
+    * 触发图片选择改动
+    */
+    'onChange'?: (event: CustomEvent) => void;
+    /**
+    * 当发生错误
+    */
+    'onError'?: (event: CustomEvent) => void;
+    /**
+    * 预览图的尺寸
+    */
+    'previewSize'?: number;
+    /**
+    * 提示上传按钮的文案
+    */
+    'uploadText'?: string;
+  }
+
   interface NbVscrollNav {
     /**
     * 定义滚动元素 id 的前置与选中的keyword 合并成完整的 id eg：'vscroll-' + 'A' -> id='vscroll-A'
@@ -1199,6 +1252,7 @@ declare global {
     'NbTagInputSet': Components.NbTagInputSet;
     'NbLimitTextarea': Components.NbLimitTextarea;
     'NbToast': Components.NbToast;
+    'NbUploadSimpleImage': Components.NbUploadSimpleImage;
     'NbVscrollNav': Components.NbVscrollNav;
   }
 
@@ -1231,6 +1285,7 @@ declare global {
     'nb-tag-input-set': Components.NbTagInputSetAttributes;
     'nb-limit-textarea': Components.NbLimitTextareaAttributes;
     'nb-toast': Components.NbToastAttributes;
+    'nb-upload-simple-image': Components.NbUploadSimpleImageAttributes;
     'nb-vscroll-nav': Components.NbVscrollNavAttributes;
   }
 
@@ -1403,6 +1458,12 @@ declare global {
     new (): HTMLNbToastElement;
   };
 
+  interface HTMLNbUploadSimpleImageElement extends Components.NbUploadSimpleImage, HTMLStencilElement {}
+  var HTMLNbUploadSimpleImageElement: {
+    prototype: HTMLNbUploadSimpleImageElement;
+    new (): HTMLNbUploadSimpleImageElement;
+  };
+
   interface HTMLNbVscrollNavElement extends Components.NbVscrollNav, HTMLStencilElement {}
   var HTMLNbVscrollNavElement: {
     prototype: HTMLNbVscrollNavElement;
@@ -1438,6 +1499,7 @@ declare global {
     'nb-tag-input-set': HTMLNbTagInputSetElement
     'nb-limit-textarea': HTMLNbLimitTextareaElement
     'nb-toast': HTMLNbToastElement
+    'nb-upload-simple-image': HTMLNbUploadSimpleImageElement
     'nb-vscroll-nav': HTMLNbVscrollNavElement
   }
 
@@ -1470,6 +1532,7 @@ declare global {
     'nb-tag-input-set': HTMLNbTagInputSetElement;
     'nb-limit-textarea': HTMLNbLimitTextareaElement;
     'nb-toast': HTMLNbToastElement;
+    'nb-upload-simple-image': HTMLNbUploadSimpleImageElement;
     'nb-vscroll-nav': HTMLNbVscrollNavElement;
   }
 

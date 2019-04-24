@@ -1,4 +1,4 @@
-import { Component, Prop, State, Method } from '@stencil/core';
+import { Component, Prop, State, Method, Event, EventEmitter, Watch } from '@stencil/core';
 
 /**
  * 仿微信标签设置添加输入框
@@ -9,6 +9,19 @@ import { Component, Prop, State, Method } from '@stencil/core';
   shadow: true
 })
 export class TagInputSet {
+
+  /**
+   * 标签数据发生变化
+   */
+  @Event() change: EventEmitter;
+
+  @Watch('tags')
+  onTagsChange(newTags) {
+    this.change.emit({
+      tags: newTags
+    });
+  }
+
   /**
    * 当前选中的tag标签数组
    */

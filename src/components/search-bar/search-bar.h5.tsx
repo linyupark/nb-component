@@ -181,7 +181,6 @@ export class SearchBar {
   get removeValueButton() {
     return this.value.length > 0 ? (
       <i
-        class={``}
         innerHTML={ICONS.qingchu}
         onClick={this.removeValue.bind(this)}
       />

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>图片上传</title>
+  <link rel="stylesheet" type="text/css" href="http://127.0.0.1:3333/nb-component/build/nb-component.css">
+  <script src="http://127.0.0.1:3333/nb-component/build/nb-component.js"></script>
+  <style type="text/css">
+    html {
+      font-size: 37.5px;
+    }
+    body {
+      width: 10rem;
+      min-height: 100vh;
+      background: #f5f5f5;
+    }
+
+    .demo {
+      font-size: .46rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="demo">
+    <nb-upload-simple-image max-length="8"></nb-upload-simple-image>
+  </div>
+
+  <script>
+    const Toast = async function (message, opts = {}) {
+      // 获取实际配置
+      const options = {
+        el: 'nb-toast',
+        duration: 2000,
+        position: 'center',
+        maxLength: 480,
+        theme: 'default',
+        ...opts
+      };
+      // 组件 dom
+      let el = document.querySelector(options.el);
+      // 检查是否已经有组件存在页面上
+      if (!el) {
+        let newEl = document.createElement(options.el);
+        document.body.appendChild(newEl);
+        el = await new Promise(resolve => setTimeout(resolve, 100, newEl));
+      }
+      el.setAttribute('duration', options.duration);
+      el.setAttribute('position', options.position);
+      el.setAttribute('max-length', options.maxLength);
+      el.setAttribute('theme', options.theme);
+      return await el.show(message);
+    };
+  </script>
+  <script>
+    let el = document.querySelector('nb-upload-simple-image');
+    el.addEventListener('error', ({ detail }) => {
+      Toast(detail.info);
+    });
+  </script>
+</body>
+
+</html>
