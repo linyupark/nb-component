@@ -60,7 +60,11 @@ let config: Config = {
         })
       ]
     })
-  ]
+  ],
+  nodeResolve: {
+    browser: true,
+    preferBuiltins: true // Workaround for https://github.com/ionic-team/stencil/issues/1326
+  },
 };
 
 if (process.env.NODE_ENV === 'production') {
